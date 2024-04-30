@@ -4,9 +4,30 @@ Class {
 	#category : #'Falcon4Seaside-Core'
 }
 
+{ #category : #accesing }
+F4SRootComponent >> currentLanguage [
+	^ 'en-US'
+]
+
+{ #category : #accessing }
+F4SRootComponent >> currentTheme [
+	^ 'light'
+]
+
+{ #category : #accessing }
+F4SRootComponent >> leftToRightOrRightToLeft [
+	"Answer ltr to rtl"
+	^ 'ltr'
+]
+
 { #category : #updating }
 F4SRootComponent >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
+	anHtmlRoot htmlAttributes
+		at: 'lang' append: self currentLanguage;
+		at: 'data-bs-theme' append: self currentTheme;
+		at: 'dir' append: self leftToRightOrRightToLeft.
+
 	anHtmlRoot beHtml5.
 	anHtmlRoot meta charset: 'utf8'.
 	anHtmlRoot meta
