@@ -12,3 +12,9 @@ Class {
 	#superclass : #Object,
 	#category : #'Falcon4Seaside-Core'
 }
+
+{ #category : #accessing }
+Falcon4Seaside >> version [
+	"The version of Falcon implemented"
+	^ '3.20.0'
+]
