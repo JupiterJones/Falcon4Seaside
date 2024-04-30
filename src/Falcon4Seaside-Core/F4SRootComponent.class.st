@@ -4,6 +4,39 @@ Class {
 	#category : #'Falcon4Seaside-Core'
 }
 
+{ #category : #installing }
+F4SRootComponent class >> applicationName [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+F4SRootComponent class >> canBeRoot [
+	^ true
+]
+
+{ #category : #installing }
+F4SRootComponent class >> configureApplication: anApplication [
+	anApplication preferenceAt: #sessionClass put: F4SSession.
+	anApplication configuration addParent: F4SSystemConfiguration instance.
+]
+
+{ #category : #installing }
+F4SRootComponent class >> register [
+	self configureApplication: (WAAdmin register: self asApplicationAt: self applicationName)
+]
+
+{ #category : #installing }
+F4SRootComponent class >> reregister [
+	self
+		unregister;
+		register
+]
+
+{ #category : #installing }
+F4SRootComponent class >> unregister [
+	WAAdmin unregister: self applicationName
+]
+
 { #category : #accesing }
 F4SRootComponent >> currentLanguage [
 	^ 'en-US'
@@ -29,14 +62,13 @@ F4SRootComponent >> updateRoot: anHtmlRoot [
 		at: 'dir' append: self leftToRightOrRightToLeft.
 
 	anHtmlRoot beHtml5.
-	anHtmlRoot meta charset: 'utf8'.
 	anHtmlRoot meta
 		attributeAt: 'http-equiv' put: 'X-UA-Compatible';
 		content: 'IE=edge'.
 	anHtmlRoot meta
 		name: 'viewport';
 		content: 'width=device-width, initial-scale=1'.
-	anHtmlRoot title: self windowTitle.
+	anHtmlRoot title: self windowTitle asUTF8Bytes.
 	self updateRootFavIcon: anHtmlRoot.
 	self updateRootTheme: anHtmlRoot.
 	self updateRootScripts: anHtmlRoot.
@@ -49,39 +81,39 @@ F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
 	
 	"Adding apple-touch-icon"
 	anHtmlRoot link
-		rel: 'apple-touch-icon';
-		sizes: '180x180';
+		relationship: 'apple-touch-icon';
+		attributeAt: 'sizes' put: '180x180';
 		url: '/files/F4SFileLibrary/images/icons/apple-touch-icon.png'.	
 	
 	"Adding favicon for 32x32"
 	anHtmlRoot link
-		rel: 'icon';
+		relationship: 'icon';
 		type: 'image/png';
-		sizes: '32x32';
+		attributeAt: 'sizes' put: '32x32';
 		url: '/files/F4SFileLibrary/images/icons/favicon-32x32.png'.
 	
 	"Adding favicon for 16x16"
 	anHtmlRoot link
-		rel: 'icon';
+		relationship: 'icon';
 		type: 'image/png';
-		sizes: '16x16';
+		attributeAt: 'sizes' put: '16x16';
 		url: '/files/F4SFileLibrary/images/icons/favicon-16x16.png'.
 	
 	"Adding web application manifest"
 	anHtmlRoot link
-		rel: 'manifest';
+		relationship: 'manifest';
 		url: '/files/F4SFileLibrary/images/icons/site.webmanifest'.	
 	
 	"Adding Safari mask icon"
 	anHtmlRoot link
-		rel: 'mask-icon';
-		href: '/files/F4SFileLibrary/images/icons/safari-pinned-tab.svg';
-		color: '#5bbad5'.
+		relationship: 'mask-icon';
+		url: '/files/F4SFileLibrary/images/icons/safari-pinned-tab.svg';
+		attributeAt: 'color' put: '#5bbad5'.
 	
 	"Adding shortcut icon"
 	anHtmlRoot link
-		rel: 'shortcut icon';
-		href: '/files/F4SFileLibrary/images/icons/favicon.ico'.
+		relationship: 'shortcut icon';
+		url: '/files/F4SFileLibrary/images/icons/favicon.ico'.
 	
 	"Adding meta tags for application titles and configuration"
 	anHtmlRoot meta
@@ -96,9 +128,6 @@ F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
 	anHtmlRoot meta
 		name: 'msapplication-config';
 		content: '/assets/images/icons/browserconfig.xml'.
-	anHtmlRoot meta
-		name: 'theme-color';
-		content: '#ffffff'
 ]
 
 { #category : #updating }
@@ -107,7 +136,7 @@ F4SRootComponent >> updateRootScripts: anHtmlRoot [
 	
 	"Adding external JavaScript file for SimpleBar"
     anHtmlRoot script
-        url: 'vendors/simplebar/simplebar.min.js'.
+        url: '/files/F4SFileLibrary/vendors/simplebar/simplebar.min.js'.
 ]
 
 { #category : #updating }
@@ -116,44 +145,44 @@ F4SRootComponent >> updateRootStyles: anHtmlRoot [
 
     "Preconnect to fonts.gstatic.com"
     anHtmlRoot link
-        rel: 'preconnect';
-        href: 'https://fonts.gstatic.com'.
+        relationship: 'preconnect';
+        url: 'https://fonts.gstatic.com'.
 
     "Adding Google Fonts stylesheet for Open Sans and Poppins"
     anHtmlRoot link
-        href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&display=swap';
-        rel: 'stylesheet'.
-
+    	relationship: 'stylesheet';
+        url: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&display=swap'.
+       
     "Adding SimpleBar CSS"
     anHtmlRoot link
-        href: '/files/F4SFileLibrary/vendors/simplebar/simplebar.min.css';
-        rel: 'stylesheet'.
+    	relationship: 'stylesheet';
+        url: '/files/F4SFileLibrary/vendors/simplebar/simplebar.min.css'.
 
     "Adding right-to-left theme stylesheet"
     anHtmlRoot link
-        href: '/files/F4SFileLibrary/css/theme-rtl.css';
-        rel: 'stylesheet';
-        id: 'style-rtl'.
+    	relationship: 'stylesheet';
+        url: '/files/F4SFileLibrary/css/theme-rtl.css';
+        attributeAt: 'id' put: 'style-rtl'.
 
     "Adding default theme stylesheet"
     anHtmlRoot link
-        href: '/files/F4SFileLibrary/css/theme.css';
-        rel: 'stylesheet';
-        id: 'style-default'.
+    	relationship: 'stylesheet';
+        url: '/files/F4SFileLibrary/css/theme.css';
+        attributeAt: 'id' put: 'style-default'.
 
     "Adding user-specific right-to-left stylesheet"
     anHtmlRoot link
-        href: '/files/F4SFileLibrary/css/user-rtl.css';
-        rel: 'stylesheet';
-        id: 'user-style-rtl'.
+    	relationship: 'stylesheet';
+        url: '/files/F4SFileLibrary/css/user-rtl.css';
+        attributeAt: 'id' put: 'user-style-rtl'.
 
     "Adding user-specific default stylesheet"
     anHtmlRoot link
-        href: '/files/F4SFileLibrary/css/user.css';
-        rel: 'stylesheet';
-        id: 'user-style-default'.
+    	relationship: 'stylesheet';
+        url: '/files/F4SFileLibrary/css/user.css';
+        attributeAt: 'id' put: 'user-style-default'.
 
-	 anHtmlRoot addScript: '
+	 anHtmlRoot script with: '
         var isRTL = JSON.parse(localStorage.getItem("isRTL"));
         if (isRTL) {
             var linkDefault = document.getElementById("style-default");
@@ -180,7 +209,7 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 
     "Adding theme config JavaScript"
     anHtmlRoot script
-        url: 'assets/js/config.js'.
+        url: '/files/F4SFileLibrary/js/config.js'.
 	
 ]
 
