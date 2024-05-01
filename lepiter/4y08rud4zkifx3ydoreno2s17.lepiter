@@ -1,0 +1,107 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:45:55.58816+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:47:32.99937+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "UKTxJc3TDQCX4D3lB1KFUw=="
+				},
+				"code" : "F4SFalconDemo reregister.\rJJWebRoot reregister.\rFIOSWebRoot reregister.\rBVCWebRoot reregister.\rBBWebRoot reregister"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:47:56.227025+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:47:57.658283+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "uW0iLc3TDQCYKc6SB1KFUw=="
+				},
+				"code" : "JJFileLibrary loadFromDisk"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-05-02T07:45:33.121619+10:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-05-02T07:45:38.166761+10:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "DevTools"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "6b6efd23-cdd3-0d00-97ca-21fb07528553"
+	}
+}

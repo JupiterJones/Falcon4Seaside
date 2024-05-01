@@ -1,0 +1,348 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:40:19.294335+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:40:21.400146+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kTTmEc3TDQCVb5ZnB1KFUw=="
+				},
+				"code" : "Metacello new\n baseline:'Seaside3';\n repository: 'github://SeasideSt/Seaside:master/repository';\n load: #('CI' 'Zinc' 'Development')"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:40:30.464717+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:42:15.716202+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4aOQEs3TDQCVeA3gB1KFUw=="
+				},
+				"code" : "Metacello new\r\trepository: 'filetree:///opt/git/JupiterJones/Falcon4Seaside/src';\r\tbaseline: 'Falcon4Seaside';\r\tload"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:41:21.159553+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:42:52.626791+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "OCuWFc3TDQCVpeG+B1KFUw=="
+				},
+				"code" : "Metacello new\r\trepository: 'filetree:///opt/git/JupiterJones/JupiterWeb/src';\r\tbaseline: 'JupiterWeb';\r\tload"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:43:18.124585+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:43:34.358262+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "r+yOHM3TDQCWoWouB1KFUw=="
+				},
+				"code" : "Metacello new\r\trepository: 'filetree:///opt/git/fios-systems/FIOSWeb/src';\r\tbaseline: 'FIOSWeb';\r\tload"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:43:41.035152+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:44:09.19568+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "JkvsHc3TDQCXEKpFB1KFUw=="
+				},
+				"code" : "Metacello new\r\trepository: 'filetree:///opt/git/BenjaVisionPro/CatalystWeb:main/src';\r\tbaseline: 'CatalystWeb';\r\tload"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:44:14.528107+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:44:48.93343+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "8o/rH83TDQCXcOuNB1KFUw=="
+				},
+				"code" : "Metacello new\r\trepository: 'filetree:///opt/git/Benjability/BenjabilityWeb:main/src';\r\tbaseline: 'BenjabilityWeb';\r\tload"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:48:24.848315+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:48:28.159729+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6iHXLs3TDQCYNlGAB1KFUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "###Optional"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:48:38.688234+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:48:49.671295+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "11OqL83TDQCYc4sOB1KFUw=="
+				},
+				"code" : "Metacello new\n\trepository: 'github://feenkcom/gt4llm:main/src';\n\tbaseline: 'Gt4Llm';\n\tload"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:48:53.983041+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:49:08.667439+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "x7eTMM3TDQCYfoN7B1KFUw=="
+				},
+				"code" : "Metacello new\n\trepository: 'github://feenkcom/gt4llm:main/src';\n\tbaseline: 'Gt4OpenAI';\n\tload"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-05-02T07:39:42.384913+10:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-05-02T07:39:42.384913+10:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "DevPlayground"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "ea37720e-cdd3-0d00-9552-a94907528553"
+	}
+}
