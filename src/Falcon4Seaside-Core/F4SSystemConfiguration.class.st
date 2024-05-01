@@ -27,11 +27,10 @@ F4SSystemConfiguration >> describeOn: config [
 		comment: 'Which navbar style will be used.';
 		group: #FalconConfig;
 		options: #('card' 'inverted' 'vibrant' 'transparent');
-		default: nil.
+		default: 'transparent'.
 	(config list: #navbarPosition)
 		comment: 'Where will the navbar be displayed.';
 		group: #FalconConfig;
 		options: #('vertical' 'top' 'double-top');
 		default: 'vertical'.
-
 ]

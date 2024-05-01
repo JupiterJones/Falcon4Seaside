@@ -44,12 +44,68 @@ F4SRootComponent class >> unregister [
 ]
 
 { #category : #accessing }
+F4SRootComponent >> configJs [
+	| stream |
+	stream := JSStream new.
+	stream
+		nextPutAll: '"use strict";
+
+/* -------------------------------------------------------------------------- */
+/*                              Config                                        */
+/* -------------------------------------------------------------------------- */
+var CONFIG = { '.
+
+	stream
+		nextPutAll: 'isNavbarVerticalCollapsed: ';
+		nextPutAll: (self application configuration at: #isNavbarVerticalCollapsed) asString;
+		nextPutAll: ', '.
+	stream
+		nextPutAll: 'theme: "';
+		nextPutAll: (self application configuration at: #theme);
+		nextPutAll: '", '.
+	stream
+		nextPutAll: 'isRTL: ';
+		nextPutAll: (self application configuration at: #isRTL) asString;
+		nextPutAll: ', '.
+	stream
+		nextPutAll: 'isFluid: ';
+		nextPutAll: (self application configuration at: #isFluid) asString;
+		nextPutAll: ', '.
+	stream
+		nextPutAll: 'navbarStyle: "';
+		nextPutAll: (self application configuration at: #navbarStyle);
+		nextPutAll: '", '.
+	stream
+		nextPutAll: 'navbarPosition: "';
+		nextPutAll: (self application configuration at: #navbarPosition);
+		nextPutAll: '"'.
+
+
+	stream
+		nextPutAll: '}; 
+Object.keys(CONFIG).forEach(function (key) {
+  if (localStorage.getItem(key) === null) {
+    localStorage.setItem(key, CONFIG[key]);
+  }
+});
+if (JSON.parse(localStorage.getItem("isNavbarVerticalCollapsed"))) {
+  document.documentElement.classList.add("navbar-vertical-collapsed");
+}
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.setAttribute("data-bs-theme", "dark");
+} else if (localStorage.getItem("theme") === "auto") {
+  document.documentElement.setAttribute("data-bs-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+}'.
+^ stream
+]
+
+{ #category : #accessing }
 F4SRootComponent >> containerClass [
 	"Answers 'container' or 'container-fluid'"
 	^ 'container'
 ]
 
-{ #category : #accesing }
+{ #category : #accessing }
 F4SRootComponent >> currentLanguage [
 	^ 'en-US'
 ]
@@ -264,8 +320,7 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
         content: '#ffffff'.
 
     "Adding theme config JavaScript"
-    anHtmlRoot script
-        url: self fileLibraryClass / #'jsconfigJs'.
+    anHtmlRoot script with: self configJs
 ]
 
 { #category : #accessing }

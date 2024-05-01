@@ -13,11 +13,6 @@ Class {
 	#category : #'Falcon4Seaside-Core'
 }
 
-{ #category : #installing }
-Falcon4Seaside class >> installFalconDemo [
-	F4SFalconDemo reregister
-]
-
 { #category : #accessing }
 Falcon4Seaside class >> version [
 	"The version of Falcon implemented"

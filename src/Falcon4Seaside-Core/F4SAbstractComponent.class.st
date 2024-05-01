@@ -7,3 +7,9 @@ Class {
 	],
 	#category : #'Falcon4Seaside-Core'
 }
+
+{ #category : #accessing }
+F4SAbstractComponent >> initialize [
+	super initialize.
+	properties := Dictionary new
+]
