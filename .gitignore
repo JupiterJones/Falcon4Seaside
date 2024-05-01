@@ -32,3 +32,6 @@ github-*.zip
 
 # macOS
 .DS_Store
+
+# Don't store dev tools
+/bin/gt/*
