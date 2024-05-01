@@ -48,6 +48,11 @@ F4SRootComponent >> currentTheme [
 ]
 
 { #category : #accessing }
+F4SRootComponent >> fileLibraryClass [
+	^ F4SFileLibrary
+]
+
+{ #category : #accessing }
 F4SRootComponent >> leftToRightOrRightToLeft [
 	"Answer ltr to rtl"
 	^ 'ltr'
