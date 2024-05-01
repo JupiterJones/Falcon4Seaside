@@ -18,6 +18,12 @@ F4SRootComponent class >> canBeRoot [
 F4SRootComponent class >> configureApplication: anApplication [
 	anApplication preferenceAt: #sessionClass put: F4SSession.
 	anApplication configuration addParent: F4SSystemConfiguration instance.
+	anApplication addLibrary: self fileLibraryClass.
+]
+
+{ #category : #accessing }
+F4SRootComponent class >> fileLibraryClass [
+	^ F4SFileLibrary
 ]
 
 { #category : #installing }
@@ -55,7 +61,7 @@ F4SRootComponent >> currentTheme [
 
 { #category : #accessing }
 F4SRootComponent >> fileLibraryClass [
-	^ F4SFileLibrary
+	^ self class fileLibraryClass
 ]
 
 { #category : #accessing }

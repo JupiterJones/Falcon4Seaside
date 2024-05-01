@@ -10,7 +10,7 @@ F4SSystemConfiguration >> describeOn: config [
 		comment: 'Will the vertical nav bar be displayed as "collapsed" when rendered.';
 		group: #FalconConfig;
 		default: true.
-	(config string: #theme)
+	(config list: #theme)
 		comment: 'What theme is to be used when the page loads.';
 		group: #FalconConfig;
 		options: #('light' 'dark' 'auto');
@@ -23,12 +23,12 @@ F4SSystemConfiguration >> describeOn: config [
 		comment: 'Will the page use a fluid layout';
 		group: #FalconConfig;
 		default: false.
-	(config string: #navbarStyle)
+	(config list: #navbarStyle)
 		comment: 'Which navbar style will be used.';
 		group: #FalconConfig;
-		options: #('standard' 'card' 'inverted' 'vibrant' 'transparent');
-		default: 'standard'.
-	(config string: #navbarPosition)
+		options: #('card' 'inverted' 'vibrant' 'transparent');
+		default: nil.
+	(config list: #navbarPosition)
 		comment: 'Where will the navbar be displayed.';
 		group: #FalconConfig;
 		options: #('vertical' 'top' 'double-top');
