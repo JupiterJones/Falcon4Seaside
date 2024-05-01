@@ -88,37 +88,37 @@ F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
 	anHtmlRoot link
 		relationship: 'apple-touch-icon';
 		attributeAt: 'sizes' put: '180x180';
-		url: '/files/F4SFileLibrary/images/icons/apple-touch-icon.png'.	
+		url: self fileLibraryClass / #'imagesfaviconappletouchiconPng'.	
 	
 	"Adding favicon for 32x32"
 	anHtmlRoot link
 		relationship: 'icon';
 		type: 'image/png';
 		attributeAt: 'sizes' put: '32x32';
-		url: '/files/F4SFileLibrary/images/icons/favicon-32x32.png'.
+		url: self fileLibraryClass / #'imagesfaviconfavicon32x32Png'.
 	
 	"Adding favicon for 16x16"
 	anHtmlRoot link
 		relationship: 'icon';
 		type: 'image/png';
 		attributeAt: 'sizes' put: '16x16';
-		url: '/files/F4SFileLibrary/images/icons/favicon-16x16.png'.
+		url: self fileLibraryClass / #'imagesfaviconfavicon16x16Png'.
 	
 	"Adding web application manifest"
 	anHtmlRoot link
 		relationship: 'manifest';
-		url: '/files/F4SFileLibrary/images/icons/site.webmanifest'.	
+		url: self fileLibraryClass / #'imagesfaviconsiteWebmanifest'.	
 	
 	"Adding Safari mask icon"
 	anHtmlRoot link
 		relationship: 'mask-icon';
-		url: '/files/F4SFileLibrary/images/icons/safari-pinned-tab.svg';
+		url: self fileLibraryClass / #'imagesfaviconsafaripinnedtabSvg';
 		attributeAt: 'color' put: '#5bbad5'.
 	
 	"Adding shortcut icon"
 	anHtmlRoot link
 		relationship: 'shortcut icon';
-		url: '/files/F4SFileLibrary/images/icons/favicon.ico'.
+		url: self fileLibraryClass / #'imagesfaviconfaviconIco'.
 	
 	"Adding meta tags for application titles and configuration"
 	anHtmlRoot meta
@@ -132,7 +132,7 @@ F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
 		content: '#2b5797'.
 	anHtmlRoot meta
 		name: 'msapplication-config';
-		content: '/assets/images/icons/browserconfig.xml'.
+		content: self fileLibraryClass / #'imagesfaviconbrowserconfigXml'.
 ]
 
 { #category : #updating }
@@ -141,7 +141,7 @@ F4SRootComponent >> updateRootScripts: anHtmlRoot [
 	
 	"Adding external JavaScript file for SimpleBar"
     anHtmlRoot script
-        url: '/files/F4SFileLibrary/vendors/simplebar/simplebar.min.js'.
+        url: self fileLibraryClass / #'vendorssimplebarsimplebarminJs'.
 ]
 
 { #category : #updating }
@@ -161,30 +161,30 @@ F4SRootComponent >> updateRootStyles: anHtmlRoot [
     "Adding SimpleBar CSS"
     anHtmlRoot link
     	relationship: 'stylesheet';
-        url: '/files/F4SFileLibrary/vendors/simplebar/simplebar.min.css'.
+        url: self fileLibraryClass / #'vendorssimplebarsimplebarminCss'.
 
     "Adding right-to-left theme stylesheet"
     anHtmlRoot link
     	relationship: 'stylesheet';
-        url: '/files/F4SFileLibrary/css/theme-rtl.css';
+        url: self fileLibraryClass / #'cssthemertlCss';
         attributeAt: 'id' put: 'style-rtl'.
 
     "Adding default theme stylesheet"
     anHtmlRoot link
     	relationship: 'stylesheet';
-        url: '/files/F4SFileLibrary/css/theme.css';
+        url: self fileLibraryClass / #'cssthemeCss';
         attributeAt: 'id' put: 'style-default'.
 
     "Adding user-specific right-to-left stylesheet"
     anHtmlRoot link
     	relationship: 'stylesheet';
-        url: '/files/F4SFileLibrary/css/user-rtl.css';
+        url: self fileLibraryClass / #'cssuserrtlCss';
         attributeAt: 'id' put: 'user-style-rtl'.
 
     "Adding user-specific default stylesheet"
     anHtmlRoot link
     	relationship: 'stylesheet';
-        url: '/files/F4SFileLibrary/css/user.css';
+        url: self fileLibraryClass / #'cssuserCss';
         attributeAt: 'id' put: 'user-style-default'.
 
 	 anHtmlRoot script with: '
@@ -214,8 +214,7 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 
     "Adding theme config JavaScript"
     anHtmlRoot script
-        url: '/files/F4SFileLibrary/js/config.js'.
-	
+        url: self fileLibraryClass / #'jsconfigJs'.
 ]
 
 { #category : #accessing }
