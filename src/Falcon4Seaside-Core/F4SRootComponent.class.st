@@ -37,6 +37,12 @@ F4SRootComponent class >> unregister [
 	WAAdmin unregister: self applicationName
 ]
 
+{ #category : #accessing }
+F4SRootComponent >> containerClass [
+	"Answers 'container' or 'container-fluid'"
+	^ 'container'
+]
+
 { #category : #accesing }
 F4SRootComponent >> currentLanguage [
 	^ 'en-US'
@@ -56,6 +62,45 @@ F4SRootComponent >> fileLibraryClass [
 F4SRootComponent >> leftToRightOrRightToLeft [
 	"Answer ltr to rtl"
 	^ 'ltr'
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderContentOn: canvas [
+	canvas main
+		class: 'main';
+		id: 'top';
+		with: [ canvas div
+				class: self containerClass;
+				attributeAt: 'data-layout' put: self containerClass;
+				with: [ canvas script
+						with: 'var isFluid = JSON.parse(localStorage.getItem("isFluid"));
+          if (isFluid) {
+            var container = document.querySelector("[data-layout]");
+            container.classList.remove("container");
+            container.classList.add("container-fluid");
+          }'.
+          
+          
+           ] ]
+]
+
+{ #category : #accessing }
+F4SRootComponent >> renderNavigationToggleOn: canvas [
+    canvas button
+        class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
+        type: 'button';
+        attributeAt: 'data-bs-toggle' put: 'collapse';
+        attributeAt: 'data-bs-target' put: '#navbarStandard';
+        attributeAt: 'aria-controls' put: 'navbarStandard';
+        attributeAt: 'aria-expanded' put: 'false';
+        attributeAt: 'aria-label' put: 'Toggle Navigation';
+        with: [
+            canvas span
+                class: 'navbar-toggle-icon';
+                with: [
+                    canvas span
+                        class: 'toggle-line']]
+
 ]
 
 { #category : #updating }
