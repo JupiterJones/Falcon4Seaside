@@ -102,7 +102,12 @@ if (localStorage.getItem("theme") === "dark") {
 { #category : #accessing }
 F4SRootComponent >> containerClass [
 	"Answers 'container' or 'container-fluid'"
-	^ 'container'
+
+	^ String
+		streamContents: [ :stream | 
+			stream nextPutAll: 'container'.
+			(self application configuration at: #isFluid)
+				ifTrue: [ stream nextPutAll: '-fluid' ] ]
 ]
 
 { #category : #accessing }
