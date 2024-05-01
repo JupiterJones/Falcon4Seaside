@@ -11,5 +11,6 @@ Class {
 { #category : #accessing }
 F4SAbstractComponent >> initialize [
 	super initialize.
-	properties := Dictionary new
+	properties := Dictionary new.
+	components := OrderedCollection new.
 ]
