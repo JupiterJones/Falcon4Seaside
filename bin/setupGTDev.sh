@@ -18,4 +18,7 @@ temporary_dir=$(mktemp -d) \
 && rm -rf $temporary_dir
 
 # install stuff in gt
-$installLocation/GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli $installLocation/GlamorousToolkit.image -- --save loadFalconDev.st
+$installLocation/GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli $installLocation/GlamorousToolkit.image st "loadFalconDev.st" --interactive --save --quit
+
+# remove the install log
+rm *.log
