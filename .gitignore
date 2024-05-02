@@ -35,3 +35,4 @@ github-*.zip
 
 # Don't store dev tools
 /bin/gt/*
+/bin/*.zip
