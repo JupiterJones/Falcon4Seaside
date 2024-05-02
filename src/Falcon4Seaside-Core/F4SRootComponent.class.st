@@ -17,8 +17,10 @@ F4SRootComponent class >> canBeRoot [
 { #category : #installing }
 F4SRootComponent class >> configureApplication: anApplication [
 	anApplication preferenceAt: #sessionClass put: F4SSession.
+	anApplication configuration addParent: WAGetTextConfiguration instance.
 	anApplication configuration addParent: F4SSystemConfiguration instance.
 	anApplication addLibrary: self fileLibraryClass.
+	anApplication configuration at: #gettextApplicationName put: self applicationName.
 ]
 
 { #category : #accessing }
@@ -185,7 +187,7 @@ F4SRootComponent >> updateRoot: anHtmlRoot [
 	anHtmlRoot meta
 		name: 'viewport';
 		content: 'width=device-width, initial-scale=1'.
-	anHtmlRoot title: self windowTitle asUTF8Bytes.
+	anHtmlRoot title: self windowTitleTranslated asUTF8Bytes.
 	self updateRootFavIcon: anHtmlRoot.
 	self updateRootTheme: anHtmlRoot.
 	self updateRootScripts: anHtmlRoot.
@@ -331,4 +333,9 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 { #category : #accessing }
 F4SRootComponent >> windowTitle [
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+F4SRootComponent >> windowTitleTranslated [
+	^ self windowTitle seasideTranslated
 ]

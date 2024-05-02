@@ -27,5 +27,6 @@ BaselineOfFalcon4Seaside >> baseline: spec [
 		do: [ spec
 				package: 'Falcon4Seaside-FileLibrary';
 				package: 'Falcon4Seaside-Core';
+				package: 'Falcon4Seaside-Localisation';
 				package: 'Falcon4Seaside-Demo' ]
 ]
