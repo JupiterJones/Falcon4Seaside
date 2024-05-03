@@ -33,4 +33,8 @@ F4SSystemConfiguration >> describeOn: config [
 		group: #FalconConfig;
 		options: #('vertical' 'top' 'double-top');
 		default: 'vertical'.
+	(config string: #pathToRepository)
+		comment: 'The is the path to the repository root.';
+		group: #FalconConfig;
+		default: '/opt/git/JupiterJones/Falcon4Seaside'.
 ]

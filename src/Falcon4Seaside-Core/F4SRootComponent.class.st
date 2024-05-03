@@ -20,7 +20,10 @@ F4SRootComponent class >> configureApplication: anApplication [
 	anApplication configuration addParent: WAGetTextConfiguration instance.
 	anApplication configuration addParent: F4SSystemConfiguration instance.
 	anApplication addLibrary: self fileLibraryClass.
-	anApplication configuration at: #gettextApplicationName put: self applicationName.
+	anApplication preferenceAt: #gettextApplicationName put: self applicationName.
+	anApplication
+		preferenceAt: #pathToRepository
+		put: '/opt/git/JupiterJones/Falcon4Seaside'
 ]
 
 { #category : #accessing }
@@ -43,6 +46,21 @@ F4SRootComponent class >> reregister [
 { #category : #installing }
 F4SRootComponent class >> unregister [
 	WAAdmin unregister: self applicationName
+]
+
+{ #category : #accessing }
+F4SRootComponent >> applicationName [
+	^ self class applicationName
+]
+
+{ #category : #accessing }
+F4SRootComponent >> brandImageUrl [
+	^ self fileLibraryClass / #imagesfaviconappletouchiconPng
+]
+
+{ #category : #accessing }
+F4SRootComponent >> brandLabel [
+	^ self applicationName
 ]
 
 { #category : #accessing }
@@ -127,6 +145,31 @@ F4SRootComponent >> fileLibraryClass [
 	^ self class fileLibraryClass
 ]
 
+{ #category : #'testing-navigation' }
+F4SRootComponent >> isNavbarCard [
+	^ (self application preferenceAt: #navbarStyle) = 'card'
+]
+
+{ #category : #'testing-navigation' }
+F4SRootComponent >> isNavbarInverted [
+	^ (self application preferenceAt: #navbarStyle) = 'inverted'
+]
+
+{ #category : #'testing-navigation' }
+F4SRootComponent >> isNavbarTop [
+	^ self isNavbarVertical not
+]
+
+{ #category : #'testing-navigation' }
+F4SRootComponent >> isNavbarVertical [
+	^ (self application preferenceAt: #navbarPosition) = 'vertical'
+]
+
+{ #category : #'testing-navigation' }
+F4SRootComponent >> isNavbarVibrant [
+	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
+]
+
 { #category : #accessing }
 F4SRootComponent >> leftToRightOrRightToLeft [
 	"Answer ltr to rtl"
@@ -148,12 +191,40 @@ F4SRootComponent >> renderContentOn: canvas [
             container.classList.remove("container");
             container.classList.add("container-fluid");
           }'.
-          
-          
-           ] ]
+
+					self renderNavigationOn: canvas ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationBrandOn: canvas [
+	canvas anchor
+		class: 'navbar-brand';
+		with: [ canvas div
+				class: 'd-flex align-items-center py-3';
+				with: [ canvas image
+						class: 'me-2';
+						url: self brandImageUrl;
+						width: 40.
+					canvas span
+						class: 'font-sans-serif text-primary';
+						with: [ self brandLabel ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationOn: canvas [
+	canvas navigation
+		class: 'navbar navbar-light';
+		class: 'navbar-vertical navbar-expand-xl' if: self isNavbarVertical;
+		class: 'navbar-glass navbar-top navbar-expand-lg' if: self isNavbarTop;
+		class: 'navbar-card' if: self isNavbarCard;
+		class: 'navbar-inverted' if: self isNavbarInverted;
+		class: 'navbar-vibrant' if: self isNavbarVibrant;
+		with: [ self isNavbarVertical
+				ifTrue: [ self renderNavigationVerticalOn: canvas ]
+				ifFalse: [ self renderNavigationTopOn: canvas ] ]
+]
+
+{ #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationToggleOn: canvas [
     canvas button
         class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
@@ -170,6 +241,21 @@ F4SRootComponent >> renderNavigationToggleOn: canvas [
                     canvas span
                         class: 'toggle-line']]
 
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationVerticalOn: canvas [
+	canvas script
+		with: 'var navbarStyle = localStorage.getItem("navbarStyle");
+	if (navbarStyle && navbarStyle !== "transparent") {
+		document.querySelector(".navbar-vertical").classList.add("navbar-${navbarStyle}");
+	}'.
+	canvas div
+		class: 'd-flex align-items-center';
+		with: [ canvas div
+				class: 'toggle-icon-wrapper';
+				with: [ self renderNavigationToggleOn: canvas ].
+			self renderNavigationBrandOn: canvas ]
 ]
 
 { #category : #updating }
