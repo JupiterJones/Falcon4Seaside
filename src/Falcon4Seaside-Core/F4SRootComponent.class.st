@@ -151,6 +151,11 @@ F4SRootComponent >> isNavbarCard [
 ]
 
 { #category : #'testing-navigation' }
+F4SRootComponent >> isNavbarDoubleTop [
+	^ (self application preferenceAt: #navbarPosition) = 'double-top'
+]
+
+{ #category : #'testing-navigation' }
 F4SRootComponent >> isNavbarInverted [
 	^ (self application preferenceAt: #navbarStyle) = 'inverted'
 ]
@@ -199,8 +204,10 @@ F4SRootComponent >> renderContentOn: canvas [
 F4SRootComponent >> renderNavigationBrandOn: canvas [
 	canvas anchor
 		class: 'navbar-brand';
+		class: 'me-1 me-sm-3' if: self isNavbarTop;
 		with: [ canvas div
-				class: 'd-flex align-items-center py-3';
+				class: 'd-flex align-items-center';
+				class: 'py-3' if: self isNavbarVertical;
 				with: [ canvas image
 						class: 'me-2';
 						url: self brandImageUrl;
@@ -211,21 +218,38 @@ F4SRootComponent >> renderNavigationBrandOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationOn: canvas [
+F4SRootComponent >> renderNavigationDoubleTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
-		class: 'navbar-vertical navbar-expand-xl' if: self isNavbarVertical;
-		class: 'navbar-glass navbar-top navbar-expand-lg' if: self isNavbarTop;
-		class: 'navbar-card' if: self isNavbarCard;
-		class: 'navbar-inverted' if: self isNavbarInverted;
-		class: 'navbar-vibrant' if: self isNavbarVibrant;
-		with: [ self isNavbarVertical
-				ifTrue: [ self renderNavigationVerticalOn: canvas ]
+		class: 'navbar-glass navbar-top navbar-expand-lg';
+		with: [ canvas div
+				class: 'w-100';
+				with: [ canvas
+						class: 'd-flex flex-between-center';
+						with: [ self renderNavigationTopToggleOn: canvas.
+							self renderNavigationBrandOn: canvas ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationOn: canvas [
+	self isNavbarVertical
+		ifTrue: [ self renderNavigationVerticalOn: canvas ]
+		ifFalse: [ self isNavbarDoubleTop
+				ifTrue: [ self renderNavigationDoubleTopOn: canvas ]
 				ifFalse: [ self renderNavigationTopOn: canvas ] ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationToggleOn: canvas [
+F4SRootComponent >> renderNavigationTopOn: canvas [
+	canvas navigation
+		class: 'navbar navbar-light';
+		class: 'navbar-glass navbar-top navbar-expand-lg';
+		with: [ self renderNavigationTopToggleOn: canvas.
+			self renderNavigationBrandOn: canvas ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopToggleOn: canvas [
     canvas button
         class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
         type: 'button';
@@ -245,17 +269,35 @@ F4SRootComponent >> renderNavigationToggleOn: canvas [
 
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationVerticalOn: canvas [
-	canvas script
-		with: 'var navbarStyle = localStorage.getItem("navbarStyle");
+	canvas navigation
+		class: 'navbar navbar-light';
+		class: 'navbar-vertical navbar-expand-xl';
+		class: 'navbar-card' if: self isNavbarCard;
+		class: 'navbar-inverted' if: self isNavbarInverted;
+		class: 'navbar-vibrant' if: self isNavbarVibrant;
+		with: [ canvas script
+				with: 'var navbarStyle = localStorage.getItem("navbarStyle");
 	if (navbarStyle && navbarStyle !== "transparent") {
 		document.querySelector(".navbar-vertical").classList.add("navbar-${navbarStyle}");
 	}'.
-	canvas div
-		class: 'd-flex align-items-center';
-		with: [ canvas div
-				class: 'toggle-icon-wrapper';
-				with: [ self renderNavigationToggleOn: canvas ].
-			self renderNavigationBrandOn: canvas ]
+			canvas div
+				class: 'd-flex align-items-center';
+				with: [ canvas div
+						class: 'toggle-icon-wrapper';
+						with: [ self renderNavigationVerticalToggleOn: canvas ].
+					self renderNavigationBrandOn: canvas ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationVerticalToggleOn: canvas [
+	canvas button
+		class: 'btn navbar-toggler-humburger-icon navbar-vertical-toggle';
+		attributeAt: 'data-bs-toggle' put: 'tooltip';
+		attributeAt: 'data-bs-placement' put: 'left';
+		attributeAt: 'title' put: 'Toggle Navigation';
+		with: [ canvas span
+				class: 'navbar-toggle-icon';
+				with: [ canvas span class: 'toggle-line' ] ]
 ]
 
 { #category : #updating }
