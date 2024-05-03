@@ -38,5 +38,3 @@ Metacello new
 	repository: 'github://feenkcom/gt4llm:main/src';
 	baseline: 'Gt4OpenAI';
 	load.
-
-#BaselineOfFalcon4Seaside asClass loadLepiter
