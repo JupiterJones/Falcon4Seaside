@@ -285,7 +285,16 @@ F4SRootComponent >> renderNavigationVerticalOn: canvas [
 				with: [ canvas div
 						class: 'toggle-icon-wrapper';
 						with: [ self renderNavigationVerticalToggleOn: canvas ].
-					self renderNavigationBrandOn: canvas ] ]
+					self renderNavigationBrandOn: canvas ].
+			canvas div
+				class: 'collapse navbar-collapse';
+				id: 'navbarVerticalCollapse';
+				with: [ canvas div
+						class: 'navbar-vertical-content scrollbar';
+						with: [ canvas unorderedList
+								class: 'navbar-nav flex-column mb-3';
+								id: 'navbarVerticalNav';
+								with: [ "render navigation items" ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -315,7 +324,7 @@ F4SRootComponent >> updateRoot: anHtmlRoot [
 	anHtmlRoot meta
 		name: 'viewport';
 		content: 'width=device-width, initial-scale=1'.
-	anHtmlRoot title: self windowTitleTranslated asUTF8Bytes.
+	anHtmlRoot title: self windowTitle seasideTranslated asUTF8Bytes.
 	self updateRootFavIcon: anHtmlRoot.
 	self updateRootTheme: anHtmlRoot.
 	self updateRootScripts: anHtmlRoot.
@@ -461,9 +470,4 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 { #category : #accessing }
 F4SRootComponent >> windowTitle [
 	^ self subclassResponsibility
-]
-
-{ #category : #accessing }
-F4SRootComponent >> windowTitleTranslated [
-	^ self windowTitle seasideTranslated
 ]
