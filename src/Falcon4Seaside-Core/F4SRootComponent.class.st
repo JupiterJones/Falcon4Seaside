@@ -1,6 +1,9 @@
 Class {
 	#name : #F4SRootComponent,
 	#superclass : #F4SCompositeComponent,
+	#instVars : [
+		'navigation'
+	],
 	#category : #'Falcon4Seaside-Core'
 }
 
@@ -9,7 +12,7 @@ F4SRootComponent class >> applicationName [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 F4SRootComponent class >> canBeRoot [
 	^ true
 ]
@@ -46,6 +49,11 @@ F4SRootComponent class >> reregister [
 { #category : #installing }
 F4SRootComponent class >> unregister [
 	WAAdmin unregister: self applicationName
+]
+
+{ #category : #actions }
+F4SRootComponent >> addNavItem: aNavItem [
+	navigation add: aNavItem
 ]
 
 { #category : #accessing }
@@ -143,6 +151,12 @@ F4SRootComponent >> currentTheme [
 { #category : #accessing }
 F4SRootComponent >> fileLibraryClass [
 	^ self class fileLibraryClass
+]
+
+{ #category : #initalization }
+F4SRootComponent >> initialize [
+	super initialize.
+	navigation := OrderedCollection new
 ]
 
 { #category : #'testing-navigation' }
