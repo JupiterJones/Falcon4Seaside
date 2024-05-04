@@ -55,6 +55,11 @@ F4SNavItem class >> defaultVisible [
 	^ true
 ]
 
+{ #category : #properties }
+F4SNavItem class >> isGroup [
+	^ false
+]
+
 { #category : #actions }
 F4SNavItem >> addChild: aNavItem [
 	children add: aNavItem
@@ -103,6 +108,8 @@ F4SNavItem >> component [
 { #category : #accessing }
 F4SNavItem >> component: aComponent [
 	component := aComponent
+			navItem: self;
+			yourself
 ]
 
 { #category : #properties }
@@ -128,6 +135,11 @@ F4SNavItem >> defaultIcon [
 { #category : #properties }
 F4SNavItem >> defaultIconColor [
 	^ self class defaultIconColor
+]
+
+{ #category : #properties }
+F4SNavItem >> defaultIsGroup [
+	^ self class isGroup
 ]
 
 { #category : #properties }
@@ -180,6 +192,16 @@ F4SNavItem >> initialize [
 	super initialize.
 	children := OrderedCollection new.
 	properties := GRSmallDictionary new
+]
+
+{ #category : #properties }
+F4SNavItem >> isGroup [
+	properties at: #isGroup ifAbsentPut: [ self defaultIsGroup ]
+]
+
+{ #category : #properties }
+F4SNavItem >> isGroup: aBoolean [
+	properties at: #isGroup put: aBoolean
 ]
 
 { #category : #accessing }

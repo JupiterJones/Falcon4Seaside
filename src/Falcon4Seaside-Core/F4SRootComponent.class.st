@@ -153,9 +153,14 @@ F4SRootComponent >> fileLibraryClass [
 	^ self class fileLibraryClass
 ]
 
-{ #category : #initalization }
+{ #category : #initialization }
 F4SRootComponent >> initialize [
 	super initialize.
+	self initializeNavigation
+]
+
+{ #category : #initialization }
+F4SRootComponent >> initializeNavigation [
 	navigation := OrderedCollection new
 ]
 
