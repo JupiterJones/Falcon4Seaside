@@ -196,7 +196,7 @@ F4SNavItem >> iconColor: aColor [
 F4SNavItem >> initialize [
 	super initialize.
 	children := OrderedCollection new.
-	properties := GRSmallDictionary new
+	properties := Dictionary new
 ]
 
 { #category : #properties }

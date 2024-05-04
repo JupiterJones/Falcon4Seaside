@@ -198,8 +198,9 @@ F4SRootComponent >> isNavbarVibrant [
 
 { #category : #accessing }
 F4SRootComponent >> leftToRightOrRightToLeft [
-	"Answer ltr to rtl"
-	^ 'ltr'
+	^ (self application configuration at: #isRTL)
+		ifTrue: [ 'rtl' ]
+		ifFalse: [ 'ltr' ]
 ]
 
 { #category : #rendering }
@@ -220,6 +221,14 @@ F4SRootComponent >> renderContentOn: canvas [
 
 					self renderNavigationOn: canvas ] ].
 	self renderOnLoadScriptsOn: canvas
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderIcon: iconKey on: canvas [
+	iconKey
+		ifNotNil: [ canvas span
+				class: 'nav-link-icon';
+				with: [ canvas span class: 'fas fa-' , iconKey ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -291,23 +300,33 @@ F4SRootComponent >> renderNavigationTopToggleOn: canvas [
 
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
-	"Does the navItem have children - if it does then it's an intermediate menu"
-
-	navItem children notEmpty
-		ifTrue: [ | dropdownId | 
-		dropdownId := canvas nextId.
-		self renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas.
-			canvas unorderedList
-				class: 'nav collapse';
-				id: dropdownId;
-				with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ]
-		ifFalse: [ canvas listItem
-				class: 'nav-item';
-				with: [ canvas anchor
+	canvas listItem
+		class: 'nav-item';
+		with: [ (navItem isGroup or: [ navItem children notEmpty ])
+				ifTrue: [  "This is an intermediate menu"
+					navItem isGroup
+						ifTrue: [  "This is a group menu"
+							self
+								renderNavigationVerticalItemGroup: navItem on: canvas;
+								renderNavigationVerticalItems: navItem children on: canvas ]
+						ifFalse: [  "This is a menu dropdown"| dropdownId |
+							dropdownId := canvas nextId.
+							self
+								renderNavigationVerticalItemDropdown: navItem
+								id: dropdownId
+								on: canvas.
+							navItem children notEmpty
+								ifTrue: [ canvas unorderedList
+										class: 'nav collapse';
+										id: dropdownId;
+										with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ] ] ]
+				ifFalse: [  "This is a menu item"
+					canvas anchor
 						class: 'nav-link';
 						with: [ canvas div
-								class: '-flex align-items-center';
-								with: [ canvas span
+								class: 'd-flex align-items-center';
+								with: [ self renderIcon: navItem icon on: canvas.
+									canvas span
 										class: 'nav-link-text ps-1';
 										with: [ canvas text: navItem title ] ] ] ] ]
 ]
@@ -323,9 +342,8 @@ F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId
 		attributeAt: 'aria-controls' put: dropdownId;
 		with: [ canvas div
 				class: 'd-flex align-items-center';
-				with: [ canvas span
-						class: 'nav-link-icon';
-						with: [ canvas span class: 'fas fa-' , navItem icon ].
+				with: [ self renderIcon: navItem icon on: canvas.
+
 					canvas span
 						class: 'nav-link-text ps-1';
 						with: [ canvas text: navItem title ] ] ]
@@ -346,10 +364,7 @@ F4SRootComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationVerticalItems: navItems on: canvas [
 	navItems
-		do: [ :navItem | 
-			navItem isGroup
-				ifTrue: [ self renderNavigationVerticalItemGroup: navItem on: canvas ]
-				ifFalse: [ self renderNavigationVerticalItem: navItem on: canvas ] ]
+		do: [ :navItem | self renderNavigationVerticalItem: navItem on: canvas ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -379,9 +394,7 @@ F4SRootComponent >> renderNavigationVerticalOn: canvas [
 						with: [ canvas unorderedList
 								class: 'navbar-nav flex-column mb-3';
 								id: 'navbarVerticalNav';
-								with: [ canvas listItem
-										class: 'nav-item';
-										with: [ self renderNavigationVerticalItems: navigation on: canvas ] ] ] ] ]
+								with: [  self renderNavigationVerticalItems: navigation on: canvas ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }

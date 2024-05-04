@@ -53,6 +53,7 @@ F4SFalconDemo >> appNavigation [
 				icon: 'shopping-cart';
 				addChild: (F4SNavItem new
 						title: 'Product' seasideTranslated;
+						icon: 'box';
 						addChild: (F4SNavItem new
 								title: 'Product List' seasideTranslated;
 								yourself);
@@ -201,6 +202,11 @@ F4SFalconDemo >> dashboardNavigation [
 				title: 'Support Desk' seasideTranslated;
 				yourself);
 		yourself
+]
+
+{ #category : #accessing }
+F4SFalconDemo >> fileLibraryClass [
+	^ F4SFalconDemoFileLibrary
 ]
 
 { #category : #initalization }
