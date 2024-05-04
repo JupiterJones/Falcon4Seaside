@@ -48,6 +48,52 @@ F4SFalconDemo >> appNavigation [
 						title: 'Event List' seasideTranslated;
 						yourself);
 				yourself);
+		addChild: (F4SNavItem new
+				title: 'E-Commerce' seasideTranslated;
+				icon: 'shopping-cart';
+				addChild: (F4SNavItem new
+						title: 'Product' seasideTranslated;
+						addChild: (F4SNavItem new
+								title: 'Product List' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Product Grid' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Product Details' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Add Product' seasideTranslated;
+								yourself);
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Orders' seasideTranslated;
+						addChild: (F4SNavItem new
+								title: 'Order List' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Order Details' seasideTranslated;
+								yourself);
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Customers' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Customer Details' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Shopping Cart' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Checkout' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Billing' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Invoice' seasideTranslated;
+						yourself);
+				yourself);
 		yourself
 ]
 
@@ -87,7 +133,9 @@ F4SFalconDemo >> dashboardNavigation [
 { #category : #initalization }
 F4SFalconDemo >> initializeNavigation [
 	super initializeNavigation.
-	self addNavItem: self dashboardNavigation
+	self
+		addNavItem: self dashboardNavigation;
+		addNavItem: self appNavigation
 ]
 
 { #category : #accessing }

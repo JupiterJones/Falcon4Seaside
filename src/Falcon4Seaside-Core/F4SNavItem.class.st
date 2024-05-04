@@ -85,6 +85,11 @@ F4SNavItem >> badgeValue: aNumber [
 	properties at: #badgeValue put: aNumber
 ]
 
+{ #category : #actions }
+F4SNavItem >> beGroup [
+	self isGroup: true
+]
+
 { #category : #accessing }
 F4SNavItem >> children [
 	^ children
