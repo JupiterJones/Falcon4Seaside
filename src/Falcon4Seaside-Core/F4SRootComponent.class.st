@@ -216,7 +216,8 @@ F4SRootComponent >> renderContentOn: canvas [
             container.classList.add("container-fluid");
           }'.
 
-					self renderNavigationOn: canvas ] ]
+					self renderNavigationOn: canvas ] ].
+	self renderOnLoadScriptsOn: canvas
 ]
 
 { #category : #'rendering-navigation' }
@@ -291,9 +292,12 @@ F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
 	"Does the navItem have children - if it does then it's an intermediate menu"
 
 	navItem children notEmpty
-		ifTrue: [ self renderNavigationVerticalItemDropdown: navItem on: canvas.
+		ifTrue: [ | dropdownId | 
+		dropdownId := canvas nextId.
+		self renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas.
 			canvas unorderedList
 				class: 'nav collapse';
+				id: dropdownId;
 				with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ]
 		ifFalse: [ canvas listItem
 				class: 'nav-item';
@@ -307,14 +311,14 @@ F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem on: canvas [
+F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas [
 	canvas anchor
+		url: '#' , dropdownId;
 		class: 'nav-link dropdown-indicator';
-		url: '#itemKey';
 		attributeAt: 'role' put: 'button';
 		attributeAt: 'data-bs-toggle' put: 'collapse';
-		attributeAt: 'aria-expanded' put: false;
-		attributeAt: 'aria-controls' put: 'itemKey';
+		attributeAt: 'aria-expanded' put: 'false';
+		attributeAt: 'aria-controls' put: dropdownId;
 		with: [ canvas div
 				class: 'd-flex align-items-center';
 				with: [ canvas span
@@ -388,6 +392,22 @@ F4SRootComponent >> renderNavigationVerticalToggleOn: canvas [
 		with: [ canvas span
 				class: 'navbar-toggle-icon';
 				with: [ canvas span class: 'toggle-line' ] ]
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderOnLoadScriptsOn: canvas [
+	canvas script url: F4SFileLibrary / #vendorspopperpopperminJs.
+	canvas script url: F4SFileLibrary / #vendorsbootstrapbootstrapminJs.
+	canvas script url: F4SFileLibrary / #vendorsanchorjsanchorminJs.
+	canvas script url: F4SFileLibrary / #vendorsisisminJs.
+	canvas script url: F4SFileLibrary / #vendorsechartsechartsminJs.
+	canvas script url: F4SFileLibrary / #vendorsprismprismJs.
+	canvas script url: F4SFileLibrary / #vendorsfontawesomeallminJs.
+	canvas script url: F4SFileLibrary / #vendorslodashlodashminJs.
+	canvas script
+		url: 'https://polyfill.io/v3/polyfill.min.js?features=window.scroll'.
+	canvas script url: F4SFileLibrary / #vendorslistjslistminJs.
+	canvas script url: F4SFileLibrary / #jsthemeJs
 ]
 
 { #category : #updating }
@@ -474,11 +494,6 @@ F4SRootComponent >> updateRootScripts: anHtmlRoot [
 	"Adding external JavaScript file for SimpleBar"
     anHtmlRoot script
         url: self fileLibraryClass / #'vendorssimplebarsimplebarminJs'.
-
-	"Font Awesome"
-    anHtmlRoot script 
-    	url: self fileLibraryClass / #'vendorsfontawesomeallminJs'.
-    
 ]
 
 { #category : #updating }
