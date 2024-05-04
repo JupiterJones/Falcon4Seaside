@@ -22,7 +22,9 @@ F4SRootComponent class >> configureApplication: anApplication [
 	anApplication preferenceAt: #sessionClass put: F4SSession.
 	anApplication configuration addParent: WAGetTextConfiguration instance.
 	anApplication configuration addParent: F4SSystemConfiguration instance.
-	anApplication addLibrary: self fileLibraryClass.
+	anApplication
+		addLibrary: self fileLibraryClass;
+		addLibrary: JQDevelopmentLibrary.
 	anApplication preferenceAt: #gettextApplicationName put: self applicationName.
 	anApplication
 		preferenceAt: #pathToRepository
