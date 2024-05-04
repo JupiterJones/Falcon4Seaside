@@ -287,6 +287,43 @@ F4SRootComponent >> renderNavigationTopToggleOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
+	"Does the navItem have children - if it does then it's an intermediate menu"
+
+	navItem children notEmpty
+		ifTrue: [ self renderNavigationVerticalItemDropdown: navItem on: canvas.
+			canvas unorderedList
+				class: 'nav collapse';
+				with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ]
+		ifFalse: [  ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem on: canvas [ 
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
+	canvas div
+		class: 'row navbar-vertical-label-wrapper mt-3 mb-2';
+		with: [ canvas div
+				class: 'col-auto navbar-vertical-label';
+				with: [ canvas text: navGroup title ].
+			canvas div
+				class: 'col ps-0';
+				with: [ canvas horizontalRule class: 'mb-0 navbar-vertical-divider' ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationVerticalItems: navItems on: canvas [
+	navItems
+		do: [ :navItem | 
+			navItem isGroup
+				ifTrue: [ self renderNavigationVerticalItemGroup: navItem on: canvas ]
+				ifFalse: [ self renderNavigationVerticalItem: navItem on: canvas ] ]
+]
+
+{ #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationVerticalOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
@@ -313,7 +350,9 @@ F4SRootComponent >> renderNavigationVerticalOn: canvas [
 						with: [ canvas unorderedList
 								class: 'navbar-nav flex-column mb-3';
 								id: 'navbarVerticalNav';
-								with: [ "render navigation items" ] ] ] ]
+								with: [ canvas listItem
+										class: 'nav-item';
+										with: [ self renderNavigationVerticalItems: navigation on: canvas ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }

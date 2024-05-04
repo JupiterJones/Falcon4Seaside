@@ -36,6 +36,11 @@ F4SNavItem class >> defaultIconColor [
 ]
 
 { #category : #properties }
+F4SNavItem class >> defaultIsGroup [
+	^ false
+]
+
+{ #category : #properties }
 F4SNavItem class >> defaultSubTitle [
 	^ nil
 ]
@@ -55,11 +60,6 @@ F4SNavItem class >> defaultVisible [
 	^ true
 ]
 
-{ #category : #properties }
-F4SNavItem class >> isGroup [
-	^ false
-]
-
 { #category : #actions }
 F4SNavItem >> addChild: aNavItem [
 	children add: aNavItem
@@ -67,7 +67,7 @@ F4SNavItem >> addChild: aNavItem [
 
 { #category : #properties }
 F4SNavItem >> badgeColor [
-	properties at: #badgeColor ifAbsentPut: [ self defaultBadgeColor ]
+	^ properties at: #badgeColor ifAbsentPut: [ self defaultBadgeColor ]
 ]
 
 { #category : #properties }
@@ -77,7 +77,7 @@ F4SNavItem >> badgeColor: aColor [
 
 { #category : #properties }
 F4SNavItem >> badgeValue [
-	properties at: #badgeValue ifAbsentPut: [ self defaultBadgeValue ]
+	^ properties at: #badgeValue ifAbsentPut: [ self defaultBadgeValue ]
 ]
 
 { #category : #properties }
@@ -97,7 +97,7 @@ F4SNavItem >> children [
 
 { #category : #properties }
 F4SNavItem >> comment [
-	properties at: #comment ifAbsentPut: [ self defaultComment ]
+	^ properties at: #comment ifAbsentPut: [ self defaultComment ]
 ]
 
 { #category : #properties }
@@ -144,7 +144,7 @@ F4SNavItem >> defaultIconColor [
 
 { #category : #properties }
 F4SNavItem >> defaultIsGroup [
-	^ self class isGroup
+	^ self class defaultIsGroup
 ]
 
 { #category : #properties }
@@ -174,7 +174,7 @@ F4SNavItem >> hasProperty: aKey [
 
 { #category : #properties }
 F4SNavItem >> icon [
-	properties at: #icon ifAbsentPut: [ self defaultIcon ]
+	^ properties at: #icon ifAbsentPut: [ self defaultIcon ]
 ]
 
 { #category : #properties }
@@ -184,7 +184,7 @@ F4SNavItem >> icon: aString [
 
 { #category : #properties }
 F4SNavItem >> iconColor [
-	properties at: #iconColor ifAbsentPut: [ self defaultIconColor ]
+	^ properties at: #iconColor ifAbsentPut: [ self defaultIconColor ]
 ]
 
 { #category : #properties }
@@ -201,7 +201,7 @@ F4SNavItem >> initialize [
 
 { #category : #properties }
 F4SNavItem >> isGroup [
-	properties at: #isGroup ifAbsentPut: [ self defaultIsGroup ]
+	^ properties at: #isGroup ifAbsentPut: [ self defaultIsGroup ]
 ]
 
 { #category : #properties }
@@ -221,7 +221,7 @@ F4SNavItem >> parent: aParent [
 
 { #category : #properties }
 F4SNavItem >> subTitle [
-	properties at: #subTitle ifAbsentPut: [ self defaultSubTitle ]
+	^ properties at: #subTitle ifAbsentPut: [ self defaultSubTitle ]
 ]
 
 { #category : #properties }
@@ -231,7 +231,7 @@ F4SNavItem >> subTitle: aString [
 
 { #category : #properties }
 F4SNavItem >> title [
-	properties at: #title ifAbsentPut: [ self defaultTitle ]
+	^ properties at: #title ifAbsentPut: [ self defaultTitle ]
 ]
 
 { #category : #properties }
@@ -241,7 +241,7 @@ F4SNavItem >> title: aString [
 
 { #category : #properties }
 F4SNavItem >> titleColor [
-	properties at: #titleColor ifAbsentPut: [ self defaultTitleColor ]
+	^ properties at: #titleColor ifAbsentPut: [ self defaultTitleColor ]
 ]
 
 { #category : #properties }
@@ -251,7 +251,7 @@ F4SNavItem >> titleColor: aColor [
 
 { #category : #properties }
 F4SNavItem >> visible [
-	properties at: #visible ifAbsentPut: [ self defaultVisible ]
+	^ properties at: #visible ifAbsentPut: [ self defaultVisible ]
 ]
 
 { #category : #properties }
