@@ -94,6 +94,79 @@ F4SFalconDemo >> appNavigation [
 						title: 'Invoice' seasideTranslated;
 						yourself);
 				yourself);
+		addChild: (F4SNavItem new
+				title: 'E-Learning' seasideTranslated;
+				icon: 'graduation-cap';
+				addChild: (F4SNavItem new
+						title: 'Course' seasideTranslated;
+						addChild: (F4SNavItem new
+								title: 'Course List' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Course Grid' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Course Details' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Create a Course' seasideTranslated;
+								yourself);
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Student Overview' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Student Profile' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Trainer Profile' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Kanban' seasideTranslated;
+				icon: 'trello';
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Social' seasideTranslated;
+				icon: 'share-alt';
+				addChild: (F4SNavItem new
+						title: 'Feed' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Activity Log' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Notifications' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Followers' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Support Desk' seasideTranslated;
+				icon: 'ticket-alt';
+				addChild: (F4SNavItem new
+						title: 'Table View' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Card View' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Contacts' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Contact Details' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Tickets Preview' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Quick Links' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Reports' seasideTranslated;
+						yourself);
+				yourself);
 		yourself
 ]
 
