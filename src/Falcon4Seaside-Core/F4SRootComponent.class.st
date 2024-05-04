@@ -295,11 +295,34 @@ F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
 			canvas unorderedList
 				class: 'nav collapse';
 				with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ]
-		ifFalse: [  ]
+		ifFalse: [ canvas listItem
+				class: 'nav-item';
+				with: [ canvas anchor
+						class: 'nav-link';
+						with: [ canvas div
+								class: '-flex align-items-center';
+								with: [ canvas span
+										class: 'nav-link-text ps-1';
+										with: [ canvas text: navItem title ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem on: canvas [ 
+F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem on: canvas [
+	canvas anchor
+		class: 'nav-link dropdown-indicator';
+		url: '#itemKey';
+		attributeAt: 'role' put: 'button';
+		attributeAt: 'data-bs-toggle' put: 'collapse';
+		attributeAt: 'aria-expanded' put: false;
+		attributeAt: 'aria-controls' put: 'itemKey';
+		with: [ canvas div
+				class: 'd-flex align-items-center';
+				with: [ canvas span
+						class: 'nav-link-icon';
+						with: [ canvas span class: 'fas fa-' , navItem icon ].
+					canvas span
+						class: 'nav-link-text ps-1';
+						with: [ canvas text: navItem title ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -451,6 +474,11 @@ F4SRootComponent >> updateRootScripts: anHtmlRoot [
 	"Adding external JavaScript file for SimpleBar"
     anHtmlRoot script
         url: self fileLibraryClass / #'vendorssimplebarsimplebarminJs'.
+
+	"Font Awesome"
+    anHtmlRoot script 
+    	url: self fileLibraryClass / #'vendorsfontawesomeallminJs'.
+    
 ]
 
 { #category : #updating }
@@ -466,7 +494,7 @@ F4SRootComponent >> updateRootStyles: anHtmlRoot [
     anHtmlRoot link
     	relationship: 'stylesheet';
         url: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&display=swap'.
-       
+
     "Adding SimpleBar CSS"
     anHtmlRoot link
     	relationship: 'stylesheet';
