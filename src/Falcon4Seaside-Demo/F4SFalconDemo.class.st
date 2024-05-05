@@ -215,7 +215,185 @@ F4SFalconDemo >> initializeNavigation [
 	super initializeNavigation.
 	self
 		addNavItem: self dashboardNavigation;
-		addNavItem: self appNavigation
+		addNavItem: self appNavigation;
+		addNavItem: self pagesNavigation
+]
+
+{ #category : #navigation }
+F4SFalconDemo >> pagesNavigation [
+	^ F4SNavItem new
+		title: 'Pages' seasideTranslated;
+		beGroup;
+		addChild: (F4SNavItem new
+				title: 'Others' seasideTranslated;
+				beHidden;
+				addChild: (F4SNavItem new
+						title: 'Starter' seasideTranslated;
+						icon: 'flag';
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Landing' seasideTranslated;
+						icon: 'globe';
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Authentication' seasideTranslated;
+				icon: 'lock';
+				addChild: (F4SNavItem new
+						title: 'Simple' seasideTranslated;
+						addChild: (F4SNavItem new
+								title: 'Login' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Logout' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Register' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Forgot Password' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Confirm Mail' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Reset Password' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Lock Screen' seasideTranslated;
+								yourself);
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Card' seasideTranslated;
+						addChild: (F4SNavItem new
+								title: 'Login' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Logout' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Register' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Forgot Password' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Confirm Mail' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Reset Password' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Lock Screen' seasideTranslated;
+								yourself);
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Split' seasideTranslated;
+						addChild: (F4SNavItem new
+								title: 'Login' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Logout' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Register' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Forgot Password' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Confirm Mail' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Reset Password' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Lock Screen' seasideTranslated;
+								yourself);
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Wizzard' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Modal' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'User' seasideTranslated;
+				icon: 'user';
+				addChild: (F4SNavItem new
+						title: 'Profile' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Settings' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Event List' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Pricing' seasideTranslated;
+				icon: 'tags';
+				addChild: (F4SNavItem new
+						title: 'Pricing Default' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Pricing Alternate' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'FAQ' seasideTranslated;
+				icon: 'question-circle';
+				addChild: (F4SNavItem new
+						title: 'FAQ Basic' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'FAQ Default' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'FAQ Accordian' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Errors' seasideTranslated;
+				icon: 'exclamation-triangle';
+				addChild: (F4SNavItem new
+						title: '404';
+						yourself);
+				addChild: (F4SNavItem new
+						title: '500';
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Miscellaneous' seasideTranslated;
+				icon: 'thumbtack';
+				addChild: (F4SNavItem new
+						title: 'Associations' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Invite People' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Privacy Policy' seasideTranslated;
+						yourself);
+				yourself);
+		addChild: (F4SNavItem new
+				title: 'Layouts' seasideTranslated;
+				icon: 'window-restore';
+				addChild: (F4SNavItem new
+						title: 'Vertical Nav' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Top Nav' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Double Top Nav' seasideTranslated;
+						yourself);
+				addChild: (F4SNavItem new
+						title: 'Combo Nav' seasideTranslated;
+						yourself);
+				yourself);
+		yourself
 ]
 
 { #category : #accessing }

@@ -100,6 +100,11 @@ F4SNavItem >> beGroup [
 	self isGroup: true
 ]
 
+{ #category : #actions }
+F4SNavItem >> beHidden [
+	self visible: false
+]
+
 { #category : #accessing }
 F4SNavItem >> children [
 	^ children
