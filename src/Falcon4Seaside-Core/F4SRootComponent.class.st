@@ -20,8 +20,9 @@ F4SRootComponent class >> canBeRoot [
 { #category : #installing }
 F4SRootComponent class >> configureApplication: anApplication [
 	anApplication preferenceAt: #sessionClass put: F4SSession.
-	anApplication configuration addParent: WAGetTextConfiguration instance.
-	anApplication configuration addParent: F4SSystemConfiguration instance.
+	anApplication configuration
+		addParent: WAGetTextConfiguration instance;
+		addParent: F4SSystemConfiguration instance.
 	anApplication
 		addLibrary: self fileLibraryClass;
 		addLibrary: JQDevelopmentLibrary.
