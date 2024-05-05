@@ -246,7 +246,7 @@ F4SRootComponent >> renderNavigationBrandOn: canvas [
 						width: 40.
 					canvas span
 						class: 'font-sans-serif text-primary';
-						with: [ self brandLabel ] ] ]
+						with: [ canvas text: self brandLabel ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
