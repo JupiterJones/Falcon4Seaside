@@ -272,12 +272,32 @@ F4SRootComponent >> renderNavigationOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopItem: navItem on: canvas [
+	canvas listItem
+		class: 'nav-item dropdown';
+		with: [  ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopItems: navItems on: canvas [
+	navItems do: [ :navItem | self renderNavigationTopItem: navItem on: canvas ]
+]
+
+{ #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
 		with: [ self renderNavigationTopToggleOn: canvas.
-			self renderNavigationBrandOn: canvas ]
+			self renderNavigationBrandOn: canvas.
+
+			canvas div
+				class: 'collapse navbar-collapse scrollbar';
+				id: 'navbarStandard';
+				with: [ canvas unorderedList
+						class: 'navbar-nav';
+						attributeAt: 'data-top-nav-dropdowns' put: 'data-top-nav-dropdowns';
+						with: [ self renderNavigationTopItems: navigation on: canvas ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
