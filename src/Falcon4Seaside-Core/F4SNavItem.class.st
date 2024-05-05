@@ -21,6 +21,11 @@ F4SNavItem class >> defaultBadgeValue [
 ]
 
 { #category : #properties }
+F4SNavItem class >> defaultColumn [
+	^ nil
+]
+
+{ #category : #properties }
 F4SNavItem class >> defaultComment [
 	^ nil
 ]
@@ -38,6 +43,11 @@ F4SNavItem class >> defaultIconColor [
 { #category : #properties }
 F4SNavItem class >> defaultIsGroup [
 	^ false
+]
+
+{ #category : #properties }
+F4SNavItem class >> defaultRow [
+	^ nil
 ]
 
 { #category : #properties }
@@ -96,6 +106,16 @@ F4SNavItem >> children [
 ]
 
 { #category : #properties }
+F4SNavItem >> column [
+	^ properties at: #column ifAbsentPut: [ self defaultColumn ]
+]
+
+{ #category : #properties }
+F4SNavItem >> column: anInteger [
+	properties at: #column put: anInteger
+]
+
+{ #category : #properties }
 F4SNavItem >> comment [
 	^ properties at: #comment ifAbsentPut: [ self defaultComment ]
 ]
@@ -128,6 +148,11 @@ F4SNavItem >> defaultBadgeValue [
 ]
 
 { #category : #properties }
+F4SNavItem >> defaultColumn [
+	^ self class defaultColumn
+]
+
+{ #category : #properties }
 F4SNavItem >> defaultComment [
 	^ self class defaultComment
 ]
@@ -145,6 +170,11 @@ F4SNavItem >> defaultIconColor [
 { #category : #properties }
 F4SNavItem >> defaultIsGroup [
 	^ self class defaultIsGroup
+]
+
+{ #category : #properties }
+F4SNavItem >> defaultRow [
+	^ self class defaultRow
 ]
 
 { #category : #properties }
@@ -217,6 +247,23 @@ F4SNavItem >> parent [
 { #category : #accessing }
 F4SNavItem >> parent: aParent [
 	parent := aParent
+]
+
+{ #category : #properties }
+F4SNavItem >> row [
+	^ properties at: #row ifAbsentPut: [ self defaultRow ]
+]
+
+{ #category : #properties }
+F4SNavItem >> row: anInteger [
+	properties at: #row put: anInteger
+]
+
+{ #category : #navigation }
+F4SNavItem >> row: rowInteger column: columnInteger [
+	self
+		row: rowInteger;
+		column: columnInteger
 ]
 
 { #category : #properties }

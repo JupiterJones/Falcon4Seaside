@@ -176,6 +176,7 @@ F4SFalconDemo >> dashboardNavigation [
 	^ F4SNavItem new
 		title: 'Dashboard' seasideTranslated;
 		icon: 'chart-pie';
+		row: 1 column: 1;
 		addChild: (F4SNavItem new
 				title: 'Default';
 				component: F4SDefaultDashboard new;
