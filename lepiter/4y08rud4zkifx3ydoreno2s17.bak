@@ -71,6 +71,40 @@
 					"uidString" : "uW0iLc3TDQCYKc6SB1KFUw=="
 				},
 				"code" : "JJFileLibrary loadFromDisk"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-04T23:32:33.154787+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-04T23:32:34.532779+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "D3QGmwLUDQC7XJlUBRqE1A=="
+				},
+				"code" : "F4SFileLibrary / #vendorspopperpopperminJs."
 			}
 		]
 	},
