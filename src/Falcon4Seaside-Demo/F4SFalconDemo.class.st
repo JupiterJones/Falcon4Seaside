@@ -226,7 +226,8 @@ F4SFalconDemo >> pagesNavigation [
 		beGroup;
 		addChild: (F4SNavItem new
 				title: 'Others' seasideTranslated;
-				beHidden;
+				row: 1 column: 4;
+				promoteChildrenInVertical: true;
 				addChild: (F4SNavItem new
 						title: 'Starter' seasideTranslated;
 						icon: 'flag';

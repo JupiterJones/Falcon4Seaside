@@ -46,6 +46,16 @@ F4SNavItem class >> defaultIsGroup [
 ]
 
 { #category : #properties }
+F4SNavItem class >> defaultIsVisible [
+	^ true
+]
+
+{ #category : #properties }
+F4SNavItem class >> defaultPromoteChildrenInVertical [
+	^ false
+]
+
+{ #category : #properties }
 F4SNavItem class >> defaultRow [
 	^ nil
 ]
@@ -63,11 +73,6 @@ F4SNavItem class >> defaultTitle [
 { #category : #properties }
 F4SNavItem class >> defaultTitleColor [
 	^ nil
-]
-
-{ #category : #properties }
-F4SNavItem class >> defaultVisible [
-	^ true
 ]
 
 { #category : #actions }
@@ -102,7 +107,7 @@ F4SNavItem >> beGroup [
 
 { #category : #actions }
 F4SNavItem >> beHidden [
-	self visible: false
+	self isVisible: false
 ]
 
 { #category : #accessing }
@@ -178,6 +183,16 @@ F4SNavItem >> defaultIsGroup [
 ]
 
 { #category : #properties }
+F4SNavItem >> defaultIsVisible [
+	^ self class defaultIsVisible
+]
+
+{ #category : #properties }
+F4SNavItem >> defaultPromoteChildrenInVertical [
+	^ self class defaultPromoteChildrenInVertical
+]
+
+{ #category : #properties }
 F4SNavItem >> defaultRow [
 	^ self class defaultRow
 ]
@@ -195,11 +210,6 @@ F4SNavItem >> defaultTitle [
 { #category : #properties }
 F4SNavItem >> defaultTitleColor [
 	^ self class defaultTitleColor
-]
-
-{ #category : #properties }
-F4SNavItem >> defaultVisible [
-	^ self class defaultVisible
 ]
 
 { #category : #properties }
@@ -244,6 +254,17 @@ F4SNavItem >> isGroup: aBoolean [
 	properties at: #isGroup put: aBoolean
 ]
 
+{ #category : #properties }
+F4SNavItem >> isVisible [
+	"Show in menus"
+	^ properties at: #isVisible ifAbsentPut: [ self defaultIsVisible ]
+]
+
+{ #category : #properties }
+F4SNavItem >> isVisible: aBoolean [
+	properties at: #isVisible put: aBoolean
+]
+
 { #category : #accessing }
 F4SNavItem >> parent [
 	^ parent
@@ -252,6 +273,17 @@ F4SNavItem >> parent [
 { #category : #accessing }
 F4SNavItem >> parent: aParent [
 	parent := aParent
+]
+
+{ #category : #properties }
+F4SNavItem >> promoteChildrenInVertical [
+	"Promote children up a level on the vertical navigation and remove myself"
+	^ properties at: #promoteChildrenInVertical ifAbsentPut: [ self defaultPromoteChildrenInVertical ]
+]
+
+{ #category : #properties }
+F4SNavItem >> promoteChildrenInVertical: aBoolean [
+	properties at: #promoteChildrenInVertical put: aBoolean
 ]
 
 { #category : #properties }
@@ -299,14 +331,4 @@ F4SNavItem >> titleColor [
 { #category : #properties }
 F4SNavItem >> titleColor: aColor [
 	properties at: #titleColor put: aColor
-]
-
-{ #category : #properties }
-F4SNavItem >> visible [
-	^ properties at: #visible ifAbsentPut: [ self defaultVisible ]
-]
-
-{ #category : #properties }
-F4SNavItem >> visible: aBoolean [
-	properties at: #visible put: aBoolean
 ]

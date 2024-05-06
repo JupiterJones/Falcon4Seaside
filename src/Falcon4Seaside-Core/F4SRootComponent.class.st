@@ -384,7 +384,16 @@ F4SRootComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
 
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationVerticalItems: navItems on: canvas [
-	navItems
+	| navItemsToRender |
+	navItemsToRender := navItems
+			inject: OrderedCollection new
+			into: [ :items :navItem | 
+				navItem isVisible
+					and: [ navItem promoteChildrenInVertical
+							ifTrue: [ items addAll: navItem children ]
+							ifFalse: [ items add: navItem ] ].
+				items ].
+	navItemsToRender
 		do: [ :navItem | self renderNavigationVerticalItem: navItem on: canvas ]
 ]
 
