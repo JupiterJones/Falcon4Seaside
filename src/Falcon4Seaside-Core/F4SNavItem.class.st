@@ -27,7 +27,7 @@ F4SNavItem class >> defaultBadgeValue [
 
 { #category : #defaults }
 F4SNavItem class >> defaultColumn [
-	^ 1
+	^ 0
 ]
 
 { #category : #defaults }
@@ -62,7 +62,7 @@ F4SNavItem class >> defaultPromoteChildrenInVertical [
 
 { #category : #defaults }
 F4SNavItem class >> defaultRow [
-	^ 1
+	^ 0
 ]
 
 { #category : #defaults }
@@ -143,9 +143,12 @@ F4SNavItem >> column: anInteger [
 { #category : #searching }
 F4SNavItem >> columns [
 	"Answer the max value of columns in my hierarchy"
-	^ self children
-		inject: self columns
-		into: [ :columns :navItem | columns max: navItem columns ]
+
+	^ properties
+		at: #cacheColumns
+		ifAbsentPut: [ self children
+				inject: self columns
+				into: [ :columns :navItem | columns max: navItem columns ] ]
 ]
 
 { #category : #properties }
@@ -326,7 +329,13 @@ F4SNavItem >> promoteChildrenInVertical: aBoolean [
 	properties at: #promoteChildrenInVertical put: aBoolean
 ]
 
-{ #category : #properties }
+{ #category : #testing }
+F4SNavItem >> renderOnCard [
+	"Answer true if rows or columns are > 0"
+	^ self rows > 0 or: [ self columns > 0 ]
+]
+
+{ #category : #'properties- cached' }
 F4SNavItem >> row [
 	^ properties at: #row ifAbsentPut: [ self defaultRow ]
 ]
@@ -345,10 +354,13 @@ F4SNavItem >> row: rowInteger column: columnInteger [
 
 { #category : #searching }
 F4SNavItem >> rows [
-	"Answer the max value of rows in my hierarchy"
-	^ self children
-		inject: self rows
-		into: [ :rows :navItem | rows max: navItem rows ]
+	"Answer the max value of columns in my hierarchy"
+
+	^ properties
+		at: #cacheRows
+		ifAbsentPut: [ self children
+				inject: self rows
+				into: [ :rows :navItem | rows max: navItem rows ] ]
 ]
 
 { #category : #properties }

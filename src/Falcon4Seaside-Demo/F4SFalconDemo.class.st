@@ -25,6 +25,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Email' seasideTranslated;
 				icon: 'envelope-open';
+				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Inbox' seasideTranslated;
 						yourself);
@@ -38,6 +39,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Events' seasideTranslated;
 				icon: 'calendar-day';
+				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Create an Event' seasideTranslated;
 						yourself);
@@ -51,6 +53,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'E-Commerce' seasideTranslated;
 				icon: 'shopping-cart';
+				row: 1 column: 3;
 				addChild: (F4SNavItem new
 						title: 'Product' seasideTranslated;
 						icon: 'box';
@@ -98,6 +101,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'E-Learning' seasideTranslated;
 				icon: 'graduation-cap';
+				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Course' seasideTranslated;
 						addChild: (F4SNavItem new
@@ -130,6 +134,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Social' seasideTranslated;
 				icon: 'share-alt';
+				row: 1 column: 1;
 				addChild: (F4SNavItem new
 						title: 'Feed' seasideTranslated;
 						yourself);
@@ -146,6 +151,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Support Desk' seasideTranslated;
 				icon: 'ticket-alt';
+				row: 1 column: 1;
 				addChild: (F4SNavItem new
 						title: 'Table View' seasideTranslated;
 						yourself);
@@ -176,7 +182,6 @@ F4SFalconDemo >> dashboardNavigation [
 	^ F4SNavItem new
 		title: 'Dashboard' seasideTranslated;
 		icon: 'chart-pie';
-		row: 1 column: 1;
 		addChild: (F4SNavItem new
 				title: 'Default';
 				component: F4SDefaultDashboard new;
@@ -242,6 +247,7 @@ F4SFalconDemo >> pagesNavigation [
 				icon: 'lock';
 				addChild: (F4SNavItem new
 						title: 'Simple' seasideTranslated;
+						row: 1 column: 1;
 						addChild: (F4SNavItem new
 								title: 'Login' seasideTranslated;
 								yourself);
@@ -266,6 +272,7 @@ F4SFalconDemo >> pagesNavigation [
 						yourself);
 				addChild: (F4SNavItem new
 						title: 'Card' seasideTranslated;
+						row: 1 column: 2;
 						addChild: (F4SNavItem new
 								title: 'Login' seasideTranslated;
 								yourself);
@@ -290,6 +297,7 @@ F4SFalconDemo >> pagesNavigation [
 						yourself);
 				addChild: (F4SNavItem new
 						title: 'Split' seasideTranslated;
+						row: 1 column: 3;
 						addChild: (F4SNavItem new
 								title: 'Login' seasideTranslated;
 								yourself);
@@ -313,15 +321,21 @@ F4SFalconDemo >> pagesNavigation [
 								yourself);
 						yourself);
 				addChild: (F4SNavItem new
-						title: 'Wizzard' seasideTranslated;
-						yourself);
-				addChild: (F4SNavItem new
-						title: 'Modal' seasideTranslated;
+						title: 'Other Auth';
+						promoteChildrenInVertical: true;
+						row: 3 column: 3;
+						addChild: (F4SNavItem new
+								title: 'Wizzard' seasideTranslated;
+								yourself);
+						addChild: (F4SNavItem new
+								title: 'Modal' seasideTranslated;
+								yourself);
 						yourself);
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'User' seasideTranslated;
 				icon: 'user';
+				row: 2 column: 1;
 				addChild: (F4SNavItem new
 						title: 'Profile' seasideTranslated;
 						yourself);
@@ -335,6 +349,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'Pricing' seasideTranslated;
 				icon: 'tags';
+				row: 2 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Pricing Default' seasideTranslated;
 						yourself);
@@ -345,6 +360,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'FAQ' seasideTranslated;
 				icon: 'question-circle';
+				row: 3 column: 2;
 				addChild: (F4SNavItem new
 						title: 'FAQ Basic' seasideTranslated;
 						yourself);
@@ -358,6 +374,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'Errors' seasideTranslated;
 				icon: 'exclamation-triangle';
+				row: 2 column: 3;
 				addChild: (F4SNavItem new
 						title: '404';
 						yourself);
@@ -368,6 +385,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'Miscellaneous' seasideTranslated;
 				icon: 'thumbtack';
+				row: 3 column: 1;
 				addChild: (F4SNavItem new
 						title: 'Associations' seasideTranslated;
 						yourself);
@@ -381,6 +399,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'Layouts' seasideTranslated;
 				icon: 'window-restore';
+				row: 1 column: 4;
 				addChild: (F4SNavItem new
 						title: 'Vertical Nav' seasideTranslated;
 						yourself);
