@@ -272,15 +272,43 @@ F4SRootComponent >> renderNavigationOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopDropdownItem: navItem on: canvas [
+	| dropdownId |
+	canvas anchor
+		class: 'nav-link dropdown-toggle';
+		url: '#';
+		attributeAt: 'role' put: 'button';
+		attributeAt: 'data-bs-toggle' put: 'dropdown';
+		attributeAt: 'aria-haspopup' put: 'true';
+		attributeAt: 'aria-expanded' put: 'false';
+		id: (dropdownId := canvas nextId);
+		with: [ canvas text: navItem title ].
+	canvas div
+		class: 'dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0';
+		attributeAt: 'aria-labelledby' put: dropdownId;
+		with: [ navItem renderOnCard
+				ifTrue: [ canvas div
+						class: 'card navbar-card-app shadow-none dark__bg-1000';
+						with: [ canvas div
+								class: 'card-body scrollbar max-h-dropdow';
+								with: [ self renderNavigationTopItem: navItem on: canvas ] ] ]
+				ifFalse: [ canvas div
+						class: 'bg-white dark__bg-1000 rounded-3 py-2';
+						with: [ self renderNavigationTopItem: navItem on: canvas ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationTopItem: navItem on: canvas [
-	canvas listItem
-		class: 'nav-item dropdown';
-		with: [  ]
+
 ]
 
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationTopItems: navItems on: canvas [
-	navItems do: [ :navItem | self renderNavigationTopItem: navItem on: canvas ]
+	navItems
+		do: [ :navItem | 
+			canvas listItem
+				class: 'nav-item dropdown';
+				with: [ self renderNavigationTopDropdownItem: navItem on: canvas ] ]
 ]
 
 { #category : #'rendering-navigation' }

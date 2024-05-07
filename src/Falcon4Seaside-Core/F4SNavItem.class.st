@@ -10,67 +10,72 @@ Class {
 	#category : #'Falcon4Seaside-Core'
 }
 
-{ #category : #properties }
+{ #category : #defaults }
+F4SNavItem class >> defaultBackgroundImage [
+	^ nil
+]
+
+{ #category : #defaults }
 F4SNavItem class >> defaultBadgeColor [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultBadgeValue [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultColumn [
-	^ nil
+	^ 1
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultComment [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultIcon [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultIconColor [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultIsGroup [
 	^ false
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultIsVisible [
 	^ true
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultPromoteChildrenInVertical [
 	^ false
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultRow [
-	^ nil
+	^ 1
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultSubTitle [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultTitle [
 	^ nil
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem class >> defaultTitleColor [
 	^ nil
 ]
@@ -78,6 +83,16 @@ F4SNavItem class >> defaultTitleColor [
 { #category : #actions }
 F4SNavItem >> addChild: aNavItem [
 	children add: aNavItem
+]
+
+{ #category : #properties }
+F4SNavItem >> backgroundImage [
+	^ properties at: #backgroundImage ifAbsentPut: [ self defaultBackgroundImage ]
+]
+
+{ #category : #properties }
+F4SNavItem >> backgroundImage: aUrl [
+	properties at: #backgroundImage put: aUrl
 ]
 
 { #category : #properties }
@@ -125,6 +140,14 @@ F4SNavItem >> column: anInteger [
 	properties at: #column put: anInteger
 ]
 
+{ #category : #searching }
+F4SNavItem >> columns [
+	"Answer the max value of columns in my hierarchy"
+	^ self children
+		inject: self columns
+		into: [ :columns :navItem | columns max: navItem columns ]
+]
+
 { #category : #properties }
 F4SNavItem >> comment [
 	^ properties at: #comment ifAbsentPut: [ self defaultComment ]
@@ -147,72 +170,82 @@ F4SNavItem >> component: aComponent [
 			yourself
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
+F4SNavItem >> defaultBackgroundImage [
+	^ self class defaultBackgroundImage
+]
+
+{ #category : #defaults }
 F4SNavItem >> defaultBadgeColor [
 	^ self class defaultBadgeColor
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultBadgeValue [
 	^ self class defaultBadgeValue
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultColumn [
 	^ self class defaultColumn
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultComment [
 	^ self class defaultComment
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultIcon [
 	^ self class defaultIcon
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultIconColor [
 	^ self class defaultIconColor
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultIsGroup [
 	^ self class defaultIsGroup
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultIsVisible [
 	^ self class defaultIsVisible
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultPromoteChildrenInVertical [
 	^ self class defaultPromoteChildrenInVertical
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultRow [
 	^ self class defaultRow
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultSubTitle [
 	^ self class defaultSubTitle
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultTitle [
 	^ self class defaultTitle
 ]
 
-{ #category : #properties }
+{ #category : #defaults }
 F4SNavItem >> defaultTitleColor [
 	^ self class defaultTitleColor
 ]
 
-{ #category : #properties }
+{ #category : #testing }
+F4SNavItem >> hasBackgroundImage [
+	^ self hasProperty: #backgroundImage
+]
+
+{ #category : #testing }
 F4SNavItem >> hasProperty: aKey [
 	^ properties includesKey: aKey
 ]
@@ -265,6 +298,13 @@ F4SNavItem >> isVisible: aBoolean [
 	properties at: #isVisible put: aBoolean
 ]
 
+{ #category : #searching }
+F4SNavItem >> itemsForRow: aRow column: aColumn [
+	| items |
+	items := OrderedCollection new.
+	(self row== aRow and: [ self column == aColumn ]) ifTrue: [ items add: self ]
+]
+
 { #category : #accessing }
 F4SNavItem >> parent [
 	^ parent
@@ -301,6 +341,14 @@ F4SNavItem >> row: rowInteger column: columnInteger [
 	self
 		row: rowInteger;
 		column: columnInteger
+]
+
+{ #category : #searching }
+F4SNavItem >> rows [
+	"Answer the max value of rows in my hierarchy"
+	^ self children
+		inject: self rows
+		into: [ :rows :navItem | rows max: navItem rows ]
 ]
 
 { #category : #properties }
