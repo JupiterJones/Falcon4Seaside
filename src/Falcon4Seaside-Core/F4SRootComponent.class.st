@@ -286,7 +286,7 @@ F4SRootComponent >> renderNavigationTopDropdownItem: navItem on: canvas [
 	canvas div
 		class: 'dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0';
 		attributeAt: 'aria-labelledby' put: dropdownId;
-		with: [ navItem renderOnCard
+		with: [ "navItem renderOnCard
 				ifTrue: [ canvas div
 						class: 'card navbar-card-app shadow-none dark__bg-1000';
 						with: [ canvas div
@@ -294,7 +294,7 @@ F4SRootComponent >> renderNavigationTopDropdownItem: navItem on: canvas [
 								with: [ self renderNavigationTopItem: navItem on: canvas ] ] ]
 				ifFalse: [ canvas div
 						class: 'bg-white dark__bg-1000 rounded-3 py-2';
-						with: [ self renderNavigationTopItem: navItem on: canvas ] ] ]
+						with: [ self renderNavigationTopItem: navItem on: canvas ] ]" ]
 ]
 
 { #category : #'rendering-navigation' }

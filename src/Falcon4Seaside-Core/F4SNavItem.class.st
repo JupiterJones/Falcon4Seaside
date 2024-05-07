@@ -125,6 +125,23 @@ F4SNavItem >> beHidden [
 	self isVisible: false
 ]
 
+{ #category : #'properties-cached' }
+F4SNavItem >> buildNavigationLayout [
+	| layout |
+	layout := Dictionary new.
+	self buildNavigationLayout: layout item: self.
+	^ layout
+]
+
+{ #category : #'properties-cached' }
+F4SNavItem >> buildNavigationLayout: layout item: anItem [
+	| position |
+	position := self row @ self column.
+	(layout at: position ifAbsentPut: [ OrderedCollection new ]) add: self.
+	position ~= (0 @ 0)
+		ifFalse: [ self children do: [ :child | self buildNavigationLayout: layout item: child ] ]
+]
+
 { #category : #accessing }
 F4SNavItem >> children [
 	^ children
@@ -140,7 +157,7 @@ F4SNavItem >> column: anInteger [
 	properties at: #column put: anInteger
 ]
 
-{ #category : #searching }
+{ #category : #'properties-cached' }
 F4SNavItem >> columns [
 	"Answer the max value of columns in my hierarchy"
 
@@ -308,6 +325,15 @@ F4SNavItem >> itemsForRow: aRow column: aColumn [
 	(self row== aRow and: [ self column == aColumn ]) ifTrue: [ items add: self ]
 ]
 
+{ #category : #'properties-cached' }
+F4SNavItem >> layout [
+	"Answer a dictionary with points for keys representing row@column and an OrderedCollection of values"
+
+	^ properties
+		at: #cacheLayout
+		ifAbsentPut: [ self buildNavigationLayout ]
+]
+
 { #category : #accessing }
 F4SNavItem >> parent [
 	^ parent
@@ -335,7 +361,7 @@ F4SNavItem >> renderOnCard [
 	^ self rows > 0 or: [ self columns > 0 ]
 ]
 
-{ #category : #'properties- cached' }
+{ #category : #properties }
 F4SNavItem >> row [
 	^ properties at: #row ifAbsentPut: [ self defaultRow ]
 ]
@@ -352,7 +378,7 @@ F4SNavItem >> row: rowInteger column: columnInteger [
 		column: columnInteger
 ]
 
-{ #category : #searching }
+{ #category : #'properties-cached' }
 F4SNavItem >> rows [
 	"Answer the max value of columns in my hierarchy"
 
