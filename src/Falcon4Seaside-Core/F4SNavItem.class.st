@@ -140,7 +140,7 @@ F4SNavItem >> buildNavigationLayout: layout item: anItem [
 	position := self row @ self column.
 	parent
 		ifNotNil: [ (layout at: position ifAbsentPut: [ OrderedCollection new ]) add: self ].
-	(parent notNil and: [ position = (0 @ 0) ])
+	 position = (0 @ 0) 
 		ifFalse: [ self children do: [ :child | self buildNavigationLayout: layout item: child ] ]
 ]
 
@@ -396,8 +396,8 @@ F4SNavItem >> rows [
 	^ properties
 		at: #cacheRows
 		ifAbsentPut: [ self children
-				inject: self rows
-				into: [ :rows :navItem | rows max: navItem rows ] ]
+				inject: self row
+				into: [ :maxRow :navItem | maxRow max: navItem rows ] ]
 ]
 
 { #category : #properties }
