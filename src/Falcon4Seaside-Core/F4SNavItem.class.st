@@ -140,7 +140,7 @@ F4SNavItem >> buildNavigationLayout: layout item: anItem [
 	position := self row @ self column.
 	parent
 		ifNotNil: [ (layout at: position ifAbsentPut: [ OrderedCollection new ]) add: self ].
-	 position = (0 @ 0) 
+	self isPositioned 
 		ifFalse: [ self children do: [ :child | self buildNavigationLayout: layout item: child ] ]
 ]
 
@@ -307,6 +307,12 @@ F4SNavItem >> isGroup [
 { #category : #properties }
 F4SNavItem >> isGroup: aBoolean [
 	properties at: #isGroup put: aBoolean
+]
+
+{ #category : #testing }
+F4SNavItem >> isPositioned [
+	"Answer true if myself or one of my parents is positioned"
+	^ self row > 0 or: [ self column > 0 or: [ parent isPositioned ] ]
 ]
 
 { #category : #properties }
