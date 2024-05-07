@@ -166,8 +166,8 @@ F4SNavItem >> columns [
 	^ properties
 		at: #cacheColumns
 		ifAbsentPut: [ self children
-				inject: self columns
-				into: [ :columns :navItem | columns max: navItem columns ] ]
+				inject: self column
+				into: [ :maxColumn :navItem | maxColumn max: navItem columns ] ]
 ]
 
 { #category : #properties }
