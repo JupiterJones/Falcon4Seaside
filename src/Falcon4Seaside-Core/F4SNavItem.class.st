@@ -312,7 +312,9 @@ F4SNavItem >> isGroup: aBoolean [
 { #category : #testing }
 F4SNavItem >> isPositioned [
 	"Answer true if myself or one of my parents is positioned"
-	^ self row > 0 or: [ self column > 0 or: [ parent isPositioned ] ]
+
+	^ self row > 0
+		or: [ self column > 0 or: [ parent notNil and: [ parent isPositioned ] ] ]
 ]
 
 { #category : #properties }
