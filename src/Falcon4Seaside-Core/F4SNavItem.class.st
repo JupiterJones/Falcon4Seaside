@@ -138,7 +138,7 @@ F4SNavItem >> buildNavigationLayout: layout item: anItem [
 	| position |
 	position := self row @ self column.
 	(layout at: position ifAbsentPut: [ OrderedCollection new ]) add: self.
-	position ~= (0 @ 0)
+	position = (0 @ 0)
 		ifFalse: [ self children do: [ :child | self buildNavigationLayout: layout item: child ] ]
 ]
 
