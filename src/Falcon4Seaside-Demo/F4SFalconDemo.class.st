@@ -17,10 +17,12 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Calendar' seasideTranslated;
 				icon: 'calendar-alt';
+				row: 1 column: 1;
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'Chat' seasideTranslated;
 				icon: 'comments';
+				row: 1 column: 1;
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'Email' seasideTranslated;
@@ -130,6 +132,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Kanban' seasideTranslated;
 				icon: 'trello';
+				row: 1 column: 1;
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'Social' seasideTranslated;

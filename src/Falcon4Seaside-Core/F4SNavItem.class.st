@@ -130,18 +130,17 @@ F4SNavItem >> beHidden [
 F4SNavItem >> buildNavigationLayout [
 	| layout |
 	layout := Dictionary new.
-	self buildNavigationLayout: layout item: self.
+	self buildNavigationLayout: layout.
 	^ layout
 ]
 
 { #category : #'properties-cached' }
-F4SNavItem >> buildNavigationLayout: layout item: anItem [
-	| position |
-	position := self row @ self column.
+F4SNavItem >> buildNavigationLayout: layout [
 	parent
-		ifNotNil: [ (layout at: position ifAbsentPut: [ OrderedCollection new ]) add: self ].
-	self isPositioned 
-		ifFalse: [ self children do: [ :child | self buildNavigationLayout: layout item: child ] ]
+		ifNotNil: [ (layout at: self row @ self column ifAbsentPut: [ OrderedCollection new ])
+				add: self ].
+	self isPositioned
+		ifFalse: [ self children do: [ :child | child buildNavigationLayout: layout] ]
 ]
 
 { #category : #accessing }
@@ -313,8 +312,7 @@ F4SNavItem >> isGroup: aBoolean [
 F4SNavItem >> isPositioned [
 	"Answer true if myself or one of my parents is positioned"
 
-	^ self row > 0
-		or: [ self column > 0 or: [ parent notNil and: [ parent isPositioned ] ] ]
+	^ self row > 0 or: [ self column > 0 ]
 ]
 
 { #category : #properties }
