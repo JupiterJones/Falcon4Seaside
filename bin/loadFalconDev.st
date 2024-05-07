@@ -1,7 +1,7 @@
 "Load projects"
 Metacello new
  baseline:'Seaside3';
- repository: 'gitlocal:///opt/git/JupiterSmalltalk/Seaside/repository';
+ repository: 'github://SeasideSt/Seaside:master/repository';
  load: #('CI' 'Zinc' 'Development').
 
 Metacello new

@@ -97,14 +97,48 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-05T08:58:19.393701+10:00"
+						"dateAndTimeString" : "2024-05-07T07:40:18.914091+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "D3QGmwLUDQC7XJlUBRqE1A=="
 				},
-				"code" : "JJFileLibrary  / #vendorspopperpopperminJs."
+				"code" : "JJFileLibrary  / #vendorspopperpopperminJs"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-07T10:35:40.900917+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-07T10:42:39.338479+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "mQo+GjTUDQCs6y6rC/GTtQ=="
+				},
+				"code" : ""
 			}
 		]
 	},
