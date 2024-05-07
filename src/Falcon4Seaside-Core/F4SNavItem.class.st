@@ -82,7 +82,8 @@ F4SNavItem class >> defaultTitleColor [
 
 { #category : #actions }
 F4SNavItem >> addChild: aNavItem [
-	children add: aNavItem
+	children add: aNavItem.
+	aNavItem parent: self
 ]
 
 { #category : #properties }
@@ -342,6 +343,15 @@ F4SNavItem >> parent [
 { #category : #accessing }
 F4SNavItem >> parent: aParent [
 	parent := aParent
+]
+
+{ #category : #printing }
+F4SNavItem >> printOn: aStream [
+	super printOn: aStream.
+	aStream
+		nextPut: $(;
+		nextPutAll: self title;
+		nextPut: $)
 ]
 
 { #category : #properties }
