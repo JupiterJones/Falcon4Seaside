@@ -211,6 +211,23 @@ F4SRootComponent >> renderBadge: badgeValue on: canvas [
 		with: [ canvas text: badgeValue ]
 ]
 
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderBrandOn: canvas [
+	canvas anchor
+		class: 'navbar-brand';
+		class: 'me-1 me-sm-3' if: self isNavbarTop;
+		with: [ canvas div
+				class: 'd-flex align-items-center';
+				class: 'py-3' if: self isNavbarVertical;
+				with: [ canvas image
+						class: 'me-2';
+						url: self brandImageUrl;
+						width: 40.
+					canvas span
+						class: 'font-sans-serif text-primary';
+						with: [ canvas text: self brandLabel ] ] ]
+]
+
 { #category : #rendering }
 F4SRootComponent >> renderContentOn: canvas [
 	canvas main
@@ -240,23 +257,6 @@ F4SRootComponent >> renderIcon: iconKey on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationBrandOn: canvas [
-	canvas anchor
-		class: 'navbar-brand';
-		class: 'me-1 me-sm-3' if: self isNavbarTop;
-		with: [ canvas div
-				class: 'd-flex align-items-center';
-				class: 'py-3' if: self isNavbarVertical;
-				with: [ canvas image
-						class: 'me-2';
-						url: self brandImageUrl;
-						width: 40.
-					canvas span
-						class: 'font-sans-serif text-primary';
-						with: [ canvas text: self brandLabel ] ] ]
-]
-
-{ #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationDoubleTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
@@ -266,7 +266,7 @@ F4SRootComponent >> renderNavigationDoubleTopOn: canvas [
 				with: [ canvas
 						class: 'd-flex flex-between-center';
 						with: [ self renderNavigationTopToggleOn: canvas.
-							self renderNavigationBrandOn: canvas ] ] ]
+							self renderBrandOn: canvas ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -330,25 +330,19 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 												class: 'col-6 col-md-4';
 												with: [ canvas div
 														class: 'nav flex-column';
-														with: (self
-																renderNavigationTopLayoutItem: navItem
-																row: row
-																column: column
-																on: canvas) ] ] ] ] ] ]
+														with: [ navItem layout
+																at: row @ column
+																ifPresent: [ :items | self renderNavigationTopLayoutLinks: items on: canvas ] ] ] ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopLayoutItem: navItem row: row column: column on: canvas [
-	^ [ navItem layout
-		at: row @ column
-		ifPresent: [ :items | 
-			items
-				do: [ :item | 
-					canvas anchor
-						class: 'nav-link py-1 link-600 fw-medium';
-						with: [ canvas text: item title.
-							item badgeValue
-								ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ] ]
+F4SRootComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
+	navItems
+		do: [ :item | 
+			canvas anchor
+				class: 'nav-link py-1 link-600 fw-medium';
+				with: [ canvas text: item title.
+					item badgeValue ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -357,7 +351,7 @@ F4SRootComponent >> renderNavigationTopOn: canvas [
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
 		with: [ self renderNavigationTopToggleOn: canvas.
-			self renderNavigationBrandOn: canvas.
+			self renderBrandOn: canvas.
 
 			canvas div
 				class: 'collapse navbar-collapse scrollbar';
@@ -494,7 +488,7 @@ F4SRootComponent >> renderNavigationVerticalOn: canvas [
 				with: [ canvas div
 						class: 'toggle-icon-wrapper';
 						with: [ self renderNavigationVerticalToggleOn: canvas ].
-					self renderNavigationBrandOn: canvas ].
+					self renderBrandOn: canvas ].
 			canvas div
 				class: 'collapse navbar-collapse';
 				id: 'navbarVerticalCollapse';

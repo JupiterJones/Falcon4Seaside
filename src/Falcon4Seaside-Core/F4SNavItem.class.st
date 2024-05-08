@@ -267,6 +267,11 @@ F4SNavItem >> hasBackgroundImage [
 ]
 
 { #category : #testing }
+F4SNavItem >> hasChildren [
+	^ children notEmpty
+]
+
+{ #category : #testing }
 F4SNavItem >> hasProperty: aKey [
 	^ properties includesKey: aKey
 ]
