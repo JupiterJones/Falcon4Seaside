@@ -311,7 +311,7 @@ F4SRootComponent >> renderNavigationTopItems: menuItems on: canvas [
 F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 	canvas div
 		class: 'card shadow-none dark__bg-1000';
-		style: 'min-width: ' , (navItem columns * 12) asString , 'rem;';
+		class: 'navbar-card-col-' , navItem columns asString;
 		with: [ canvas div
 				class: 'card-body scrollbar max-h-dropdow';
 				with: [ navItem backgroundImage
@@ -329,8 +329,8 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 										do: [ :column | 
 											canvas div
 												class: 'col-6';
-												class: 'col-md-4' if: navItem rows <= 3;
-												class: 'col-xxl-3' if: navItem rows = 4;
+												class: 'col-md-4' if: navItem columns = 3;
+												class: 'col-xxl-3' if: navItem columns = 4;
 												with: [ canvas div
 														class: 'nav flex-column';
 														with: [ navItem layout
@@ -341,7 +341,7 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 	navItems
-		do: [ :navItem | "Do we promote children?"
+		do: [ :navItem "Do we promote children?" | 
 			navItem hasChildren
 				ifTrue: [ canvas paragraph
 						class: 'nav-link text-700 mb-0 fw-bold';
@@ -538,6 +538,22 @@ F4SRootComponent >> renderOnLoadScriptsOn: canvas [
 		url: 'https://polyfill.io/v3/polyfill.min.js?features=window.scroll'.
 	canvas script url: F4SFileLibrary / #vendorslistjslistminJs.
 	canvas script url: F4SFileLibrary / #jsthemeJs
+]
+
+{ #category : #accessing }
+F4SRootComponent >> style [
+	^ '@media (min-width: 768px)
+.navbar-card-col-3 {
+min-width: 32rem;
+}
+@media (min-width: 1540px)
+.navbar-card-col-4 {
+min-width: 44rem;
+}
+@media (min-width: 768px)
+.navbar-card-col-4 {
+min-width: 28rem;
+}'
 ]
 
 { #category : #updating }
