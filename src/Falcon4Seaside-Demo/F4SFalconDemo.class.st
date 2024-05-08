@@ -14,6 +14,7 @@ F4SFalconDemo >> appNavigation [
 	^ F4SNavItem new
 		title: 'App' seasideTranslated;
 		beGroup;
+		backgroundImage: F4SFalconDemoFileLibrary / #'imgiconsspotillustrationsauthenticationcornerPng';
 		addChild: (F4SNavItem new
 				title: 'Calendar' seasideTranslated;
 				icon: 'calendar-alt';
@@ -200,6 +201,7 @@ F4SFalconDemo >> dashboardNavigation [
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'LMS' seasideTranslated;
+				badgeValue: 'New';
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'Management' seasideTranslated;
@@ -209,6 +211,7 @@ F4SFalconDemo >> dashboardNavigation [
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'Support Desk' seasideTranslated;
+				badgeValue: 'New';
 				yourself);
 		yourself
 ]
@@ -232,6 +235,7 @@ F4SFalconDemo >> pagesNavigation [
 	^ F4SNavItem new
 		title: 'Pages' seasideTranslated;
 		beGroup;
+		backgroundImage: F4SFalconDemoFileLibrary / #'imgiconsspotillustrationsauthenticationcornerPng';
 		addChild: (F4SNavItem new
 				title: 'Others' seasideTranslated;
 				row: 1 column: 4;

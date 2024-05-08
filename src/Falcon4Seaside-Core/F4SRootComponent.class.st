@@ -204,6 +204,13 @@ F4SRootComponent >> leftToRightOrRightToLeft [
 		ifFalse: [ 'ltr' ]
 ]
 
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderBadge: badgeValue on: canvas [
+	^ canvas span
+		class: 'badge rounded-pill ms-2 badge-subtle-success';
+		with: [ canvas text: badgeValue ]
+]
+
 { #category : #rendering }
 F4SRootComponent >> renderContentOn: canvas [
 	canvas main
@@ -272,7 +279,7 @@ F4SRootComponent >> renderNavigationOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopDropdownItem: navItem on: canvas [
+F4SRootComponent >> renderNavigationTopItem: navItem on: canvas [
 	| dropdownId |
 	canvas anchor
 		class: 'nav-link dropdown-toggle';
@@ -286,29 +293,62 @@ F4SRootComponent >> renderNavigationTopDropdownItem: navItem on: canvas [
 	canvas div
 		class: 'dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0';
 		attributeAt: 'aria-labelledby' put: dropdownId;
-		with: [ "navItem renderOnCard
-				ifTrue: [ canvas div
-						class: 'card navbar-card-app shadow-none dark__bg-1000';
-						with: [ canvas div
-								class: 'card-body scrollbar max-h-dropdow';
-								with: [ self renderNavigationTopItem: navItem on: canvas ] ] ]
-				ifFalse: [ canvas div
-						class: 'bg-white dark__bg-1000 rounded-3 py-2';
-						with: [ self renderNavigationTopItem: navItem on: canvas ] ]" ]
+		with: [ navItem renderOnCard
+				ifTrue: [ self renderNavigationTopLayoutItem: navItem on: canvas ]
+				ifFalse: [ self renderNavigationTopSimpleItem: navItem on: canvas ] ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopItem: navItem on: canvas [
-
-]
-
-{ #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopItems: navItems on: canvas [
-	navItems
-		do: [ :navItem | 
+F4SRootComponent >> renderNavigationTopItems: menuItems on: canvas [
+	menuItems
+		do: [ :menuItem | 
 			canvas listItem
 				class: 'nav-item dropdown';
-				with: [ self renderNavigationTopDropdownItem: navItem on: canvas ] ]
+				with: [ self renderNavigationTopItem: menuItem on: canvas ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
+	^ canvas div
+		class: 'card navbar-card-app shadow-none dark__bg-1000';
+		with: [ canvas div
+				class: 'card-body scrollbar max-h-dropdow';
+				with: [ navItem backgroundImage
+						ifNotNil: [ canvas image
+								class: 'img-dropdown';
+								width: 130;
+								url: navItem backgroundImage ].
+					1
+						to: navItem rows
+						do: [ :row | 
+							canvas div
+								class: 'row';
+								with: [ 1
+										to: navItem columns
+										do: [ :column | 
+											canvas div
+												class: 'col-6 col-md-4';
+												with: [ canvas div
+														class: 'nav flex-column';
+														with: (self
+																renderNavigationTopLayoutItem: navItem
+																row: row
+																column: column
+																on: canvas) ] ] ] ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopLayoutItem: navItem row: row column: column on: canvas [
+	^ [ navItem layout
+		at: row @ column
+		ifPresent: [ :items | 
+			items
+				do: [ :item | 
+					canvas anchor
+						class: 'nav-link py-1 link-600 fw-medium';
+						with: [ canvas text: item title.
+							item badgeValue
+								ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -326,6 +366,18 @@ F4SRootComponent >> renderNavigationTopOn: canvas [
 						class: 'navbar-nav';
 						attributeAt: 'data-top-nav-dropdowns' put: 'data-top-nav-dropdowns';
 						with: [ self renderNavigationTopItems: navigation on: canvas ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
+	canvas div
+		class: 'bg-white dark__bg-1000 rounded-3 py-2';
+		with: [ navItem children
+				do: [ :item | 
+					canvas anchor
+						class: 'dropdown-item link-600 fw-medium';
+						with: [ canvas text: item title.
+							item badgeValue ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -352,10 +404,8 @@ F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
 	canvas listItem
 		class: 'nav-item';
 		with: [ (navItem isGroup or: [ navItem children notEmpty ])
-				ifTrue: [  "This is an intermediate menu"
-					navItem isGroup
-						ifTrue: [  "This is a group menu"
-							self
+				ifTrue: [ navItem isGroup
+						ifTrue: [ self
 								renderNavigationVerticalItemGroup: navItem on: canvas;
 								renderNavigationVerticalItems: navItem children on: canvas ]
 						ifFalse: [  "This is a menu dropdown"| dropdownId |
@@ -369,15 +419,16 @@ F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
 										class: 'nav collapse';
 										id: dropdownId;
 										with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ] ] ]
-				ifFalse: [  "This is a menu item"
-					canvas anchor
+				ifFalse: [ canvas anchor
 						class: 'nav-link';
 						with: [ canvas div
 								class: 'd-flex align-items-center';
 								with: [ self renderIcon: navItem icon on: canvas.
 									canvas span
 										class: 'nav-link-text ps-1';
-										with: [ canvas text: navItem title ] ] ] ] ]
+										with: [ canvas text: navItem title ].
+									navItem badgeValue
+										ifNotNil: [ self renderBadge: navItem badgeValue on: canvas ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -465,6 +516,13 @@ F4SRootComponent >> renderNavigationVerticalToggleOn: canvas [
 		with: [ canvas span
 				class: 'navbar-toggle-icon';
 				with: [ canvas span class: 'toggle-line' ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SRootComponent >> renderNavigtationTopItem: navItem on: canvas [
+	^ canvas div
+		class: 'bg-white dark__bg-1000 rounded-3 py-2';
+		with: [ self renderNavigationTopItem: navItem on: canvas ]
 ]
 
 { #category : #rendering }
