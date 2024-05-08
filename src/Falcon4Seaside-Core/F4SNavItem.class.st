@@ -71,6 +71,11 @@ F4SNavItem class >> defaultRow [
 ]
 
 { #category : #defaults }
+F4SNavItem class >> defaultSortPriorityTop [
+	^ nil
+]
+
+{ #category : #defaults }
 F4SNavItem class >> defaultSubTitle [
 	^ nil
 ]
@@ -142,7 +147,7 @@ F4SNavItem >> buildNavigationLayout [
 { #category : #'properties-cached' }
 F4SNavItem >> buildNavigationLayout: layout [
 	parent
-		ifNotNil: [ (layout at: self row @ self column ifAbsentPut: [ OrderedCollection new ])
+		ifNotNil: [ (layout at: self row @ self column ifAbsentPut: [ SortedCollection sortUsing: self topNavigationLayoutSortBlock ])
 				add: self ].
 	self isPositioned
 		ifFalse: [ self children do: [ :child | child buildNavigationLayout: layout] ]
@@ -254,6 +259,11 @@ F4SNavItem >> defaultPromoteChildrenInVertical [
 { #category : #defaults }
 F4SNavItem >> defaultRow [
 	^ self class defaultRow
+]
+
+{ #category : #defaults }
+F4SNavItem >> defaultSortPriorityTop [
+	^ self class defaultSortPriorityTop
 ]
 
 { #category : #defaults }
@@ -443,6 +453,17 @@ F4SNavItem >> rows [
 ]
 
 { #category : #properties }
+F4SNavItem >> sortPriorityTop [
+	"Menus will be sorted based on sortPriorityTop"
+	^ properties at: #sortPriorityTop ifAbsentPut: [ self defaultSortPriorityTop ]
+]
+
+{ #category : #properties }
+F4SNavItem >> sortPriorityTop: anInteger [
+	properties at: #sortPriorityTop put: anInteger
+]
+
+{ #category : #properties }
 F4SNavItem >> subTitle [
 	^ properties at: #subTitle ifAbsentPut: [ self defaultSubTitle ]
 ]
@@ -470,4 +491,11 @@ F4SNavItem >> titleColor [
 { #category : #properties }
 F4SNavItem >> titleColor: aColor [
 	properties at: #titleColor put: aColor
+]
+
+{ #category : #'properties-cached' }
+F4SNavItem >> topNavigationLayoutSortBlock [
+	^ [ :a :b | 
+	a sortPriorityTop isNil
+		or: [ b sortPriorityTop isNil or: [ a sortPriorityTop < b sortPriorityTop ] ] ]
 ]

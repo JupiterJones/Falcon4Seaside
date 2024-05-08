@@ -312,6 +312,7 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 	canvas div
 		class: 'card shadow-none dark__bg-1000';
 		class: 'navbar-card-col-' , navItem columns asString;
+		style: 'min-width: ', (12  * navItem columns) asString, 'rem;';
 		with: [ canvas div
 				class: 'card-body scrollbar max-h-dropdow';
 				with: [ navItem backgroundImage
@@ -342,19 +343,21 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 F4SRootComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 	navItems
 		do: [ :navItem "Do we promote children?" | 
-			navItem hasChildren
-				ifTrue: [ canvas paragraph
-						class: 'nav-link text-700 mb-0 fw-bold';
-						with: [ canvas text: navItem title.
-							navItem badgeValue
-								ifNotNil: [ self renderBadge: navItem badgeValue on: canvas ] ].
+			navItem promoteChildrenInTop
+				ifTrue: [ self renderNavigationTopLayoutLinks: navItem children on: canvas ]
+				ifFalse: [ navItem hasChildren
+						ifTrue: [ canvas paragraph
+								class: 'nav-link text-700 mb-0 fw-bold';
+								with: [ canvas text: navItem title.
+									navItem badgeValue
+										ifNotNil: [ self renderBadge: navItem badgeValue on: canvas ] ].
 
-					self renderNavigationTopLayoutLinks: navItem children on: canvas ]
-				ifFalse: [ canvas anchor
-						class: 'nav-link py-1 link-600 fw-medium';
-						with: [ canvas text: navItem title.
-							navItem badgeValue
-								ifNotNil: [ self renderBadge: navItem badgeValue on: canvas ] ] ] ]
+							self renderNavigationTopLayoutLinks: navItem children on: canvas ]
+						ifFalse: [ canvas anchor
+								class: 'nav-link py-1 link-600 fw-medium';
+								with: [ canvas text: navItem title.
+									navItem badgeValue
+										ifNotNil: [ self renderBadge: navItem badgeValue on: canvas ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }

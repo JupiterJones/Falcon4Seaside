@@ -28,6 +28,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Email' seasideTranslated;
 				icon: 'envelope-open';
+				sortPriorityTop: 300;
 				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Inbox' seasideTranslated;
@@ -42,6 +43,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'Events' seasideTranslated;
 				icon: 'calendar-day';
+				sortPriorityTop: 200;
 				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Create an Event' seasideTranslated;
@@ -106,7 +108,7 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'E-Learning' seasideTranslated;
 				icon: 'graduation-cap';
-				promoteChildrenInTopMenu;
+				sortPriorityTop: 100;
 				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Course' seasideTranslated;
@@ -243,6 +245,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'Others' seasideTranslated;
 				row: 1 column: 4;
+				sortPriorityTop: 200;
 				promoteChildrenInVerticalMenu;
 				addChild: (F4SNavItem new
 						title: 'Starter' seasideTranslated;
@@ -411,6 +414,7 @@ F4SFalconDemo >> pagesNavigation [
 				title: 'Layouts' seasideTranslated;
 				icon: 'window-restore';
 				row: 1 column: 4;
+				sortPriorityTop: 100;
 				addChild: (F4SNavItem new
 						title: 'Vertical Nav' seasideTranslated;
 						yourself);
