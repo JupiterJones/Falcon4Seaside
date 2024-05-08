@@ -59,6 +59,7 @@ F4SFalconDemo >> appNavigation [
 				row: 1 column: 3;
 				addChild: (F4SNavItem new
 						title: 'Product' seasideTranslated;
+						promoteChildrenInTopMenu;
 						icon: 'box';
 						addChild: (F4SNavItem new
 								title: 'Product List' seasideTranslated;
@@ -75,6 +76,7 @@ F4SFalconDemo >> appNavigation [
 						yourself);
 				addChild: (F4SNavItem new
 						title: 'Orders' seasideTranslated;
+						promoteChildrenInTopMenu;
 						addChild: (F4SNavItem new
 								title: 'Order List' seasideTranslated;
 								yourself);
@@ -104,9 +106,11 @@ F4SFalconDemo >> appNavigation [
 		addChild: (F4SNavItem new
 				title: 'E-Learning' seasideTranslated;
 				icon: 'graduation-cap';
+				promoteChildrenInTopMenu;
 				row: 1 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Course' seasideTranslated;
+						promoteChildrenInTopMenu;
 						addChild: (F4SNavItem new
 								title: 'Course List' seasideTranslated;
 								yourself);
@@ -239,7 +243,7 @@ F4SFalconDemo >> pagesNavigation [
 		addChild: (F4SNavItem new
 				title: 'Others' seasideTranslated;
 				row: 1 column: 4;
-				promoteChildrenInVertical: true;
+				promoteChildrenInVerticalMenu;
 				addChild: (F4SNavItem new
 						title: 'Starter' seasideTranslated;
 						icon: 'flag';
@@ -329,7 +333,7 @@ F4SFalconDemo >> pagesNavigation [
 						yourself);
 				addChild: (F4SNavItem new
 						title: 'Other Auth';
-						promoteChildrenInVertical: true;
+						promoteChildrenInVerticalMenu;
 						row: 3 column: 3;
 						addChild: (F4SNavItem new
 								title: 'Wizzard' seasideTranslated;

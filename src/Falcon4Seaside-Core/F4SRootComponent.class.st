@@ -341,7 +341,7 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 { #category : #'rendering-navigation' }
 F4SRootComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 	navItems
-		do: [ :navItem | 
+		do: [ :navItem | "Do we promote children?"
 			navItem hasChildren
 				ifTrue: [ canvas paragraph
 						class: 'nav-link text-700 mb-0 fw-bold';
@@ -522,13 +522,6 @@ F4SRootComponent >> renderNavigationVerticalToggleOn: canvas [
 		with: [ canvas span
 				class: 'navbar-toggle-icon';
 				with: [ canvas span class: 'toggle-line' ] ]
-]
-
-{ #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigtationTopItem: navItem on: canvas [
-	^ canvas div
-		class: 'bg-white dark__bg-1000 rounded-3 py-2';
-		with: [ self renderNavigationTopItem: navItem on: canvas ]
 ]
 
 { #category : #rendering }

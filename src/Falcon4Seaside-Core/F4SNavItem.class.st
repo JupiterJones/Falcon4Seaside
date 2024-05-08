@@ -56,6 +56,11 @@ F4SNavItem class >> defaultIsVisible [
 ]
 
 { #category : #defaults }
+F4SNavItem class >> defaultPromoteChildrenInTop [
+	^ false
+]
+
+{ #category : #defaults }
 F4SNavItem class >> defaultPromoteChildrenInVertical [
 	^ false
 ]
@@ -237,6 +242,11 @@ F4SNavItem >> defaultIsVisible [
 ]
 
 { #category : #defaults }
+F4SNavItem >> defaultPromoteChildrenInTop [
+	^ self class defaultPromoteChildrenInTop
+]
+
+{ #category : #defaults }
 F4SNavItem >> defaultPromoteChildrenInVertical [
 	^ self class defaultPromoteChildrenInVertical
 ]
@@ -367,6 +377,22 @@ F4SNavItem >> printOn: aStream [
 ]
 
 { #category : #properties }
+F4SNavItem >> promoteChildrenInTop [
+	"Promote children up a level on the top navigation and remove myself"
+	^ properties at: #promoteChildrenInTop ifAbsentPut: [ self defaultPromoteChildrenInTop ]
+]
+
+{ #category : #properties }
+F4SNavItem >> promoteChildrenInTop: aBoolean [
+	properties at: #promoteChildrenInTop put: aBoolean
+]
+
+{ #category : #actions }
+F4SNavItem >> promoteChildrenInTopMenu [
+	self promoteChildrenInTop: true
+]
+
+{ #category : #properties }
 F4SNavItem >> promoteChildrenInVertical [
 	"Promote children up a level on the vertical navigation and remove myself"
 	^ properties at: #promoteChildrenInVertical ifAbsentPut: [ self defaultPromoteChildrenInVertical ]
@@ -375,6 +401,11 @@ F4SNavItem >> promoteChildrenInVertical [
 { #category : #properties }
 F4SNavItem >> promoteChildrenInVertical: aBoolean [
 	properties at: #promoteChildrenInVertical put: aBoolean
+]
+
+{ #category : #actions }
+F4SNavItem >> promoteChildrenInVerticalMenu [
+	self promoteChildrenInVertical: true
 ]
 
 { #category : #testing }
