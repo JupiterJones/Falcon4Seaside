@@ -103,12 +103,86 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-02T07:39:54.701368+10:00"
+						"dateAndTimeString" : "2024-05-02T07:45:45.270891+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "L+5uEM3TDQCVXn9SB1KFUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtPage:DevTools|db=9xt80tkramm2j8umvywd6i6nh}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-09T08:57:25.108218+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-09T08:57:25.108218+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MHAd9lrUDQC9ScS+AJaX4g=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:45:45.674636+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-02T07:45:45.674636+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "YltaJc3TDQCX1IDyB1KFUw=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
