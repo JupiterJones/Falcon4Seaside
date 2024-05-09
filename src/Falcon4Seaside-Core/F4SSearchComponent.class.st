@@ -28,6 +28,10 @@ F4SSearchComponent >> renderContentOn: canvas [
 ]
 
 { #category : #accessing }
+F4SSearchComponent >> renderSearchResultsByGroupsOn: canvas [ 
+]
+
+{ #category : #accessing }
 F4SSearchComponent >> renderSearchResultsOn: canvas [
 	canvas div
 		class: 'dropdown-menu border font-base start-0 mt-2 py-0 overflow-hidden w-100';

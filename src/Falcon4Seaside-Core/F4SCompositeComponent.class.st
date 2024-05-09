@@ -35,7 +35,7 @@ F4SCompositeComponent >> childOfType: componentClass [
 
 { #category : #accessing }
 F4SCompositeComponent >> children [
-	^ super children, components
+	^ super children, components values
 ]
 
 { #category : #accessing }
