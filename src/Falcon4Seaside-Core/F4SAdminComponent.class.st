@@ -1,5 +1,5 @@
 Class {
-	#name : #F4SRootComponent,
+	#name : #F4SAdminComponent,
 	#superclass : #F4SCompositeComponent,
 	#instVars : [
 		'navigation'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #installing }
-F4SRootComponent class >> applicationName [
+F4SAdminComponent class >> applicationName [
 	^ self subclassResponsibility
 ]
 
 { #category : #testing }
-F4SRootComponent class >> canBeRoot [
+F4SAdminComponent class >> canBeRoot [
 	^ true
 ]
 
 { #category : #installing }
-F4SRootComponent class >> configureApplication: anApplication [
+F4SAdminComponent class >> configureApplication: anApplication [
 	anApplication preferenceAt: #sessionClass put: F4SSession.
 	anApplication configuration
 		addParent: WAGetTextConfiguration instance;
@@ -33,49 +33,49 @@ F4SRootComponent class >> configureApplication: anApplication [
 ]
 
 { #category : #accessing }
-F4SRootComponent class >> fileLibraryClass [
+F4SAdminComponent class >> fileLibraryClass [
 	^ F4SFileLibrary
 ]
 
 { #category : #installing }
-F4SRootComponent class >> register [
+F4SAdminComponent class >> register [
 	self configureApplication: (WAAdmin register: self asApplicationAt: self applicationName)
 ]
 
 { #category : #installing }
-F4SRootComponent class >> reregister [
+F4SAdminComponent class >> reregister [
 	self
 		unregister;
 		register
 ]
 
 { #category : #installing }
-F4SRootComponent class >> unregister [
+F4SAdminComponent class >> unregister [
 	WAAdmin unregister: self applicationName
 ]
 
 { #category : #actions }
-F4SRootComponent >> addNavItem: aNavItem [
+F4SAdminComponent >> addNavItem: aNavItem [
 	navigation add: aNavItem
 ]
 
 { #category : #accessing }
-F4SRootComponent >> applicationName [
+F4SAdminComponent >> applicationName [
 	^ self class applicationName
 ]
 
 { #category : #accessing }
-F4SRootComponent >> brandImageUrl [
+F4SAdminComponent >> brandImageUrl [
 	^ self fileLibraryClass / #imagesfaviconappletouchiconPng
 ]
 
 { #category : #accessing }
-F4SRootComponent >> brandLabel [
+F4SAdminComponent >> brandLabel [
 	^ self applicationName
 ]
 
 { #category : #accessing }
-F4SRootComponent >> configJs [
+F4SAdminComponent >> configJs [
 	| stream |
 	stream := JSStream new.
 	stream
@@ -131,7 +131,7 @@ if (localStorage.getItem("theme") === "dark") {
 ]
 
 { #category : #accessing }
-F4SRootComponent >> containerClass [
+F4SAdminComponent >> containerClass [
 	"Answers 'container' or 'container-fluid'"
 
 	^ String
@@ -142,77 +142,77 @@ F4SRootComponent >> containerClass [
 ]
 
 { #category : #accessing }
-F4SRootComponent >> currentLanguage [
+F4SAdminComponent >> currentLanguage [
 	^ 'en-US'
 ]
 
 { #category : #accessing }
-F4SRootComponent >> currentTheme [
+F4SAdminComponent >> currentTheme [
 	^ 'light'
 ]
 
 { #category : #accessing }
-F4SRootComponent >> fileLibraryClass [
+F4SAdminComponent >> fileLibraryClass [
 	^ self class fileLibraryClass
 ]
 
 { #category : #initialization }
-F4SRootComponent >> initialize [
+F4SAdminComponent >> initialize [
 	super initialize.
 	self initializeNavigation
 ]
 
 { #category : #initialization }
-F4SRootComponent >> initializeNavigation [
+F4SAdminComponent >> initializeNavigation [
 	navigation := OrderedCollection new
 ]
 
 { #category : #'testing-navigation' }
-F4SRootComponent >> isNavbarCard [
+F4SAdminComponent >> isNavbarCard [
 	^ (self application preferenceAt: #navbarStyle) = 'card'
 ]
 
 { #category : #'testing-navigation' }
-F4SRootComponent >> isNavbarDoubleTop [
+F4SAdminComponent >> isNavbarDoubleTop [
 	^ (self application preferenceAt: #navbarPosition) = 'double-top'
 ]
 
 { #category : #'testing-navigation' }
-F4SRootComponent >> isNavbarInverted [
+F4SAdminComponent >> isNavbarInverted [
 	^ (self application preferenceAt: #navbarStyle) = 'inverted'
 ]
 
 { #category : #'testing-navigation' }
-F4SRootComponent >> isNavbarTop [
+F4SAdminComponent >> isNavbarTop [
 	^ self isNavbarVertical not
 ]
 
 { #category : #'testing-navigation' }
-F4SRootComponent >> isNavbarVertical [
+F4SAdminComponent >> isNavbarVertical [
 	^ (self application preferenceAt: #navbarPosition) = 'vertical'
 ]
 
 { #category : #'testing-navigation' }
-F4SRootComponent >> isNavbarVibrant [
+F4SAdminComponent >> isNavbarVibrant [
 	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
 ]
 
 { #category : #accessing }
-F4SRootComponent >> leftToRightOrRightToLeft [
+F4SAdminComponent >> leftToRightOrRightToLeft [
 	^ (self application configuration at: #isRTL)
 		ifTrue: [ 'rtl' ]
 		ifFalse: [ 'ltr' ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderBadge: badgeValue on: canvas [
+F4SAdminComponent >> renderBadge: badgeValue on: canvas [
 	^ canvas span
 		class: 'badge rounded-pill ms-2 badge-subtle-success';
 		with: [ canvas text: badgeValue ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderBrandOn: canvas [
+F4SAdminComponent >> renderBrandOn: canvas [
 	canvas anchor
 		class: 'navbar-brand';
 		class: 'me-1 me-sm-3' if: self isNavbarTop;
@@ -229,7 +229,7 @@ F4SRootComponent >> renderBrandOn: canvas [
 ]
 
 { #category : #rendering }
-F4SRootComponent >> renderContentOn: canvas [
+F4SAdminComponent >> renderContentOn: canvas [
 	canvas main
 		class: 'main';
 		id: 'top';
@@ -249,7 +249,7 @@ F4SRootComponent >> renderContentOn: canvas [
 ]
 
 { #category : #rendering }
-F4SRootComponent >> renderIcon: iconKey on: canvas [
+F4SAdminComponent >> renderIcon: iconKey on: canvas [
 	iconKey
 		ifNotNil: [ canvas span
 				class: 'nav-link-icon';
@@ -257,7 +257,7 @@ F4SRootComponent >> renderIcon: iconKey on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationDoubleTopOn: canvas [
+F4SAdminComponent >> renderNavigationDoubleTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
@@ -286,7 +286,7 @@ F4SRootComponent >> renderNavigationDoubleTopOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationOn: canvas [
+F4SAdminComponent >> renderNavigationOn: canvas [
 	self isNavbarVertical
 		ifTrue: [ self renderNavigationVerticalOn: canvas ]
 		ifFalse: [ self isNavbarDoubleTop
@@ -295,7 +295,7 @@ F4SRootComponent >> renderNavigationOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopItem: navItem on: canvas [
+F4SAdminComponent >> renderNavigationTopItem: navItem on: canvas [
 	| dropdownId |
 	canvas anchor
 		class: 'nav-link dropdown-toggle';
@@ -315,7 +315,7 @@ F4SRootComponent >> renderNavigationTopItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopItems: menuItems on: canvas [
+F4SAdminComponent >> renderNavigationTopItems: menuItems on: canvas [
 	menuItems
 		do: [ :menuItem | 
 			canvas listItem
@@ -324,7 +324,7 @@ F4SRootComponent >> renderNavigationTopItems: menuItems on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
+F4SAdminComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 	canvas div
 		class: 'card shadow-none dark__bg-1000';
 		class: 'navbar-card-col-' , navItem columns asString;
@@ -356,7 +356,7 @@ F4SRootComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
+F4SAdminComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 	navItems
 		do: [ :navItem "Do we promote children?" | 
 			navItem promoteChildrenInTop
@@ -377,7 +377,7 @@ F4SRootComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopOn: canvas [
+F4SAdminComponent >> renderNavigationTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
@@ -394,7 +394,7 @@ F4SRootComponent >> renderNavigationTopOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
+F4SAdminComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 	canvas div
 		class: 'bg-white dark__bg-1000 rounded-3 py-2';
 		with: [ navItem children
@@ -406,7 +406,7 @@ F4SRootComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationTopToggleOn: canvas [
+F4SAdminComponent >> renderNavigationTopToggleOn: canvas [
     canvas button
         class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
         type: 'button';
@@ -425,7 +425,7 @@ F4SRootComponent >> renderNavigationTopToggleOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
+F4SAdminComponent >> renderNavigationVerticalItem: navItem on: canvas [
 	canvas listItem
 		class: 'nav-item';
 		with: [ (navItem isGroup or: [ navItem children notEmpty ])
@@ -457,7 +457,7 @@ F4SRootComponent >> renderNavigationVerticalItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas [
+F4SAdminComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas [
 	canvas anchor
 		url: '#' , dropdownId;
 		class: 'nav-link dropdown-indicator';
@@ -475,7 +475,7 @@ F4SRootComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
+F4SAdminComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
 	canvas div
 		class: 'row navbar-vertical-label-wrapper mt-3 mb-2';
 		with: [ canvas div
@@ -487,7 +487,7 @@ F4SRootComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalItems: navItems on: canvas [
+F4SAdminComponent >> renderNavigationVerticalItems: navItems on: canvas [
 	| navItemsToRender |
 	navItemsToRender := navItems
 			inject: OrderedCollection new
@@ -502,7 +502,7 @@ F4SRootComponent >> renderNavigationVerticalItems: navItems on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalOn: canvas [
+F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-vertical navbar-expand-xl';
@@ -532,7 +532,7 @@ F4SRootComponent >> renderNavigationVerticalOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SRootComponent >> renderNavigationVerticalToggleOn: canvas [
+F4SAdminComponent >> renderNavigationVerticalToggleOn: canvas [
 	canvas button
 		class: 'btn navbar-toggler-humburger-icon navbar-vertical-toggle';
 		attributeAt: 'data-bs-toggle' put: 'tooltip';
@@ -544,7 +544,7 @@ F4SRootComponent >> renderNavigationVerticalToggleOn: canvas [
 ]
 
 { #category : #rendering }
-F4SRootComponent >> renderOnLoadScriptsOn: canvas [
+F4SAdminComponent >> renderOnLoadScriptsOn: canvas [
 	canvas script url: F4SFileLibrary / #vendorspopperpopperminJs.
 	canvas script url: F4SFileLibrary / #vendorsbootstrapbootstrapminJs.
 	canvas script url: F4SFileLibrary / #vendorsanchorjsanchorminJs.
@@ -560,19 +560,19 @@ F4SRootComponent >> renderOnLoadScriptsOn: canvas [
 ]
 
 { #category : #'rendering-search' }
-F4SRootComponent >> renderSearchOn: canvas [
+F4SAdminComponent >> renderSearchOn: canvas [
 	canvas render: self searchComponent
 ]
 
 { #category : #'rendering-search' }
-F4SRootComponent >> searchComponent [
+F4SAdminComponent >> searchComponent [
 	^self
 		componentAt: #globalSearch
 		ifAbsentPut: [ F4SSearchComponent parent: self ]
 ]
 
 { #category : #accessing }
-F4SRootComponent >> style [
+F4SAdminComponent >> style [
 	^ '@media (min-width: 768px)
 .navbar-card-col-3 {
 min-width: 32rem;
@@ -588,7 +588,7 @@ min-width: 28rem;
 ]
 
 { #category : #updating }
-F4SRootComponent >> updateRoot: anHtmlRoot [
+F4SAdminComponent >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
 	anHtmlRoot htmlAttributes
 		at: 'lang' append: self currentLanguage;
@@ -610,7 +610,7 @@ F4SRootComponent >> updateRoot: anHtmlRoot [
 ]
 
 { #category : #updating }
-F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
+F4SAdminComponent >> updateRootFavIcon: anHtmlRoot [
 	"Add links for all the favicon options"
 	
 	"Adding apple-touch-icon"
@@ -665,7 +665,7 @@ F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
 ]
 
 { #category : #updating }
-F4SRootComponent >> updateRootScripts: anHtmlRoot [ 
+F4SAdminComponent >> updateRootScripts: anHtmlRoot [ 
 	"Add scripts that will be loaded on every page"
 	
 	"Adding external JavaScript file for SimpleBar"
@@ -674,7 +674,7 @@ F4SRootComponent >> updateRootScripts: anHtmlRoot [
 ]
 
 { #category : #updating }
-F4SRootComponent >> updateRootStyles: anHtmlRoot [ 
+F4SAdminComponent >> updateRootStyles: anHtmlRoot [ 
 	"Add stylesheets"
 
     "Preconnect to fonts.gstatic.com"
@@ -733,7 +733,7 @@ F4SRootComponent >> updateRootStyles: anHtmlRoot [
 ]
 
 { #category : #updating }
-F4SRootComponent >> updateRootTheme: anHtmlRoot [
+F4SAdminComponent >> updateRootTheme: anHtmlRoot [
 	"Add links for the theme"
 	
 	"Setting theme color"
@@ -746,6 +746,6 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 ]
 
 { #category : #accessing }
-F4SRootComponent >> windowTitle [
+F4SAdminComponent >> windowTitle [
 	^ self subclassResponsibility
 ]
