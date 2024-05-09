@@ -204,6 +204,17 @@ F4SAdminComponent >> leftToRightOrRightToLeft [
 		ifFalse: [ 'ltr' ]
 ]
 
+{ #category : #rendering }
+F4SAdminComponent >> renderAdminContentOn: canvas [
+	canvas div
+		class: 'content';
+		with: [ canvas navigation
+				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
+				with: [ self
+						renderNavigationTopToggleOn: canvas;
+						renderBrandOn: canvas ] ]
+]
+
 { #category : #'rendering-navigation' }
 F4SAdminComponent >> renderBadge: badgeValue on: canvas [
 	^ canvas span
@@ -244,7 +255,9 @@ F4SAdminComponent >> renderContentOn: canvas [
             container.classList.add("container-fluid");
           }'.
 
-					self renderNavigationOn: canvas ] ].
+					self
+						renderNavigationOn: canvas;
+						renderAdminContentOn: canvas ] ].
 	self renderOnLoadScriptsOn: canvas
 ]
 
