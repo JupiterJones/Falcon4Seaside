@@ -30,6 +30,16 @@ F4SRootComponent class >> configureApplication: anApplication [
 ]
 
 { #category : #accessing }
+F4SRootComponent class >> currentLanguage [
+	^ 'en-US'
+]
+
+{ #category : #accessing }
+F4SRootComponent class >> currentTheme [
+	^ 'light'
+]
+
+{ #category : #accessing }
 F4SRootComponent class >> fileLibraryClass [
 	^ F4SFileLibrary
 ]
@@ -54,6 +64,11 @@ F4SRootComponent class >> unregister [
 { #category : #components }
 F4SRootComponent >> adminComponent [
 	^ self componentAt: #admin ifAbsentPut: [ F4SAdminComponent parent: self ]
+]
+
+{ #category : #accessing }
+F4SRootComponent >> applicationName [
+	^ self class applicationName
 ]
 
 { #category : #scripts }
@@ -112,10 +127,20 @@ if (localStorage.getItem("theme") === "dark") {
 ^ stream
 ]
 
+{ #category : #accessing }
+F4SRootComponent >> fileLibraryClass [
+	^ self class fileLibraryClass
+]
+
+{ #category : #initialization }
+F4SRootComponent >> initialComponent [
+	^ self adminComponent
+]
+
 { #category : #initialization }
 F4SRootComponent >> initialize [
 	super initialize.
-	F4SComponentSelected component: self adminComponent.
+	F4SComponentSelected component: self initialComponent.
 ]
 
 { #category : #rendering }
@@ -279,4 +304,9 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 
     "Adding theme config JavaScript"
     anHtmlRoot script with: self configJs
+]
+
+{ #category : #accessing }
+F4SRootComponent >> windowTitle [
+	^ self subclassResponsibility
 ]

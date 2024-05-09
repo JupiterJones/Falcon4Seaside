@@ -1,5 +1,5 @@
 Class {
-	#name : #F4SAbstractSearchTool,
+	#name : #F4SAbstractSearchFilter,
 	#superclass : #Object,
 	#category : #'Falcon4Seaside-Core'
 }

@@ -1,6 +1,6 @@
 Class {
-	#name : #F4SRecentlyViewedSearchTool,
-	#superclass : #F4SAbstractSearchTool,
+	#name : #F4SRecentlyViewedFilter,
+	#superclass : #F4SAbstractSearchFilter,
 	#instVars : [
 		'historySize'
 	],

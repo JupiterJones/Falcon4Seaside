@@ -54,6 +54,11 @@ F4SCompositeComponent >> componentSelected: aComponentSelectedAnnouncement [
 ]
 
 { #category : #accessing }
+F4SCompositeComponent >> fileLibraryClass [
+	^ self root fileLibraryClass
+]
+
+{ #category : #accessing }
 F4SCompositeComponent >> initialize [
 	super initialize.
 	components := Dictionary new.
