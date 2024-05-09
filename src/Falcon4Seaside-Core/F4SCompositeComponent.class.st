@@ -39,6 +39,16 @@ F4SCompositeComponent >> children [
 ]
 
 { #category : #accessing }
+F4SCompositeComponent >> componentAt: aKey [
+	^ components at: aKey
+]
+
+{ #category : #accessing }
+F4SCompositeComponent >> componentAt: aKey ifAbsentPut: aBlock [
+	^ components at: aKey ifAbsentPut: aBlock
+]
+
+{ #category : #accessing }
 F4SCompositeComponent >> componentSelected: aComponentSelectedAnnouncement [
 	selectedComponent := aComponentSelectedAnnouncement component
 ]
@@ -46,7 +56,7 @@ F4SCompositeComponent >> componentSelected: aComponentSelectedAnnouncement [
 { #category : #accessing }
 F4SCompositeComponent >> initialize [
 	super initialize.
-	components := OrderedCollection new.
+	components := Dictionary new.
 	(announcer := Announcer new)
 		when: F4SComponentSelected
 		send: #componentSelected:
