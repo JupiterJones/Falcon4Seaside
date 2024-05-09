@@ -78,11 +78,18 @@ F4SAdminComponent >> isNavbarVibrant [
 F4SAdminComponent >> renderAdminContentOn: canvas [
 	canvas div
 		class: 'content';
-		with: [ "canvas navigation
+		with: [ canvas navigation
 				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
-				with: [ self
-						renderNavigationTopToggleOn: canvas;
-						renderBrandOn: canvas ]" ]
+				with: [ self isNavbarVertical
+						ifTrue: [ self
+								renderNavigationTopToggleOn: canvas;
+								renderBrandOn: canvas ].
+
+					canvas unorderedList
+						class: 'navbar-nav align-items-center d-none d-lg-block';
+						with: [ canvas listItem
+								class: 'nav-item';
+								with: [ self renderSearchOn: canvas ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -127,8 +134,7 @@ F4SAdminComponent >> renderContentOn: canvas [
 
 					self
 						renderNavigationOn: canvas;
-						renderAdminContentOn: canvas ] ].
-	self renderOnLoadScriptsOn: canvas
+						renderAdminContentOn: canvas ] ]
 ]
 
 { #category : #rendering }
@@ -417,6 +423,7 @@ F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 { #category : #'rendering-navigation' }
 F4SAdminComponent >> renderNavigationVerticalToggleOn: canvas [
 	canvas button
+		bePush;
 		class: 'btn navbar-toggler-humburger-icon navbar-vertical-toggle';
 		attributeAt: 'data-bs-toggle' put: 'tooltip';
 		attributeAt: 'data-bs-placement' put: 'left';
@@ -424,22 +431,6 @@ F4SAdminComponent >> renderNavigationVerticalToggleOn: canvas [
 		with: [ canvas span
 				class: 'navbar-toggle-icon';
 				with: [ canvas span class: 'toggle-line' ] ]
-]
-
-{ #category : #rendering }
-F4SAdminComponent >> renderOnLoadScriptsOn: canvas [
-	canvas script url: F4SFileLibrary / #vendorspopperpopperminJs.
-	canvas script url: F4SFileLibrary / #vendorsbootstrapbootstrapminJs.
-	canvas script url: F4SFileLibrary / #vendorsanchorjsanchorminJs.
-	canvas script url: F4SFileLibrary / #vendorsisisminJs.
-	canvas script url: F4SFileLibrary / #vendorsechartsechartsminJs.
-	canvas script url: F4SFileLibrary / #vendorsprismprismJs.
-	canvas script url: F4SFileLibrary / #vendorsfontawesomeallminJs.
-	canvas script url: F4SFileLibrary / #vendorslodashlodashminJs.
-	canvas script
-		url: 'https://polyfill.io/v3/polyfill.min.js?features=window.scroll'.
-	canvas script url: F4SFileLibrary / #vendorslistjslistminJs.
-	canvas script url: F4SFileLibrary / #jsthemeJs
 ]
 
 { #category : #'rendering-search' }
