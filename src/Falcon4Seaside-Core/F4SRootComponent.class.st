@@ -272,7 +272,17 @@ F4SRootComponent >> renderNavigationDoubleTopOn: canvas [
 								class: 'navbar-nav align-items-center d-none d-lg-block';
 								with: [ canvas listItem
 										class: 'nav-item';
-										with: [ self renderSearchOn: canvas ] ] ] ] ]
+										with: [ self renderSearchOn: canvas ] ] ].
+
+					canvas horizontalRule class: 'my-2 d-none d-lg-block'.
+
+					canvas div
+						class: 'collapse navbar-collapse scrollbar';
+						id: 'navbarTop';
+						with: [ canvas unorderedList
+								class: 'navbar-nav';
+								attributeAt: 'data-top-nav-dropdowns' put: 'data-top-nav-dropdowns';
+								with: [ self renderNavigationTopItems: navigation on: canvas ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -376,7 +386,7 @@ F4SRootComponent >> renderNavigationTopOn: canvas [
 
 			canvas div
 				class: 'collapse navbar-collapse scrollbar';
-				id: 'navbarStandard';
+				id: 'navbarTop';
 				with: [ canvas unorderedList
 						class: 'navbar-nav';
 						attributeAt: 'data-top-nav-dropdowns' put: 'data-top-nav-dropdowns';
@@ -401,8 +411,8 @@ F4SRootComponent >> renderNavigationTopToggleOn: canvas [
         class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
         type: 'button';
         attributeAt: 'data-bs-toggle' put: 'collapse';
-        attributeAt: 'data-bs-target' put: '#navbarStandard';
-        attributeAt: 'aria-controls' put: 'navbarStandard';
+        attributeAt: 'data-bs-target' put: '#navbarTop';
+        attributeAt: 'aria-controls' put: 'navbarTop';
         attributeAt: 'aria-expanded' put: 'false';
         attributeAt: 'aria-label' put: 'Toggle Navigation';
         with: [
@@ -573,7 +583,8 @@ F4SRootComponent >> renderSearchOn: canvas [
 ]
 
 { #category : #'rendering-search' }
-F4SRootComponent >> renderSearchResultGroupsOn: canvas [ 
+F4SRootComponent >> renderSearchResultsByGroupsOn: canvas [ 
+	
 ]
 
 { #category : #'rendering-search' }
@@ -583,7 +594,7 @@ F4SRootComponent >> renderSearchResultsOn: canvas [
 		with: [ canvas div
 				class: 'scrollbar list py-3';
 				style: 'max-height: 24rem;';
-				with: [ self renderSearchResultGroupsOn: canvas ].
+				with: [ self renderSearchResultsByGroupsOn: canvas ].
 
 			canvas div
 				class: 'text-center mt-n3';
