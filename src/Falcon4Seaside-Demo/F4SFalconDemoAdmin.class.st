@@ -1,16 +1,11 @@
 Class {
-	#name : #F4SFalconDemo,
+	#name : #F4SFalconDemoAdmin,
 	#superclass : #F4SAdminComponent,
 	#category : #'Falcon4Seaside-Demo'
 }
 
-{ #category : #installing }
-F4SFalconDemo class >> applicationName [
-	^ 'falcon'
-]
-
 { #category : #navigation }
-F4SFalconDemo >> appNavigation [
+F4SFalconDemoAdmin >> appNavigation [
 	^ F4SNavItem new
 		title: 'App' seasideTranslated;
 		beGroup;
@@ -188,7 +183,7 @@ F4SFalconDemo >> appNavigation [
 ]
 
 { #category : #navigation }
-F4SFalconDemo >> dashboardNavigation [
+F4SFalconDemoAdmin >> dashboardNavigation [
 	^ F4SNavItem new
 		title: 'Dashboard' seasideTranslated;
 		icon: 'chart-pie';
@@ -222,13 +217,8 @@ F4SFalconDemo >> dashboardNavigation [
 		yourself
 ]
 
-{ #category : #accessing }
-F4SFalconDemo >> fileLibraryClass [
-	^ F4SFalconDemoFileLibrary
-]
-
 { #category : #initalization }
-F4SFalconDemo >> initializeNavigation [
+F4SFalconDemoAdmin >> initializeNavigation [
 	super initializeNavigation.
 	self
 		addNavItem: self dashboardNavigation;
@@ -237,7 +227,7 @@ F4SFalconDemo >> initializeNavigation [
 ]
 
 { #category : #navigation }
-F4SFalconDemo >> pagesNavigation [
+F4SFalconDemoAdmin >> pagesNavigation [
 	^ F4SNavItem new
 		title: 'Pages' seasideTranslated;
 		beGroup;
@@ -429,9 +419,4 @@ F4SFalconDemo >> pagesNavigation [
 						yourself);
 				yourself);
 		yourself
-]
-
-{ #category : #accessing }
-F4SFalconDemo >> windowTitle [
-	^ 'Falcon | Dashboard & Web App Template'
 ]

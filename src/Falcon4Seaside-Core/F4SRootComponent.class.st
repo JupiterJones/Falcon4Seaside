@@ -61,9 +61,9 @@ F4SRootComponent class >> unregister [
 	WAAdmin unregister: self applicationName
 ]
 
-{ #category : #components }
-F4SRootComponent >> adminComponent [
-	^ self componentAt: #admin ifAbsentPut: [ F4SAdminComponent parent: self ]
+{ #category : #accessing }
+F4SRootComponent class >> windowTitle [
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -128,24 +128,58 @@ if (localStorage.getItem("theme") === "dark") {
 ]
 
 { #category : #accessing }
+F4SRootComponent >> currentLanguage [
+	^ 'en_AU'
+]
+
+{ #category : #accessing }
+F4SRootComponent >> currentTheme [
+	^ 'light'
+]
+
+{ #category : #accessing }
 F4SRootComponent >> fileLibraryClass [
 	^ self class fileLibraryClass
 ]
 
 { #category : #initialization }
 F4SRootComponent >> initialComponent [
-	^ self adminComponent
+	^ self subclassResponsibility
 ]
 
 { #category : #initialization }
 F4SRootComponent >> initialize [
 	super initialize.
-	F4SComponentSelected component: self initialComponent.
+	announcer announce: (F4SComponentSelected component: self initialComponent).
+]
+
+{ #category : #accessing }
+F4SRootComponent >> leftToRightOrRightToLeft [
+	^ (self application configuration at: #isRTL)
+		ifTrue: [ 'rtl' ]
+		ifFalse: [ 'ltr' ]
 ]
 
 { #category : #rendering }
 F4SRootComponent >> renderContentOn: canvas [
-	canvas render: self selectedComponent
+	canvas render: self selectedComponent.
+	self renderEndOfBodyScriptsOn: canvas
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderEndOfBodyScriptsOn: canvas [
+	canvas script url: F4SFileLibrary / #vendorspopperpopperminJs.
+	canvas script url: F4SFileLibrary / #vendorsbootstrapbootstrapminJs.
+	canvas script url: F4SFileLibrary / #vendorsanchorjsanchorminJs.
+	canvas script url: F4SFileLibrary / #vendorsisisminJs.
+	canvas script url: F4SFileLibrary / #vendorsechartsechartsminJs.
+	canvas script url: F4SFileLibrary / #vendorsprismprismJs.
+	canvas script url: F4SFileLibrary / #vendorsfontawesomeallminJs.
+	canvas script url: F4SFileLibrary / #vendorslodashlodashminJs.
+	canvas script
+		url: 'https://polyfill.io/v3/polyfill.min.js?features=window.scroll'.
+	canvas script url: F4SFileLibrary / #vendorslistjslistminJs.
+	canvas script url: F4SFileLibrary / #jsthemeJs
 ]
 
 { #category : #updating }
@@ -308,5 +342,5 @@ F4SRootComponent >> updateRootTheme: anHtmlRoot [
 
 { #category : #accessing }
 F4SRootComponent >> windowTitle [
-	^ self subclassResponsibility
+	^ self class windowTitle
 ]

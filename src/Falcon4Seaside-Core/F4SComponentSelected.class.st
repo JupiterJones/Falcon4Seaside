@@ -11,7 +11,7 @@ Class {
 F4SComponentSelected class >> component: aComponent [
 	^ self new
 		component: aComponent;
-		youself
+		yourself
 ]
 
 { #category : #accessing }

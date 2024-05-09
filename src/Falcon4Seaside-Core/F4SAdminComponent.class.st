@@ -19,7 +19,7 @@ F4SAdminComponent >> brandImageUrl [
 
 { #category : #accessing }
 F4SAdminComponent >> brandLabel [
-	^ self applicationName
+	^ self root applicationName
 ]
 
 { #category : #accessing }
@@ -74,22 +74,15 @@ F4SAdminComponent >> isNavbarVibrant [
 	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
 ]
 
-{ #category : #accessing }
-F4SAdminComponent >> leftToRightOrRightToLeft [
-	^ (self application configuration at: #isRTL)
-		ifTrue: [ 'rtl' ]
-		ifFalse: [ 'ltr' ]
-]
-
 { #category : #rendering }
 F4SAdminComponent >> renderAdminContentOn: canvas [
 	canvas div
 		class: 'content';
-		with: [ canvas navigation
+		with: [ "canvas navigation
 				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
 				with: [ self
 						renderNavigationTopToggleOn: canvas;
-						renderBrandOn: canvas ] ]
+						renderBrandOn: canvas ]" ]
 ]
 
 { #category : #'rendering-navigation' }
