@@ -174,8 +174,7 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 								attributeAt: 'data-theme-dropdown-toggle-icon' put: 'auto' ].
 
 					canvas div
-						class: 'dropdown-menu dropdown-menu-end border py-0 mt-3';
-						class: 'dropdown-caret' if: false;
+						class: 'dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3';
 						attributeAt: 'aria-labelledby' put: 'themeSwitchDropdown';
 						with: [ canvas div
 								class: 'bg-white dark__bg-1000 rounded-2 py-2';
