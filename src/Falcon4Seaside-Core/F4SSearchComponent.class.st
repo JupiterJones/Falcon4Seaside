@@ -28,17 +28,39 @@ F4SSearchComponent >> renderContentOn: canvas [
 ]
 
 { #category : #accessing }
-F4SSearchComponent >> renderSearchResultsByGroupsOn: canvas [ 
+F4SSearchComponent >> renderSearchResultsByGroupOn: canvas [
+	"TODO: Implement Search Filters"
+	"Dummy: Recently Browsed Filter Example"
+
+	canvas heading
+		level6;
+		class: 'dropdown-header fw-medium text-uppercase px-x1 fs-11 pt-0 pb-2';
+		with: [ canvas text: 'Recently Browsed' seasideTranslated ].
+	canvas anchor
+		class: 'dropdown-item fs-10 px-x1 py-1 hover-primary';
+		url: '#';
+		with: [ canvas div
+				class: 'd-flex align-items-center';
+				with: [ canvas span class: 'fas fa-circle me-2 text-300 fs-11'.
+					canvas div
+						class: 'fw-normal title';
+						with: [ canvas text: 'Pages'.
+							canvas span
+								class: 'fas fa-chevron-right mx-1 text-500 fs-11';
+								attributeAt: 'data-fa-transform' put: 'shrink-2' ].
+					canvas
+						space;
+						text: 'Events' ] ]
 ]
 
 { #category : #accessing }
 F4SSearchComponent >> renderSearchResultsOn: canvas [
-	canvas div
+	canvas div  
 		class: 'dropdown-menu border font-base start-0 mt-2 py-0 overflow-hidden w-100';
 		with: [ canvas div
 				class: 'scrollbar list py-3';
 				style: 'max-height: 24rem;';
-				with: [ self renderSearchResultsByGroupsOn: canvas ].
+				with: [ self renderSearchResultsByGroupOn: canvas ].
 
 			canvas div
 				class: 'text-center mt-n3';

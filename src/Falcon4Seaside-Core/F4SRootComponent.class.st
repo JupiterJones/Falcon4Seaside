@@ -272,6 +272,11 @@ F4SRootComponent >> updateRootScripts: anHtmlRoot [
 F4SRootComponent >> updateRootStyles: anHtmlRoot [ 
 	"Add stylesheets"
 
+	"Prism Dark Theme"
+	anHtmlRoot link 
+		relationship: 'stylesheet';
+		url: self fileLibraryClass / #'vendorsprismprismokaidiaCss'.
+		
     "Preconnect to fonts.gstatic.com"
     anHtmlRoot link
         relationship: 'preconnect';
