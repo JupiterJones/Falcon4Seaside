@@ -174,14 +174,15 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 								attributeAt: 'data-theme-dropdown-toggle-icon' put: 'auto' ].
 
 					canvas div
-						class: 'dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-3';
+						class: 'dropdown-menu dropdown-menu-end border py-0 mt-3';
+						class: 'dropdown-caret' if: false;
 						attributeAt: 'aria-labelledby' put: 'themeSwitchDropdown';
 						with: [ canvas div
 								class: 'bg-white dark__bg-1000 rounded-2 py-2';
 								with: [ canvas button
 										bePush;
 										class: 'dropdown-item d-flex align-items-center gap-2';
-										value: 'light';
+										attributeAt: 'value' put: 'light';
 										attributeAt: 'data-theme-control' put: 'theme';
 										with: [ canvas span class: 'fas fa-sun'.
 
@@ -191,7 +192,7 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 									canvas button
 										bePush;
 										class: 'dropdown-item d-flex align-items-center gap-2';
-										value: 'dark';
+										attributeAt: 'value' put: 'dark';
 										attributeAt: 'data-theme-control' put: 'theme';
 										with: [ canvas span class: 'fas fa-moon'.
 
@@ -202,11 +203,11 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 									canvas button
 										bePush;
 										class: 'dropdown-item d-flex align-items-center gap-2';
-										value: 'auto';
+										attributeAt: 'value' put: 'auto';
 										attributeAt: 'data-theme-control' put: 'theme';
 										with: [ canvas span class: 'fas fa-adjust'.
 
-											canvas text: 'Dark'.
+											canvas text: 'Auto'.
 											canvas span
 												class: 'fas fa-check dropdown-check-icon ms-auto text-600' ] ] ] ] ]
 ]
