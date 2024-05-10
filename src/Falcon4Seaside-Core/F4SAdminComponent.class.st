@@ -213,10 +213,66 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
+F4SAdminComponent >> renderNavigationActionUserMenuOn: canvas [
+	canvas listItem
+		class: 'nav-item dropdown';
+		with: [ canvas anchor
+				id: 'navbarDropdownUser';
+				class: 'nav-link pe-0 ps-2';
+				attributeAt: 'role' put: 'button';
+				attributeAt: 'data-bs-toggle' put: 'dropdown';
+				attributeAt: 'aria-haspopup' put: 'true';
+				attributeAt: 'aria-expanded' put: 'false';
+				with: [ canvas div
+						class: 'avatar avatar-xl';
+						with: [ canvas image
+								class: 'rounded-circle';
+								url: F4SFalconDemoFileLibrary / #imgteam3thumbPng;
+								altText: '' ] ].
+
+			canvas div
+				class: 'dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0';
+				attributeAt: 'aria-labelledby' put: 'navbarDropdownUser';
+				with: [ canvas div
+						class: 'bg-white dark__bg-1000 rounded-2 py-2';
+						with: [ canvas anchor
+								class: 'dropdown-item fw-bold text-warning';
+								url: '#!';
+								with: [ canvas span class: 'fas fa-crown me-1'.
+									canvas text: 'Go Pro' ] ].
+					canvas div class: 'dropdown-divider'.
+
+					canvas anchor
+						class: 'dropdown-item';
+						url: '#!';
+						with: [ canvas text: 'Set Status' ].
+					canvas anchor
+						class: 'dropdown-item';
+						url: '#!';
+						with: [ canvas text: 'My Account' ].
+					canvas anchor
+						class: 'dropdown-item';
+						url: '#!';
+						with: [ canvas text: 'Feedback' ].
+
+					canvas div class: 'dropdown-divider'.
+
+					canvas anchor
+						class: 'dropdown-item';
+						url: '#!';
+						with: [ canvas text: 'Setings' ].
+					canvas anchor
+						class: 'dropdown-item';
+						url: '#!';
+						with: [ canvas text: 'Logout' ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
 F4SAdminComponent >> renderNavigationActionsOn: canvas [
 	canvas unorderedList
 		class: 'navbar-nav navbar-nav-icons ms-auto flex-row align-items-center';
-		with: [ self renderNavigationActionThemeSelectorOn: canvas ]
+		with: [ self renderNavigationActionThemeSelectorOn: canvas.
+			self renderNavigationActionUserMenuOn: canvas ]
 ]
 
 { #category : #'rendering-navigation' }
