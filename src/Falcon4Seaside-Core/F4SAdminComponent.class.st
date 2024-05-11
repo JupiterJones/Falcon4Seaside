@@ -92,7 +92,8 @@ F4SAdminComponent >> renderAdminContentOn: canvas [
 								with: [ canvas listItem
 										class: 'nav-item';
 										with: [ self renderSearchOn: canvas ] ].
-							self renderNavigationActionsOn: canvas ] ] ]
+							self renderNavigationActionsOn: canvas ] ].
+			canvas render: self selectedComponent ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -451,7 +452,8 @@ F4SAdminComponent >> renderNavigationTopOn: canvas [
 				with: [ canvas unorderedList
 						class: 'navbar-nav';
 						attributeAt: 'data-top-nav-dropdowns' put: 'data-top-nav-dropdowns';
-						with: [ self renderNavigationTopItems: navigation on: canvas ] ] ]
+						with: [ self renderNavigationTopItems: navigation on: canvas ] ].
+			self renderNavigationActionsOn: canvas ]
 ]
 
 { #category : #'rendering-navigation' }
