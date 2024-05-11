@@ -78,10 +78,10 @@ F4SAdminComponent >> isNavbarVibrant [
 F4SAdminComponent >> renderAdminContentOn: canvas [
 	canvas div
 		class: 'content';
-		with: [ canvas navigation
-				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
-				with: [ self isNavbarVertical
-						ifTrue: [ self
+		with: [ self isNavbarVertical
+				ifTrue: [ canvas navigation
+						class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
+						with: [ self
 								renderNavigationToggleTarget: 'navbarVerticalCollapse'
 								inContent: true
 								on: canvas.
