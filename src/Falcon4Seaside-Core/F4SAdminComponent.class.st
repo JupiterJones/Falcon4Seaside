@@ -85,7 +85,7 @@ F4SAdminComponent >> renderAdminContentOn: canvas [
 								renderNavigationToggleTarget: 'navbarVerticalCollapse'
 								inContent: true
 								on: canvas.
-							self renderBrandOn: canvas.
+							self renderBrandInContent: true on: canvas.
 
 							canvas unorderedList
 								class: 'navbar-nav align-items-center d-none d-lg-block';
@@ -103,13 +103,14 @@ F4SAdminComponent >> renderBadge: badgeValue on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderBrandOn: canvas [
+F4SAdminComponent >> renderBrandInContent: inContent on: canvas [
+	"Another falcon mess."
 	canvas anchor
 		class: 'navbar-brand';
-		class: 'me-1 me-sm-3' if: self isNavbarTop;
+		class: 'me-1 me-sm-3' if: inContent;
 		with: [ canvas div
 				class: 'd-flex align-items-center';
-				class: 'py-3' if: self isNavbarVertical;
+				class: 'py-3' if: inContent not;
 				with: [ canvas image
 						class: 'me-2';
 						url: self brandImageUrl;
@@ -289,7 +290,7 @@ F4SAdminComponent >> renderNavigationDoubleTopOn: canvas [
 								renderNavigationToggleTarget: 'navbarTop'
 								inContent: false
 								on: canvas.
-							self renderBrandOn: canvas.
+							self renderBrandInContent: false on: canvas.
 
 							canvas unorderedList
 								class: 'navbar-nav align-items-center d-none d-lg-block';
@@ -442,7 +443,7 @@ F4SAdminComponent >> renderNavigationTopOn: canvas [
 				renderNavigationToggleTarget: 'navbarTop'
 				inContent: false
 				on: canvas.
-			self renderBrandOn: canvas.
+			self renderBrandInContent: false on: canvas.
 
 			canvas div
 				class: 'collapse navbar-collapse scrollbar';
@@ -560,7 +561,7 @@ F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 				with: [ canvas div
 						class: 'toggle-icon-wrapper';
 						with: [ self renderNavigationToggleTarget: nil inContent: false on: canvas ].
-					self renderBrandOn: canvas ].
+					self renderBrandInContent: false on: canvas ].
 			canvas div
 				class: 'collapse navbar-collapse';
 				id: 'navbarVerticalCollapse';
