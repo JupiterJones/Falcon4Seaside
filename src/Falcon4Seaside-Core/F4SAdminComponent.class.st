@@ -82,15 +82,15 @@ F4SAdminComponent >> renderAdminContentOn: canvas [
 				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
 				with: [ self isNavbarVertical
 						ifTrue: [ self
-								renderNavigationTopToggleOn: canvas;
-								renderBrandOn: canvas ].
+								renderNavigationVerticalToggleContentOn: canvas;
+								renderBrandOn: canvas.
 
-					canvas unorderedList
-						class: 'navbar-nav align-items-center d-none d-lg-block';
-						with: [ canvas listItem
-								class: 'nav-item';
-								with: [ self renderSearchOn: canvas ] ].
-					self renderNavigationActionsOn: canvas ] ]
+							canvas unorderedList
+								class: 'navbar-nav align-items-center d-none d-lg-block';
+								with: [ canvas listItem
+										class: 'nav-item';
+										with: [ self renderSearchOn: canvas ] ].
+							self renderNavigationActionsOn: canvas ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -310,6 +310,40 @@ F4SAdminComponent >> renderNavigationOn: canvas [
 		ifFalse: [ self isNavbarDoubleTop
 				ifTrue: [ self renderNavigationDoubleTopOn: canvas ]
 				ifFalse: [ self renderNavigationTopOn: canvas ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SAdminComponent >> renderNavigationToggleTarget: target inContent: inContent on: canvas [
+	"Falcon is a pretty messy framework in places - the navigation toggle being one of them.
+	most of the messiness can be resolved from the navbar position except:
+	
+	target: is the id (string) of the div containing the navigation to toggle
+	inContent: is true (boolean) if the toggle is in the 'content' div in the body of the document
+			   and false if the toggle is being rendered in the first nav tag at the top of the page"
+
+	| button |
+	button := canvas button.
+	button
+		bePush;
+		class: 'btn navbar-toggler-humburger-icon';
+		class: 'navbar-toggler me-1 me-sm-3' if: (inContent or: [ self isNavbarTop ]).
+	target
+		ifNotNil: [ button
+				attributeAt: 'data-bs-toggle' put: 'collapse';
+				attributeAt: 'data-bs-target' put: '#' , target;
+				attributeAt: 'aria-controls' put: target;
+				attributeAt: 'aria-expanded' put: 'false';
+				attributeAt: 'aria-label' put: 'Toggle Navigation' ].
+	(self isNavbarVertical and: [ inContent not ])
+		ifTrue: [ button
+				class: 'navbar-vertical-toggle' if: inContent not;
+				attributeAt: 'data-bs-toggle' put: 'tooltip';
+				attributeAt: 'data-bs-placement' put: 'left';
+				attributeAt: 'title' put: 'Toggle Navigation' ].
+	button
+		with: [ canvas span
+				class: 'navbar-toggle-icon';
+				with: [ canvas span class: 'toggle-line' ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -547,6 +581,21 @@ F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 								class: 'navbar-nav flex-column mb-3';
 								id: 'navbarVerticalNav';
 								with: [ self renderNavigationVerticalItems: navigation on: canvas ] ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SAdminComponent >> renderNavigationVerticalToggleContentOn: canvas [
+	canvas button
+		bePush;
+		class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
+		attributeAt: 'data-bs-toggle' put: 'collapse';
+		attributeAt: 'data-bs-target' put: '#navbarVerticalCollapse';
+		attributeAt: 'aria-controls' put: 'navbarVerticalCollapse';
+		attributeAt: 'aria-expanded' put: 'false';
+		attributeAt: 'aria-label' put: 'Toggle Navigation';
+		with: [ canvas span
+				class: 'navbar-toggle-icon';
+				with: [ canvas span class: 'toggle-line' ] ]
 ]
 
 { #category : #'rendering-navigation' }
