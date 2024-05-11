@@ -82,8 +82,10 @@ F4SAdminComponent >> renderAdminContentOn: canvas [
 				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
 				with: [ self isNavbarVertical
 						ifTrue: [ self
-								renderNavigationVerticalToggleContentOn: canvas;
-								renderBrandOn: canvas.
+								renderNavigationToggleTarget: 'navbarVerticalCollapse'
+								inContent: true
+								on: canvas.
+							self renderBrandOn: canvas.
 
 							canvas unorderedList
 								class: 'navbar-nav align-items-center d-none d-lg-block';
@@ -283,7 +285,10 @@ F4SAdminComponent >> renderNavigationDoubleTopOn: canvas [
 				class: 'w-100';
 				with: [ canvas div
 						class: 'd-flex flex-between-center';
-						with: [ self renderNavigationTopToggleOn: canvas.
+						with: [ self
+								renderNavigationToggleTarget: 'navbarTop'
+								inContent: false
+								on: canvas.
 							self renderBrandOn: canvas.
 
 							canvas unorderedList
@@ -433,7 +438,10 @@ F4SAdminComponent >> renderNavigationTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
-		with: [ self renderNavigationTopToggleOn: canvas.
+		with: [ self
+				renderNavigationToggleTarget: 'navbarTop'
+				inContent: false
+				on: canvas.
 			self renderBrandOn: canvas.
 
 			canvas div
@@ -455,25 +463,6 @@ F4SAdminComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 						class: 'dropdown-item link-600 fw-medium';
 						with: [ canvas text: item title.
 							item badgeValue ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ]
-]
-
-{ #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopToggleOn: canvas [
-    canvas button
-        class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
-        type: 'button';
-        attributeAt: 'data-bs-toggle' put: 'collapse';
-        attributeAt: 'data-bs-target' put: '#navbarTop';
-        attributeAt: 'aria-controls' put: 'navbarTop';
-        attributeAt: 'aria-expanded' put: 'false';
-        attributeAt: 'aria-label' put: 'Toggle Navigation';
-        with: [
-            canvas span
-                class: 'navbar-toggle-icon';
-                with: [
-                    canvas span
-                        class: 'toggle-line']]
-
 ]
 
 { #category : #'rendering-navigation' }
@@ -570,7 +559,7 @@ F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 				class: 'd-flex align-items-center';
 				with: [ canvas div
 						class: 'toggle-icon-wrapper';
-						with: [ self renderNavigationVerticalToggleOn: canvas ].
+						with: [ self renderNavigationToggleTarget: nil inContent: false on: canvas ].
 					self renderBrandOn: canvas ].
 			canvas div
 				class: 'collapse navbar-collapse';
@@ -581,34 +570,6 @@ F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 								class: 'navbar-nav flex-column mb-3';
 								id: 'navbarVerticalNav';
 								with: [ self renderNavigationVerticalItems: navigation on: canvas ] ] ] ]
-]
-
-{ #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalToggleContentOn: canvas [
-	canvas button
-		bePush;
-		class: 'btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3';
-		attributeAt: 'data-bs-toggle' put: 'collapse';
-		attributeAt: 'data-bs-target' put: '#navbarVerticalCollapse';
-		attributeAt: 'aria-controls' put: 'navbarVerticalCollapse';
-		attributeAt: 'aria-expanded' put: 'false';
-		attributeAt: 'aria-label' put: 'Toggle Navigation';
-		with: [ canvas span
-				class: 'navbar-toggle-icon';
-				with: [ canvas span class: 'toggle-line' ] ]
-]
-
-{ #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalToggleOn: canvas [
-	canvas button
-		bePush;
-		class: 'btn navbar-toggler-humburger-icon navbar-vertical-toggle';
-		attributeAt: 'data-bs-toggle' put: 'tooltip';
-		attributeAt: 'data-bs-placement' put: 'left';
-		attributeAt: 'title' put: 'Toggle Navigation';
-		with: [ canvas span
-				class: 'navbar-toggle-icon';
-				with: [ canvas span class: 'toggle-line' ] ]
 ]
 
 { #category : #'rendering-search' }
