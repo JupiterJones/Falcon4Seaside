@@ -297,7 +297,9 @@ F4SAdminComponent >> renderNavigationDoubleTopOn: canvas [
 								class: 'navbar-nav align-items-center d-none d-lg-block';
 								with: [ canvas listItem
 										class: 'nav-item';
-										with: [ self renderSearchOn: canvas ] ] ].
+										with: [ self renderSearchOn: canvas ] ].
+
+							self renderNavigationActionsOn: canvas ].
 
 					canvas horizontalRule class: 'my-2 d-none d-lg-block'.
 
