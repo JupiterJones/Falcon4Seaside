@@ -59,6 +59,16 @@ F4SCompositeComponent >> fileLibraryClass [
 ]
 
 { #category : #accessing }
+F4SCompositeComponent >> fontAwesomeClass [
+	^ String
+		streamContents: [ :stream | 
+			stream nextPutAll: 'fa'.
+			(self application preferenceAt: #fontAwesomeuseSharpSet)
+				ifTrue: [ stream nextPut: $s ].
+			stream nextPut: (self application preferenceAt: #fontAwesomeIconSet) first ]
+]
+
+{ #category : #accessing }
 F4SCompositeComponent >> initialize [
 	super initialize.
 	components := Dictionary new.

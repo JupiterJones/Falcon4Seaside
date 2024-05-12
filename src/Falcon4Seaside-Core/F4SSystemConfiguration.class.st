@@ -37,4 +37,13 @@ F4SSystemConfiguration >> describeOn: config [
 		comment: 'The is the path to the repository root.';
 		group: #FalconConfig;
 		default: '/opt/git/JupiterJones/Falcon4Seaside'.
+	(config list: #fontAwesomeIconSet)
+		comment: 'Which FontAwesome icon set to use';
+		group: #FontAwesome;
+		options: #('solid' 'regular' 'light' 'thin' 'duotone');
+		default: 'solid'.
+	(config boolean: #fontAwesomeuseSharpSet)
+		comment: 'Use the FontAwesome sharp set?';
+		group: #FontAwesome;
+		default: false.
 ]

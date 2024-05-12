@@ -144,36 +144,107 @@ F4SAdminComponent >> renderContentOn: canvas [
 
 { #category : #rendering }
 F4SAdminComponent >> renderIcon: iconKey on: canvas [
+	
 	iconKey
 		ifNotNil: [ canvas span
 				class: 'nav-link-icon';
-				with: [ canvas span class: 'fas fa-' , iconKey ] ]
+				with: [ canvas span
+						class: self fontAwesomeClass;
+						class: 'fa-' , iconKey ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SAdminComponent >> renderNavigationActionApplicationsMenuOn: canvas [
+	| id |
+	canvas listItem
+		class: 'nav-item dropdown';
+		with: [ canvas anchor
+				id: (id := canvas nextId);
+				class: 'nav-link pe-0 ps-2';
+				attributeAt: 'role' put: 'button';
+				attributeAt: 'data-hide-on-body-scroll' put: 'data-hide-on-body-scroll';
+				attributeAt: 'data-bs-toggle' put: 'dropdown';
+				attributeAt: 'aria-haspopup' put: 'true';
+				attributeAt: 'aria-expanded' put: 'false';
+				with: [ canvas div
+						class: 'd-flex align-items-center';
+						with: [ self renderIcon: 'th-large' on: canvas ] ].
+
+
+
+			canvas div
+				class: 'dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-caret-bg';
+				attributeAt: 'aria-labelledby' put: id;
+				with: [ canvas div
+						class: 'card shadow-none';
+						with: [ canvas div
+								class: 'scrollbar-overlay';
+								with: [ canvas div
+										class: 'card-body px-3';
+										with: [ canvas div
+												class: 'row text-center gx-0 gy-0';
+												with: [ canvas div
+														class: 'col-4';
+														with: [ canvas anchor
+																class: 'd-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none';
+																with: [ canvas div
+																		class: 'd-flex align-items-center';
+																		with: [ self renderIcon: 'th-large fa-3x' on: canvas ].
+																	canvas paragraph
+																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
+																		with: [ canvas text: 'Application Name' ] ] ].
+													canvas div
+														class: 'col-4';
+														with: [ canvas anchor
+																class: 'd-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none';
+																with: [ canvas div
+																		class: 'd-flex align-items-center';
+																		with: [ self renderIcon: 'th-large fa-3x' on: canvas ].
+																	canvas paragraph
+																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
+																		with: [ canvas text: 'Application Name' ] ] ].
+													canvas div
+														class: 'col-4';
+														with: [ canvas anchor
+																class: 'd-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none';
+																with: [ canvas div
+																		class: 'd-flex align-items-center';
+																		with: [ self renderIcon: 'th-large fa-3x' on: canvas ].
+																	canvas paragraph
+																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
+																		with: [ canvas text: 'Application Name' ] ] ] ] ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
 F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
+	| faClass |
+	faClass := self fontAwesomeClass.
 	canvas listItem
 		class: 'nav-item ps-2 pe-0';
 		with: [ canvas div
 				class: 'dropdown theme-control-dropdown';
 				with: [ canvas anchor
 						id: 'themeSwitchDropdown';
-						class: 'nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0';
+						class: 'nav-link d-flex align-items-center fa-icon-wait fs-9 pe-1 py-0';
+						class: 'dropdown-toggle' if: false; "Adds a caret to the right and spoils spacing"
 						url: '#';
 						attributeAt: 'role' put: 'button';
 						attributeAt: 'data-bs-toggle' put: 'dropdown';
 						attributeAt: 'aria-haspopup' put: 'true';
 						attributeAt: 'aria-expanded' put: 'false';
 						with: [ canvas span
-								class: 'fas fa-sun fs-7';
+								class: faClass;
+								class: 'fa-sun fs-7';
 								attributeAt: 'data-fa-transform' put: 'shrink-2';
 								attributeAt: 'data-theme-dropdown-toggle-icon' put: 'light'.
 							canvas span
-								class: 'fas fa-moon fs-7';
+								class: faClass;
+								class: 'fa-moon fs-7';
 								attributeAt: 'data-fa-transform' put: 'shrink-2';
 								attributeAt: 'data-theme-dropdown-toggle-icon' put: 'dark'.
 							canvas span
-								class: 'fas fa-adjust fs-7';
+								class: faClass;
+								class: 'fa-adjust fs-7';
 								attributeAt: 'data-fa-transform' put: 'shrink-2';
 								attributeAt: 'data-theme-dropdown-toggle-icon' put: 'auto' ].
 
@@ -187,32 +258,41 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 										class: 'dropdown-item d-flex align-items-center gap-2';
 										attributeAt: 'value' put: 'light';
 										attributeAt: 'data-theme-control' put: 'theme';
-										with: [ canvas span class: 'fas fa-sun'.
+										with: [ canvas span
+												class: faClass;
+												class: 'fa-sun'.
 
 											canvas text: 'Light'.
 											canvas span
-												class: 'fas fa-check dropdown-check-icon ms-auto text-600' ].
+												class: faClass;
+												class: 'fa-check dropdown-check-icon ms-auto text-600' ].
 									canvas button
 										bePush;
 										class: 'dropdown-item d-flex align-items-center gap-2';
 										attributeAt: 'value' put: 'dark';
 										attributeAt: 'data-theme-control' put: 'theme';
-										with: [ canvas span class: 'fas fa-moon'.
+										with: [ canvas span
+												class: faClass;
+												class: 'fa-moon'.
 
 											canvas text: 'Dark'.
 											canvas span
-												class: 'fas fa-check dropdown-check-icon ms-auto text-600' ].
+												class: faClass;
+												class: 'fa-check dropdown-check-icon ms-auto text-600' ].
 
 									canvas button
 										bePush;
 										class: 'dropdown-item d-flex align-items-center gap-2';
 										attributeAt: 'value' put: 'auto';
 										attributeAt: 'data-theme-control' put: 'theme';
-										with: [ canvas span class: 'fas fa-adjust'.
+										with: [ canvas span
+												class: faClass;
+												class: 'fa-adjust'.
 
 											canvas text: 'Auto'.
 											canvas span
-												class: 'fas fa-check dropdown-check-icon ms-auto text-600' ] ] ] ] ]
+												class: faClass;
+												class: 'fa-check dropdown-check-icon ms-auto text-600' ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -274,8 +354,10 @@ F4SAdminComponent >> renderNavigationActionUserMenuOn: canvas [
 F4SAdminComponent >> renderNavigationActionsOn: canvas [
 	canvas unorderedList
 		class: 'navbar-nav navbar-nav-icons ms-auto flex-row align-items-center';
-		with: [ self renderNavigationActionThemeSelectorOn: canvas.
-			self renderNavigationActionUserMenuOn: canvas ]
+		with: [ self
+				renderNavigationActionThemeSelectorOn: canvas;
+				renderNavigationActionApplicationsMenuOn: canvas;
+				renderNavigationActionUserMenuOn: canvas ]
 ]
 
 { #category : #'rendering-navigation' }
