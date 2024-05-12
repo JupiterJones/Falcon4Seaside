@@ -63,14 +63,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-05T14:23:02.875663+10:00"
+						"dateAndTimeString" : "2024-05-12T20:46:00.634907+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "uW0iLc3TDQCYKc6SB1KFUw=="
 				},
-				"code" : "F4SFalconDemoFileLibrary loadFromDisk"
+				"code" : "F4SFalconDemoFileLibrary"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -165,14 +165,49 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-10T22:22:51.189606+10:00"
+						"dateAndTimeString" : "2024-05-10T22:23:25.068889+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "SphikG3UDQC9BJH5BFT6iQ=="
 				},
-				"code" : "F4SFileLibrary / #'imgteam3thumbPng'"
+				"code" : "F4SFalconDemoFileLibrary / #'imgteam3thumbPng'"
+			},
+			{
+				"__type" : "shellCommandSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-12T20:41:30.965624+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-12T20:42:02.770465+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "jNoUJqHUDQCc0bZvBH3SiQ=="
+				},
+				"code" : "ls -la",
+				"bindingName" : "dirListing"
 			}
 		]
 	},
