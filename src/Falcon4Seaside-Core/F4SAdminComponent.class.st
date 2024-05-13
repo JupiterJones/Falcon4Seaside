@@ -178,7 +178,7 @@ F4SAdminComponent >> renderNavigationActionApplicationsMenuOn: canvas [
 				with: [ canvas div
 						class: 'card shadow-none';
 						with: [ canvas div
-								class: 'scrollbar-overlay';
+								class: 'scrollbar-overlay nine-dots-dropdown';
 								with: [ canvas div
 										class: 'card-body px-3';
 										with: [ canvas div
@@ -189,30 +189,33 @@ F4SAdminComponent >> renderNavigationActionApplicationsMenuOn: canvas [
 																class: 'd-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none';
 																with: [ canvas div
 																		class: 'd-flex align-items-center';
-																		with: [ self renderIcon: 'th-large fa-3x' on: canvas ].
+																		style: 'justify-content: center;';
+																		with: [ self renderIcon: 'th-large fa-2x' on: canvas ].
 																	canvas paragraph
 																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
-																		with: [ canvas text: 'Application Name' ] ] ].
+																		with: [ canvas text: 'Frontend' ] ] ].
 													canvas div
 														class: 'col-4';
 														with: [ canvas anchor
 																class: 'd-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none';
 																with: [ canvas div
 																		class: 'd-flex align-items-center';
-																		with: [ self renderIcon: 'th-large fa-3x' on: canvas ].
+																		style: 'justify-content: center;';
+																		with: [ self renderIcon: 'th-large fa-2x' on: canvas ].
 																	canvas paragraph
 																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
-																		with: [ canvas text: 'Application Name' ] ] ].
+																		with: [ canvas text: 'Backend' ] ] ].
 													canvas div
 														class: 'col-4';
 														with: [ canvas anchor
 																class: 'd-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none';
 																with: [ canvas div
 																		class: 'd-flex align-items-center';
-																		with: [ self renderIcon: 'th-large fa-3x' on: canvas ].
+																		style: 'justify-content: center;';
+																		with: [ self renderIcon: 'th-large fa-2x' on: canvas ].
 																	canvas paragraph
 																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
-																		with: [ canvas text: 'Application Name' ] ] ] ] ] ] ] ] ]
+																		with: [ canvas text: 'BI' ] ] ] ] ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
