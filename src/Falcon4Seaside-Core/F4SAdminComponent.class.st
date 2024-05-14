@@ -224,13 +224,14 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 	faClass := self fontAwesomeClass.
 	canvas listItem
 		class: 'nav-item ps-2 pe-0';
+		class: 'nav-link';
 		with: [ canvas div
 				class: 'dropdown theme-control-dropdown';
 				with: [ canvas anchor
 						id: 'themeSwitchDropdown';
 						class: 'nav-link d-flex align-items-center fa-icon-wait fs-9 pe-1 py-0';
 						class: 'dropdown-toggle' if: false; "Adds a caret to the right and spoils spacing"
-						url: '#';
+						"url: '#';"
 						attributeAt: 'role' put: 'button';
 						attributeAt: 'data-bs-toggle' put: 'dropdown';
 						attributeAt: 'aria-haspopup' put: 'true';
@@ -305,6 +306,7 @@ F4SAdminComponent >> renderNavigationActionUserMenuOn: canvas [
 		with: [ canvas anchor
 				id: 'navbarDropdownUser';
 				class: 'nav-link pe-0 ps-2';
+				class: 'nav-link';
 				attributeAt: 'role' put: 'button';
 				attributeAt: 'data-bs-toggle' put: 'dropdown';
 				attributeAt: 'aria-haspopup' put: 'true';
@@ -317,7 +319,7 @@ F4SAdminComponent >> renderNavigationActionUserMenuOn: canvas [
 								altText: '' ] ].
 
 			canvas div
-				class: 'dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0';
+				class: 'dropdown-menu dropdown-caret dropdown-menu-end py-0';
 				attributeAt: 'aria-labelledby' put: 'navbarDropdownUser';
 				with: [ canvas div
 						class: 'bg-white dark__bg-1000 rounded-2 py-2';
