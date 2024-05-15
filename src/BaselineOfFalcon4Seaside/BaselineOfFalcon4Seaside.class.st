@@ -25,7 +25,6 @@ BaselineOfFalcon4Seaside >> baseline: spec [
 	^ spec
 		for: #common
 		do: [ spec
-				package: 'Falcon4Seaside-Knowledge';
 				package: 'Falcon4Seaside-FileLibrary';
 				package: 'Falcon4Seaside-Core';
 				package: 'Falcon4Seaside-Localisation';
