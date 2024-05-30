@@ -175,6 +175,40 @@
 				"code" : "F4SFileLibrary loadFromDisk"
 			},
 			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-13T08:03:24.304044+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-13T08:03:32.244771+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IeC0rKrUDQCmi6iBCBbEvQ=="
+				},
+				"code" : "WASystemConfiguration clearAllDescriptions"
+			},
+			{
 				"__type" : "shellCommandSnippet",
 				"children" : {
 					"__type" : "snippets",
@@ -208,6 +242,40 @@
 				},
 				"code" : "ls -la",
 				"bindingName" : "dirListing"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-31T07:10:40.879657+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-31T07:10:40.879657+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "LJZLCRTWDQCfSwywANFJpQ=="
+				},
+				"code" : ""
 			}
 		]
 	},
