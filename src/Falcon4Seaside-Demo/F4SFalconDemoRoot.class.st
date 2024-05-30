@@ -26,5 +26,10 @@ F4SFalconDemoRoot >> adminComponent [
 
 { #category : #accessing }
 F4SFalconDemoRoot >> initialComponent [
-	^ self adminComponent
+	^ self landingComponent
+]
+
+{ #category : #accessing }
+F4SFalconDemoRoot >> landingComponent [
+	^ self componentAt: #admin ifAbsentPut: [ F4SLandingComponent parent: self ]
 ]
