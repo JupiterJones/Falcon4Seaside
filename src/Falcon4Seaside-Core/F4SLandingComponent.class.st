@@ -6,7 +6,8 @@ Class {
 
 { #category : #accessing }
 F4SLandingComponent >> renderBodyScriptsOn: canvas [
-	canvas script url: F4SFalconDemoFileLibrary / #'vendorstypedjstypedumdJs'
+	canvas script url: F4SFalconDemoFileLibrary / #vendorstypedjstypedumdJs.
+	canvas script url: F4SFalconDemoFileLibrary / #vendorsswiperswiperbundleminJs
 ]
 
 { #category : #rendering }
@@ -16,6 +17,8 @@ F4SLandingComponent >> renderContentOn: canvas [
 		renderSupportersOn: canvas;
 		renderFeaturesOn: canvas;
 		renderSummaryPointsOn: canvas;
+		renderTestimonialsOn: canvas;
+		renderJoinTheCommunityOn: canvas;
 		renderBodyScriptsOn: canvas
 ]
 
@@ -100,6 +103,32 @@ F4SLandingComponent >> renderFeaturesOn: canvas [
 									canvas paragraph
 										with: [ canvas
 												text: 'From IE to iOS, rigorously tested and optimized Falcon will give the near perfect finishing to your webapp; from the landing page to the logout screen.' ] ] ] ] ]
+]
+
+{ #category : #accessing }
+F4SLandingComponent >> renderJoinTheCommunityOn: canvas [
+	canvas section
+		class: 'bg-dark';
+		attributeAt: 'data-bs-theme' put: (self application configuration at: #theme);
+		with: [ canvas div
+				class: 'bg-holder overlay';
+				style: 'background-image:url('
+						, (F4SFalconDemoFileLibrary / #imggenericbg2Jpg) asString
+						, ');background-position: center top;'.
+			canvas div
+				class: 'container';
+				with: [ canvas div
+						class: 'row justify-content-center text-center';
+						with: [ canvas div
+								class: 'col-lg-8';
+								with: [ canvas paragraph
+										class: 'fs-6 fs-sm-5 text-white';
+										with: [ canvas
+												text: 'Join our community of 20,000+ developers and content creators on their mission to build better sites and apps.'.
+											canvas button
+												class: 'btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-9 py-2';
+												bePush;
+												with: [ canvas text: 'Start your webapp' ] ] ] ] ] ]
 ]
 
 { #category : #rendering }
@@ -259,4 +288,82 @@ F4SLandingComponent >> renderSupportersOn: canvas [
 												class: 'landing-cta-img';
 												height: image value;
 												url: F4SFalconDemoFileLibrary / image key ] ] ] ] ]
+]
+
+{ #category : #accessing }
+F4SLandingComponent >> renderTestimonialsOn: canvas [
+	canvas section
+		class: 'bg-200 text-center';
+		with: [ canvas div
+				class: 'container';
+				with: [ canvas div
+						class: 'row justify-content-center';
+						with: [ canvas div
+								class: 'col-lg-9 col-xl-8';
+								with: [ canvas div
+										class: 'swiper theme-slider';
+										attributeAt: 'data-swiper'
+											put: (JSStream
+													on: '{"autoplay":true,"spaceBetween":5,"loop":true,"loopedSlides":5,"slideToClickedSlide":true}');
+										with: [ canvas div
+												class: 'swiper-wrapper';
+												with: [ canvas div
+														class: 'swiper-slide';
+														with: [ canvas div
+																class: 'px-5 px-sm-6';
+																with: [ canvas paragraph
+																		class: 'fs-sm-8 fs-md-7 fst-italic text-1100';
+																		with: [ canvas
+																				text: 'Falcon is the best option if you are looking for a theme built with Bootstrap. On top of that, Falcon''s creators and support staff are very brilliant and attentive to users'' needs.' ].
+																	canvas paragraph
+																		class: 'fs-9 text-600';
+																		with: [ canvas text: '- Scott Tolinski, Web Developer' ].
+																	canvas image
+																		class: 'w-auto mx-auto';
+																		height: 45;
+																		url: F4SFalconDemoFileLibrary / #imglogosgooglePng ] ].
+
+													canvas div
+														class: 'swiper-slide';
+														with: [ canvas div
+																class: 'px-5 px-sm-6';
+																with: [ canvas paragraph
+																		class: 'fs-sm-8 fs-md-7 fst-italic text-1100';
+																		with: [ canvas
+																				text: 'We''ve become fanboys! Easy to change the modular design, great dashboard UI, enterprise-class support, fast loading time. What else do you want from a Bootstrap Theme?' ].
+																	canvas paragraph
+																		class: 'fs-9 text-600';
+																		with: [ canvas text: '- Jeff Escalante, Developer' ].
+																	canvas image
+																		class: 'w-auto mx-auto';
+																		height: 30;
+																		url: F4SFalconDemoFileLibrary / #imglogosnetflixPng ] ].
+
+													canvas div
+														class: 'swiper-slide';
+														with: [ canvas div
+																class: 'px-5 px-sm-6';
+																with: [ canvas paragraph
+																		class: 'fs-sm-8 fs-md-7 fst-italic text-1100';
+																		with: [ canvas
+																				text: 'When I first saw Falcon, I was totally blown away by the care taken in the interface. It felt like something that I''d really want to use and something I could see being a true modern replacement to the current class of Bootstrap themes.' ].
+																	canvas paragraph
+																		class: 'fs-9 text-600';
+																		with: [ canvas text: '- Liam Martens, Designer' ].
+																	canvas image
+																		class: 'w-auto mx-auto';
+																		height: 45;
+																		url: F4SFalconDemoFileLibrary / #imglogospaypalPng ] ] ].
+
+											canvas div
+												class: 'swiper-nav';
+												with: [ canvas div class: 'swiper-button-next swiper-button-white'.
+													canvas div class: 'swiper-button-prev swiper-button-white' ] ] ] ] ] ]
+]
+
+{ #category : #accessing }
+F4SLandingComponent >> updateRoot: anHtmlRoot [
+	anHtmlRoot link
+		relationship: 'stylesheet';
+		url: self fileLibraryClass / #vendorsswiperswiperbundleminCss
 ]
