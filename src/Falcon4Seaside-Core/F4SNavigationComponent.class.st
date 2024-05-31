@@ -74,8 +74,15 @@ F4SNavigationComponent >> isNavbarVibrant [
 	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
 ]
 
+{ #category : #'rendering-navigation' }
+F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
+	^ canvas span
+		class: 'badge rounded-pill ms-2 badge-subtle-success';
+		with: [ canvas text: badgeValue ]
+]
+
 { #category : #rendering }
-F4SNavigationComponent >> renderAdminContentOn: canvas [
+F4SNavigationComponent >> renderBodyContentOn: canvas [
 	canvas div
 		class: 'content';
 		with: [ self isNavbarVertical
@@ -94,13 +101,6 @@ F4SNavigationComponent >> renderAdminContentOn: canvas [
 										with: [ self renderSearchOn: canvas ] ].
 							self renderNavigationActionsOn: canvas ] ].
 			canvas render: self selectedComponent ]
-]
-
-{ #category : #'rendering-navigation' }
-F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
-	^ canvas span
-		class: 'badge rounded-pill ms-2 badge-subtle-success';
-		with: [ canvas text: badgeValue ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -139,7 +139,7 @@ F4SNavigationComponent >> renderContentOn: canvas [
 
 					self
 						renderNavigationOn: canvas;
-						renderAdminContentOn: canvas ] ]
+						renderBodyContentOn: canvas ] ]
 ]
 
 { #category : #rendering }
