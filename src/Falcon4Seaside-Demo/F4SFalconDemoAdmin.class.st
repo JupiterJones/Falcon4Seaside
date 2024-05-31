@@ -1,6 +1,6 @@
 Class {
 	#name : #F4SFalconDemoAdmin,
-	#superclass : #F4SAdminComponent,
+	#superclass : #F4SNavigationComponent,
 	#category : #'Falcon4Seaside-Demo'
 }
 

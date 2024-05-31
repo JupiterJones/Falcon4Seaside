@@ -1,5 +1,5 @@
 Class {
-	#name : #F4SAdminComponent,
+	#name : #F4SNavigationComponent,
 	#superclass : #F4SCompositeComponent,
 	#instVars : [
 		'navigation'
@@ -8,22 +8,22 @@ Class {
 }
 
 { #category : #actions }
-F4SAdminComponent >> addNavItem: aNavItem [
+F4SNavigationComponent >> addNavItem: aNavItem [
 	navigation add: aNavItem
 ]
 
 { #category : #accessing }
-F4SAdminComponent >> brandImageUrl [
+F4SNavigationComponent >> brandImageUrl [
 	^ self fileLibraryClass / #imagesfaviconappletouchiconPng
 ]
 
 { #category : #accessing }
-F4SAdminComponent >> brandLabel [
+F4SNavigationComponent >> brandLabel [
 	^ self root applicationName
 ]
 
 { #category : #accessing }
-F4SAdminComponent >> containerClass [
+F4SNavigationComponent >> containerClass [
 	"Answers 'container' or 'container-fluid'"
 
 	^ String
@@ -34,48 +34,48 @@ F4SAdminComponent >> containerClass [
 ]
 
 { #category : #initialization }
-F4SAdminComponent >> initialize [
+F4SNavigationComponent >> initialize [
 	super initialize.
 	self initializeNavigation
 ]
 
 { #category : #initialization }
-F4SAdminComponent >> initializeNavigation [
+F4SNavigationComponent >> initializeNavigation [
 	navigation := OrderedCollection new
 ]
 
 { #category : #'testing-navigation' }
-F4SAdminComponent >> isNavbarCard [
+F4SNavigationComponent >> isNavbarCard [
 	^ (self application preferenceAt: #navbarStyle) = 'card'
 ]
 
 { #category : #'testing-navigation' }
-F4SAdminComponent >> isNavbarDoubleTop [
+F4SNavigationComponent >> isNavbarDoubleTop [
 	^ (self application preferenceAt: #navbarPosition) = 'double-top'
 ]
 
 { #category : #'testing-navigation' }
-F4SAdminComponent >> isNavbarInverted [
+F4SNavigationComponent >> isNavbarInverted [
 	^ (self application preferenceAt: #navbarStyle) = 'inverted'
 ]
 
 { #category : #'testing-navigation' }
-F4SAdminComponent >> isNavbarTop [
+F4SNavigationComponent >> isNavbarTop [
 	^ self isNavbarVertical not
 ]
 
 { #category : #'testing-navigation' }
-F4SAdminComponent >> isNavbarVertical [
+F4SNavigationComponent >> isNavbarVertical [
 	^ (self application preferenceAt: #navbarPosition) = 'vertical'
 ]
 
 { #category : #'testing-navigation' }
-F4SAdminComponent >> isNavbarVibrant [
+F4SNavigationComponent >> isNavbarVibrant [
 	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
 ]
 
 { #category : #rendering }
-F4SAdminComponent >> renderAdminContentOn: canvas [
+F4SNavigationComponent >> renderAdminContentOn: canvas [
 	canvas div
 		class: 'content';
 		with: [ self isNavbarVertical
@@ -97,14 +97,14 @@ F4SAdminComponent >> renderAdminContentOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderBadge: badgeValue on: canvas [
+F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
 	^ canvas span
 		class: 'badge rounded-pill ms-2 badge-subtle-success';
 		with: [ canvas text: badgeValue ]
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderBrandInContent: inContent on: canvas [
+F4SNavigationComponent >> renderBrandInContent: inContent on: canvas [
 	"Another falcon mess."
 	canvas anchor
 		class: 'navbar-brand';
@@ -122,7 +122,7 @@ F4SAdminComponent >> renderBrandInContent: inContent on: canvas [
 ]
 
 { #category : #rendering }
-F4SAdminComponent >> renderContentOn: canvas [
+F4SNavigationComponent >> renderContentOn: canvas [
 	canvas main
 		class: 'main';
 		id: 'top';
@@ -143,7 +143,7 @@ F4SAdminComponent >> renderContentOn: canvas [
 ]
 
 { #category : #rendering }
-F4SAdminComponent >> renderIcon: iconKey on: canvas [
+F4SNavigationComponent >> renderIcon: iconKey on: canvas [
 	
 	iconKey
 		ifNotNil: [ canvas span
@@ -154,7 +154,7 @@ F4SAdminComponent >> renderIcon: iconKey on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationActionApplicationsMenuOn: canvas [
+F4SNavigationComponent >> renderNavigationActionApplicationsMenuOn: canvas [
 	| id |
 	canvas listItem
 		class: 'nav-item dropdown';
@@ -219,7 +219,7 @@ F4SAdminComponent >> renderNavigationActionApplicationsMenuOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
+F4SNavigationComponent >> renderNavigationActionThemeSelectorOn: canvas [
 	| faClass |
 	faClass := self fontAwesomeClass.
 	canvas listItem
@@ -300,7 +300,7 @@ F4SAdminComponent >> renderNavigationActionThemeSelectorOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationActionUserMenuOn: canvas [
+F4SNavigationComponent >> renderNavigationActionUserMenuOn: canvas [
 	canvas listItem
 		class: 'nav-item dropdown';
 		with: [ canvas anchor
@@ -356,7 +356,7 @@ F4SAdminComponent >> renderNavigationActionUserMenuOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationActionsOn: canvas [
+F4SNavigationComponent >> renderNavigationActionsOn: canvas [
 	canvas unorderedList
 		class: 'navbar-nav navbar-nav-icons ms-auto flex-row align-items-center';
 		with: [ self
@@ -366,7 +366,7 @@ F4SAdminComponent >> renderNavigationActionsOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationDoubleTopOn: canvas [
+F4SNavigationComponent >> renderNavigationDoubleTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
@@ -400,7 +400,7 @@ F4SAdminComponent >> renderNavigationDoubleTopOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationOn: canvas [
+F4SNavigationComponent >> renderNavigationOn: canvas [
 	self isNavbarVertical
 		ifTrue: [ self renderNavigationVerticalOn: canvas ]
 		ifFalse: [ self isNavbarDoubleTop
@@ -409,7 +409,7 @@ F4SAdminComponent >> renderNavigationOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationToggleTarget: target inContent: inContent on: canvas [
+F4SNavigationComponent >> renderNavigationToggleTarget: target inContent: inContent on: canvas [
 	"Falcon is a pretty messy framework in places - the navigation toggle being one of them.
 	most of the messiness can be resolved from the navbar position except:
 	
@@ -443,7 +443,7 @@ F4SAdminComponent >> renderNavigationToggleTarget: target inContent: inContent o
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopItem: navItem on: canvas [
+F4SNavigationComponent >> renderNavigationTopItem: navItem on: canvas [
 	| dropdownId |
 	canvas anchor
 		class: 'nav-link dropdown-toggle';
@@ -463,7 +463,7 @@ F4SAdminComponent >> renderNavigationTopItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopItems: menuItems on: canvas [
+F4SNavigationComponent >> renderNavigationTopItems: menuItems on: canvas [
 	menuItems
 		do: [ :menuItem | 
 			canvas listItem
@@ -472,7 +472,7 @@ F4SAdminComponent >> renderNavigationTopItems: menuItems on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
+F4SNavigationComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 	canvas div
 		class: 'card shadow-none dark__bg-1000';
 		class: 'navbar-card-col-' , navItem columns asString;
@@ -504,7 +504,7 @@ F4SAdminComponent >> renderNavigationTopLayoutItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
+F4SNavigationComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 	navItems
 		do: [ :navItem "Do we promote children?" | 
 			navItem promoteChildrenInTop
@@ -525,7 +525,7 @@ F4SAdminComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopOn: canvas [
+F4SNavigationComponent >> renderNavigationTopOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-glass navbar-top navbar-expand-lg';
@@ -546,7 +546,7 @@ F4SAdminComponent >> renderNavigationTopOn: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
+F4SNavigationComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 	canvas div
 		class: 'bg-white dark__bg-1000 rounded-3 py-2';
 		with: [ navItem children
@@ -558,7 +558,7 @@ F4SAdminComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalItem: navItem on: canvas [
+F4SNavigationComponent >> renderNavigationVerticalItem: navItem on: canvas [
 	canvas listItem
 		class: 'nav-item';
 		with: [ (navItem isGroup or: [ navItem children notEmpty ])
@@ -590,7 +590,7 @@ F4SAdminComponent >> renderNavigationVerticalItem: navItem on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas [
+F4SNavigationComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownId on: canvas [
 	canvas anchor
 		url: '#' , dropdownId;
 		class: 'nav-link dropdown-indicator';
@@ -608,7 +608,7 @@ F4SAdminComponent >> renderNavigationVerticalItemDropdown: navItem id: dropdownI
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
+F4SNavigationComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
 	canvas div
 		class: 'row navbar-vertical-label-wrapper mt-3 mb-2';
 		with: [ canvas div
@@ -620,7 +620,7 @@ F4SAdminComponent >> renderNavigationVerticalItemGroup: navGroup on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalItems: navItems on: canvas [
+F4SNavigationComponent >> renderNavigationVerticalItems: navItems on: canvas [
 	| navItemsToRender |
 	navItemsToRender := navItems
 			inject: OrderedCollection new
@@ -635,7 +635,7 @@ F4SAdminComponent >> renderNavigationVerticalItems: navItems on: canvas [
 ]
 
 { #category : #'rendering-navigation' }
-F4SAdminComponent >> renderNavigationVerticalOn: canvas [
+F4SNavigationComponent >> renderNavigationVerticalOn: canvas [
 	canvas navigation
 		class: 'navbar navbar-light';
 		class: 'navbar-vertical navbar-expand-xl';
@@ -665,18 +665,18 @@ F4SAdminComponent >> renderNavigationVerticalOn: canvas [
 ]
 
 { #category : #'rendering-search' }
-F4SAdminComponent >> renderSearchOn: canvas [
+F4SNavigationComponent >> renderSearchOn: canvas [
 	canvas render: self searchComponent
 ]
 
 { #category : #'rendering-search' }
-F4SAdminComponent >> searchComponent [
+F4SNavigationComponent >> searchComponent [
 	^self
 		componentAt: #globalSearch
 		ifAbsentPut: [ F4SSearchComponent parent: self ]
 ]
 
 { #category : #updating }
-F4SAdminComponent >> updateRoot: anHtmlRoot [
+F4SNavigationComponent >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot
 ]
