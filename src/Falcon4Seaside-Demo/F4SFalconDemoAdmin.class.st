@@ -220,7 +220,7 @@ F4SFalconDemoAdmin >> dashboardNavigation [
 { #category : #initalization }
 F4SFalconDemoAdmin >> initializeNavigation [
 	super initializeNavigation.
-	self
+	self addNavItem: self topLevelNavigation;
 		addNavItem: self dashboardNavigation;
 		addNavItem: self appNavigation;
 		addNavItem: self pagesNavigation
@@ -417,6 +417,19 @@ F4SFalconDemoAdmin >> pagesNavigation [
 				addChild: (F4SNavItem new
 						title: 'Combo Nav' seasideTranslated;
 						yourself);
+				yourself);
+		yourself
+]
+
+{ #category : #navigation }
+F4SFalconDemoAdmin >> topLevelNavigation [
+	^ F4SNavItem new
+		title: 'Loose pages not in menu';
+		beHidden;
+		addChild: (F4SNavItem new
+				title: 'Home' seasideTranslated;
+				icon: 'home';
+				component: F4SLandingComponent;
 				yourself);
 		yourself
 ]
