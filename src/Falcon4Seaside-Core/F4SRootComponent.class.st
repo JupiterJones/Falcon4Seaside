@@ -1,6 +1,9 @@
 Class {
 	#name : #F4SRootComponent,
 	#superclass : #F4SCompositeComponent,
+	#instVars : [
+		'navigationItems'
+	],
 	#category : #'Falcon4Seaside-Core'
 }
 
@@ -150,7 +153,18 @@ F4SRootComponent >> initialComponent [
 { #category : #initialization }
 F4SRootComponent >> initialize [
 	super initialize.
+	self initializeNavigation.
 	announcer announce: (F4SComponentSelected component: self initialComponent).
+]
+
+{ #category : #initialization }
+F4SRootComponent >> initializeNavigation [
+	navigationItems := OrderedCollection new.
+	self
+		componentAt: #navigation
+		ifAbsentPut: [ F4SNavigationComponent new
+				navigation: navigationItems;
+				yourself ]
 ]
 
 { #category : #accessing }
@@ -158,12 +172,6 @@ F4SRootComponent >> leftToRightOrRightToLeft [
 	^ (self application configuration at: #isRTL)
 		ifTrue: [ 'rtl' ]
 		ifFalse: [ 'ltr' ]
-]
-
-{ #category : #rendering }
-F4SRootComponent >> renderContentOn: canvas [
-	canvas render: self selectedComponent.
-	self renderEndOfBodyScriptsOn: canvas
 ]
 
 { #category : #rendering }

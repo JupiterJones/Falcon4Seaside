@@ -1,6 +1,6 @@
 Class {
 	#name : #F4SNavigationComponent,
-	#superclass : #F4SCompositeComponent,
+	#superclass : #F4SAbstractComponent,
 	#instVars : [
 		'navigation'
 	],
@@ -72,6 +72,11 @@ F4SNavigationComponent >> isNavbarVertical [
 { #category : #'testing-navigation' }
 F4SNavigationComponent >> isNavbarVibrant [
 	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
+]
+
+{ #category : #initialization }
+F4SNavigationComponent >> navigation: navigationItems [ 
+	navigation := navigationItems
 ]
 
 { #category : #'rendering-navigation' }

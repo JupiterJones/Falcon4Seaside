@@ -9,7 +9,7 @@ I have an Announcer and can use the F4SComponentSelectedAnnouncement to set my s
 "
 Class {
 	#name : #F4SCompositeComponent,
-	#superclass : #WAComponent,
+	#superclass : #F4SAbstractComponent,
 	#instVars : [
 		'parent',
 		'components',
