@@ -52,6 +52,40 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-19T14:32:25.173924+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-19T14:32:26.924026+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "XScPbJjXDQC9YDkJBcFsTA=="
+				},
+				"code" : "F4SFalconDemoRoot reregister."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-05-02T07:47:56.227025+10:00"
 					}
 				},
