@@ -1,6 +1,6 @@
 Class {
 	#name : #F4SNavigationComponent,
-	#superclass : #F4SAbstractComponent,
+	#superclass : #F4SCompositeComponent,
 	#instVars : [
 		'navigation'
 	],
@@ -88,24 +88,21 @@ F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
 
 { #category : #rendering }
 F4SNavigationComponent >> renderBodyContentOn: canvas [
-	canvas div
-		class: 'content';
-		with: [ self isNavbarVertical
-				ifTrue: [ canvas navigation
-						class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
-						with: [ self
-								renderNavigationToggleTarget: 'navbarVerticalCollapse'
-								inContent: true
-								on: canvas.
-							self renderBrandInContent: true on: canvas.
+	self isNavbarVertical
+		ifTrue: [ canvas navigation
+				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
+				with: [ self
+						renderNavigationToggleTarget: 'navbarVerticalCollapse'
+						inContent: true
+						on: canvas.
+					self renderBrandInContent: true on: canvas.
 
-							canvas unorderedList
-								class: 'navbar-nav align-items-center d-none d-lg-block';
-								with: [ canvas listItem
-										class: 'nav-item';
-										with: [ self renderSearchOn: canvas ] ].
-							self renderNavigationActionsOn: canvas ] ].
-			canvas render: self selectedComponent ]
+					canvas unorderedList
+						class: 'navbar-nav align-items-center d-none d-lg-block';
+						with: [ canvas listItem
+								class: 'nav-item';
+								with: [ self renderSearchOn: canvas ] ].
+					self renderNavigationActionsOn: canvas ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -128,23 +125,7 @@ F4SNavigationComponent >> renderBrandInContent: inContent on: canvas [
 
 { #category : #rendering }
 F4SNavigationComponent >> renderContentOn: canvas [
-	canvas main
-		class: 'main';
-		id: 'top';
-		with: [ canvas div
-				class: self containerClass;
-				attributeAt: 'data-layout' put: self containerClass;
-				with: [ canvas script
-						with: 'var isFluid = JSON.parse(localStorage.getItem("isFluid"));
-          if (isFluid) {
-            var container = document.querySelector("[data-layout]");
-            container.classList.remove("container");
-            container.classList.add("container-fluid");
-          }'.
-
-					self
-						renderNavigationOn: canvas;
-						renderBodyContentOn: canvas ] ]
+	self renderNavigationOn: canvas
 ]
 
 { #category : #rendering }

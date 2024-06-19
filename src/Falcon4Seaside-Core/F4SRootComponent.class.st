@@ -130,6 +130,17 @@ if (localStorage.getItem("theme") === "dark") {
 ^ stream
 ]
 
+{ #category : #access }
+F4SRootComponent >> containerClass [
+	"Answers 'container' or 'container-fluid'"
+
+	^ String
+		streamContents: [ :stream | 
+			stream nextPutAll: 'container'.
+			(self application configuration at: #isFluid)
+				ifTrue: [ stream nextPutAll: '-fluid' ] ]
+]
+
 { #category : #accessing }
 F4SRootComponent >> currentLanguage [
 	^ 'en_AU'
@@ -174,6 +185,40 @@ F4SRootComponent >> leftToRightOrRightToLeft [
 		ifFalse: [ 'ltr' ]
 ]
 
+{ #category : #accessing }
+F4SRootComponent >> navigationComponent [
+	^ self componentAt: #navigation
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderBodyContentOn: canvas [
+	canvas div
+		class: 'content';
+		with: [ self renderNavigationBodyContentOn: canvas.
+			canvas render: self selectedComponent ]
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderContentOn: canvas [
+	canvas main
+		class: 'main';
+		id: 'top';
+		with: [ canvas div
+				class: self containerClass;
+				attributeAt: 'data-layout' put: self containerClass;
+				with: [ canvas script
+						with: 'var isFluid = JSON.parse(localStorage.getItem("isFluid"));
+          if (isFluid) {
+            var container = document.querySelector("[data-layout]");
+            container.classList.remove("container");
+            container.classList.add("container-fluid");
+          }'.
+
+					self
+						renderNavigationOn: canvas;
+						renderBodyContentOn: canvas ] ]
+]
+
 { #category : #rendering }
 F4SRootComponent >> renderEndOfBodyScriptsOn: canvas [
 	canvas script url: F4SFileLibrary / #vendorspopperpopperminJs.
@@ -188,6 +233,16 @@ F4SRootComponent >> renderEndOfBodyScriptsOn: canvas [
 		url: 'https://polyfill.io/v3/polyfill.min.js?features=window.scroll'.
 	canvas script url: F4SFileLibrary / #vendorslistjslistminJs.
 	canvas script url: F4SFileLibrary / #jsthemeJs
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderNavigationBodyContentOn: canvas [
+	self navigationComponent renderNavigationBodyContentOn: canvas
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderNavigationOn: canvas [ 
+	canvas render: self navigationComponent
 ]
 
 { #category : #updating }
