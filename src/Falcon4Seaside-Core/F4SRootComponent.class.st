@@ -178,11 +178,6 @@ F4SRootComponent >> initializeNavigation [
 				yourself ]
 ]
 
-{ #category : #initialization }
-F4SRootComponent >> initializeNavigationItems [
-	
-]
-
 { #category : #accessing }
 F4SRootComponent >> leftToRightOrRightToLeft [
 	^ (self application configuration at: #isRTL)
@@ -242,7 +237,7 @@ F4SRootComponent >> renderEndOfBodyScriptsOn: canvas [
 
 { #category : #rendering }
 F4SRootComponent >> renderNavigationBodyContentOn: canvas [
-	self navigationComponent renderNavigationBodyContentOn: canvas
+	"self navigationComponent renderNavigationBodyContentOn: canvas"
 ]
 
 { #category : #rendering }
