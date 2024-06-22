@@ -1,6 +1,6 @@
 Class {
 	#name : #F4SLandingComponent,
-	#superclass : #F4SCompositeComponent,
+	#superclass : #F4SContentComponent,
 	#category : #'Falcon4Seaside-Core'
 }
 
