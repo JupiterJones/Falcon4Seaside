@@ -81,25 +81,6 @@ F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
 		with: [ canvas text: badgeValue ]
 ]
 
-{ #category : #rendering }
-F4SNavigationComponent >> renderBodyContentOn: canvas [
-	self isNavbarVertical
-		ifTrue: [ canvas navigation
-				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
-				with: [ self
-						renderNavigationToggleTarget: 'navbarVerticalCollapse'
-						inContent: true
-						on: canvas.
-					self renderBrandInContent: true on: canvas.
-
-					canvas unorderedList
-						class: 'navbar-nav align-items-center d-none d-lg-block';
-						with: [ canvas listItem
-								class: 'nav-item';
-								with: [ self renderSearchOn: canvas ] ].
-					self renderNavigationActionsOn: canvas ] ]
-]
-
 { #category : #'rendering-navigation' }
 F4SNavigationComponent >> renderBrandInContent: inContent on: canvas [
 	"Another falcon mess."
@@ -344,6 +325,25 @@ F4SNavigationComponent >> renderNavigationActionsOn: canvas [
 				renderNavigationActionThemeSelectorOn: canvas;
 				renderNavigationActionApplicationsMenuOn: canvas;
 				renderNavigationActionUserMenuOn: canvas ]
+]
+
+{ #category : #rendering }
+F4SNavigationComponent >> renderNavigationBodyContentOn: canvas [
+	self isNavbarVertical
+		ifTrue: [ canvas navigation
+				class: 'navbar navbar-light navbar-glass navbar-top navbar-expand';
+				with: [ self
+						renderNavigationToggleTarget: 'navbarVerticalCollapse'
+						inContent: true
+						on: canvas.
+					self renderBrandInContent: true on: canvas.
+
+					canvas unorderedList
+						class: 'navbar-nav align-items-center d-none d-lg-block';
+						with: [ canvas listItem
+								class: 'nav-item';
+								with: [ self renderSearchOn: canvas ] ].
+					self renderNavigationActionsOn: canvas ] ]
 ]
 
 { #category : #'rendering-navigation' }

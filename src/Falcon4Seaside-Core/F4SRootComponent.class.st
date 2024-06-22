@@ -247,7 +247,7 @@ F4SRootComponent >> renderNavigationBodyContentOn: canvas [
 
 { #category : #rendering }
 F4SRootComponent >> renderNavigationOn: canvas [ 
-	canvas render: self navigationComponent
+	"canvas render: self navigationComponent"
 ]
 
 { #category : #updating }
