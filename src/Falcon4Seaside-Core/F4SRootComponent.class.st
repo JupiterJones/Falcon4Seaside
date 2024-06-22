@@ -178,6 +178,11 @@ F4SRootComponent >> initializeNavigation [
 				yourself ]
 ]
 
+{ #category : #initialization }
+F4SRootComponent >> initializeNavigationItems [
+	
+]
+
 { #category : #accessing }
 F4SRootComponent >> leftToRightOrRightToLeft [
 	^ (self application configuration at: #isRTL)

@@ -7,11 +7,6 @@ Class {
 	#category : #'Falcon4Seaside-Core'
 }
 
-{ #category : #actions }
-F4SNavigationComponent >> addNavItem: aNavItem [
-	navigation add: aNavItem
-]
-
 { #category : #accessing }
 F4SNavigationComponent >> brandImageUrl [
 	^ self fileLibraryClass / #imagesfaviconappletouchiconPng

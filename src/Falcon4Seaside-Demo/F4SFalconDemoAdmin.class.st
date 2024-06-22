@@ -220,10 +220,11 @@ F4SFalconDemoAdmin >> dashboardNavigation [
 { #category : #initalization }
 F4SFalconDemoAdmin >> initializeNavigation [
 	super initializeNavigation.
-	self addNavItem: self topLevelNavigation;
-		addNavItem: self dashboardNavigation;
-		addNavItem: self appNavigation;
-		addNavItem: self pagesNavigation
+	navigationItems
+		add: self topLevelNavigation;
+		add: self dashboardNavigation;
+		add: self appNavigation;
+		add: self pagesNavigation
 ]
 
 { #category : #navigation }
