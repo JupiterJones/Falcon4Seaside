@@ -27,6 +27,11 @@ F4SCompositeComponent class >> parent: aParentComponent [
 ]
 
 { #category : #accessing }
+F4SCompositeComponent >> announcer [
+	^ announcer
+]
+
+{ #category : #accessing }
 F4SCompositeComponent >> childOfType: componentClass [
 	^ components
 		detect: [ :childComponent | childComponent class == componentClass ]
@@ -119,7 +124,7 @@ F4SCompositeComponent >> root [
 ]
 
 { #category : #accessing }
-F4SCompositeComponent >> rootAnouncer [
+F4SCompositeComponent >> rootAnnouncer [
 	^ self root announcer
 ]
 

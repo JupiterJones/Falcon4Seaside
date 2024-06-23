@@ -17,17 +17,6 @@ F4SNavigationComponent >> brandLabel [
 	^ self root applicationName
 ]
 
-{ #category : #accessing }
-F4SNavigationComponent >> containerClass [
-	"Answers 'container' or 'container-fluid'"
-
-	^ String
-		streamContents: [ :stream | 
-			stream nextPutAll: 'container'.
-			(self application configuration at: #isFluid)
-				ifTrue: [ stream nextPutAll: '-fluid' ] ]
-]
-
 { #category : #initialization }
 F4SNavigationComponent >> initialize [
 	super initialize.
@@ -74,6 +63,12 @@ F4SNavigationComponent >> navigation: navigationItems [
 	navigation := navigationItems
 ]
 
+{ #category : #accessing }
+F4SNavigationComponent >> navigationItemSelected: navItem [
+	navItem component
+		ifNotNil: [ :component | self rootAnnouncer announce: (F4SComponentSelected component: navItem component) ]
+]
+
 { #category : #'rendering-navigation' }
 F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
 	^ canvas span
@@ -84,9 +79,11 @@ F4SNavigationComponent >> renderBadge: badgeValue on: canvas [
 { #category : #'rendering-navigation' }
 F4SNavigationComponent >> renderBrandInContent: inContent on: canvas [
 	"Another falcon mess."
+
 	canvas anchor
 		class: 'navbar-brand';
 		class: 'me-1 me-sm-3' if: inContent;
+		callback: [ self navigationItemSelected: self root initialComponent ];
 		with: [ canvas div
 				class: 'd-flex align-items-center';
 				class: 'py-3' if: inContent not;
@@ -429,12 +426,12 @@ F4SNavigationComponent >> renderNavigationTopItem: navItem on: canvas [
 	navItem isVisible
 		ifTrue: [ canvas anchor
 				class: 'nav-link dropdown-toggle';
-				url: '#';
 				attributeAt: 'role' put: 'button';
 				attributeAt: 'data-bs-toggle' put: 'dropdown';
 				attributeAt: 'aria-haspopup' put: 'true';
 				attributeAt: 'aria-expanded' put: 'false';
 				id: (dropdownId := canvas nextId);
+				callback: [ self navigationItemSelected: navItem  ];
 				with: [ canvas text: navItem title ].
 			canvas div
 				class: 'dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0';
@@ -501,6 +498,7 @@ F4SNavigationComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 							self renderNavigationTopLayoutLinks: navItem children on: canvas ]
 						ifFalse: [ canvas anchor
 								class: 'nav-link py-1 link-600 fw-medium';
+								callback: [ self navigationItemSelected: navItem ];
 								with: [ canvas text: navItem title.
 									navItem badgeValue
 										ifNotNil: [ self renderBadge: navItem badgeValue on: canvas ] ] ] ] ]
@@ -562,6 +560,7 @@ F4SNavigationComponent >> renderNavigationVerticalItem: navItem on: canvas [
 				ifFalse: [ navItem isVisible
 						ifTrue: [ canvas anchor
 								class: 'nav-link';
+								callback: [ self navigationItemSelected: navItem ];
 								with: [ canvas div
 										class: 'd-flex align-items-center';
 										with: [ self renderIcon: navItem icon on: canvas.
