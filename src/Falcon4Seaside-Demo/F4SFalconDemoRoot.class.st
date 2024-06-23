@@ -21,7 +21,7 @@ F4SFalconDemoRoot class >> windowTitle [
 
 { #category : #accessing }
 F4SFalconDemoRoot >> adminComponent [
-	^ self componentAt: #admin ifAbsentPut: [ F4SFalconDemoAdmin parent: self ]
+	^ self componentAt: #admin ifAbsentPut: [ F4SDefaultDashboard parent: self ]
 ]
 
 { #category : #navigation }

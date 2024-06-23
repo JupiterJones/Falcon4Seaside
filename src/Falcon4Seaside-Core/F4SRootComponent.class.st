@@ -173,7 +173,7 @@ F4SRootComponent >> initializeNavigation [
 	navigationItems := OrderedCollection new.
 	self
 		componentAt: #navigation
-		ifAbsentPut: [ F4SNavigationComponent new
+		ifAbsentPut: [ (F4SNavigationComponent parent: self)
 				navigation: navigationItems;
 				yourself ]
 ]
@@ -216,7 +216,8 @@ F4SRootComponent >> renderContentOn: canvas [
 
 					self
 						renderNavigationOn: canvas;
-						renderBodyContentOn: canvas ] ]
+						renderBodyContentOn: canvas ] ].
+	self renderEndOfBodyScriptsOn: canvas
 ]
 
 { #category : #rendering }
@@ -237,12 +238,12 @@ F4SRootComponent >> renderEndOfBodyScriptsOn: canvas [
 
 { #category : #rendering }
 F4SRootComponent >> renderNavigationBodyContentOn: canvas [
-	"self navigationComponent renderNavigationBodyContentOn: canvas"
+	self navigationComponent renderNavigationBodyContentOn: canvas
 ]
 
 { #category : #rendering }
-F4SRootComponent >> renderNavigationOn: canvas [ 
-	"canvas render: self navigationComponent"
+F4SRootComponent >> renderNavigationOn: canvas [
+	canvas render: self navigationComponent
 ]
 
 { #category : #updating }
