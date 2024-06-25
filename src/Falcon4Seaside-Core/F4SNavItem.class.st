@@ -192,9 +192,10 @@ F4SNavItem >> comment: aString [
 { #category : #accessing }
 F4SNavItem >> component [
 	^ component
-		ifNil: [ component := self parentComponent
+		ifNil: [ | p |
+			component := (p := self parentComponent)
 					componentAt: self
-					ifAbsentPut: [ self componentClass parent: self parentComponent ] ]
+					ifAbsentPut: [ self componentClass parent: p ] ]
 ]
 
 { #category : #accessing }
