@@ -192,6 +192,9 @@ F4SNavItem >> comment: aString [
 { #category : #accessing }
 F4SNavItem >> component [
 	^ component
+		ifNil: [ component := self parentComponent
+					componentAt: self
+					ifAbsentPut: [ self componentClass parent: self parentComponent ] ]
 ]
 
 { #category : #accessing }
@@ -199,6 +202,18 @@ F4SNavItem >> component: aComponent [
 	component := aComponent
 			navItem: self;
 			yourself
+]
+
+{ #category : #'properties-cached' }
+F4SNavItem >> componentClass [
+	"Answer the component class. Used to lazily create the component"
+
+	^ properties at: #componentClass ifAbsent: [ nil ]
+]
+
+{ #category : #properties }
+F4SNavItem >> componentClass: aClass [
+	properties at: #componentClass put: aClass
 ]
 
 { #category : #defaults }
@@ -375,6 +390,13 @@ F4SNavItem >> parent [
 { #category : #accessing }
 F4SNavItem >> parent: aParent [
 	parent := aParent
+]
+
+{ #category : #accessing }
+F4SNavItem >> parentComponent [
+	^ parent class == F4SNavItem
+		ifTrue: [ parent parentComponent ]
+		ifFalse: [ parent ]
 ]
 
 { #category : #printing }

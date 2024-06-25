@@ -209,7 +209,7 @@ F4SFalconDemoRoot >> dashboardNavigation [
 		icon: 'chart-pie';
 		addChild: (F4SNavItem new
 				title: 'Default';
-				component: (F4SDefaultDashboard parent: self);
+				componentClass: F4SDefaultDashboard;
 				yourself);
 		addChild: (F4SNavItem new
 				title: 'Analytics' seasideTranslated;
