@@ -393,6 +393,13 @@ F4SRootComponent >> updateRootStyles: anHtmlRoot [
         }'.
 ]
 
+{ #category : #updating }
+F4SRootComponent >> updateRootTheme: anHtmlRoot [
+	anHtmlRoot meta
+		name: 'theme-color';
+		content: '#ffffff'
+]
+
 { #category : #accessing }
 F4SRootComponent >> windowTitle [
 	^ self class windowTitle
