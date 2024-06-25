@@ -170,12 +170,9 @@ F4SRootComponent >> initialize [
 
 { #category : #initialization }
 F4SRootComponent >> initializeNavigation [
-	navigationItems := OrderedCollection new.
 	self
 		componentAt: #navigation
-		ifAbsentPut: [ (F4SNavigationComponent parent: self)
-				navigation: navigationItems;
-				yourself ]
+		ifAbsentPut: [ F4SNavigationComponent parent: self ]
 ]
 
 { #category : #accessing }
@@ -394,19 +391,6 @@ F4SRootComponent >> updateRootStyles: anHtmlRoot [
             linkRTL.setAttribute("disabled", true);
             userLinkRTL.setAttribute("disabled", true);
         }'.
-]
-
-{ #category : #updating }
-F4SRootComponent >> updateRootTheme: anHtmlRoot [
-	"Add links for the theme"
-	
-	"Setting theme color"
-    anHtmlRoot meta
-        name: 'theme-color';
-        content: '#ffffff'.
-
-    "Adding theme config JavaScript"
-    anHtmlRoot script with: self configJs
 ]
 
 { #category : #accessing }

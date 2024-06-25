@@ -245,11 +245,11 @@ F4SFalconDemoRoot >> initialComponent [
 { #category : #initalization }
 F4SFalconDemoRoot >> initializeNavigation [
 	super initializeNavigation.
-	navigationItems
-		add: self topLevelNavigation;
-		add: self dashboardNavigation;
-		add: self appNavigation;
-		add: self pagesNavigation
+	self navigationComponent 
+		addNavItem: self topLevelNavigation;
+		addNavItem: self dashboardNavigation;
+		addNavItem: self appNavigation;
+		addNavItem: self pagesNavigation
 ]
 
 { #category : #accessing }
