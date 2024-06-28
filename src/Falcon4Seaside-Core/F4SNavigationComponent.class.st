@@ -25,10 +25,6 @@ F4SNavigationComponent >> brandLabel [
 	^ self root applicationName
 ]
 
-{ #category : #'rendering-navigation' }
-F4SNavigationComponent >> homeComponent [
-]
-
 { #category : #api }
 F4SNavigationComponent >> homeNavItem [
 	"Answer the first navItem found with #isHome set"
@@ -78,12 +74,16 @@ F4SNavigationComponent >> isNavbarVibrant [
 ]
 
 { #category : #api }
-F4SNavigationComponent >> navItemWithKey: aKey in: navItem [
+F4SNavigationComponent >> navItemSearchBlock: searchBlock in: navItems [
 	"Answer the first navItem found with aKey set"
 
-	self isHome ifTrue: [ ^ self ].
-	self hasChildren
-		and: [ (navItem navItemWithKey: aKey in: navItem children) ifNotNil: [ :ni | ^ ni ] ]
+	navItems
+		do: [ :navItem | 
+			navItem isHome ifTrue: [ ^ self ].
+			navItem hasChildren
+				ifTrue: [ (self navItemSearchBlock: searchBlock in: navItem children)
+						ifNotNil: [ :nsvItem | ^ navItem ] ] ].
+	^ nil
 ]
 
 { #category : #initialization }
@@ -111,7 +111,7 @@ F4SNavigationComponent >> renderBrandInContent: inContent on: canvas [
 	canvas anchor
 		class: 'navbar-brand';
 		class: 'me-1 me-sm-3' if: inContent;
-		callback: [ self navigationItemSelected: self homeComponent ];
+		callback: [ self navigationItemSelected: self homeNavItem ];
 		with: [ canvas div
 				class: 'd-flex align-items-center';
 				class: 'py-3' if: inContent not;
