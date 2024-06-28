@@ -136,6 +136,11 @@ F4SNavItem >> beHidden [
 	self isVisible: false
 ]
 
+{ #category : #actions }
+F4SNavItem >> beHome [
+	self isHome: true
+]
+
 { #category : #'properties-cached' }
 F4SNavItem >> buildNavigationLayout [
 	| layout |
@@ -349,6 +354,16 @@ F4SNavItem >> isGroup: aBoolean [
 	properties at: #isGroup put: aBoolean
 ]
 
+{ #category : #properties }
+F4SNavItem >> isHome [
+	^ properties at: #isHome ifAbsent: [ false ]
+]
+
+{ #category : #properties }
+F4SNavItem >> isHome: aBoolean [
+	properties at: #isHome put: aBoolean
+]
+
 { #category : #testing }
 F4SNavItem >> isPositioned [
 	"Answer true if myself or one of my parents is positioned"
@@ -369,6 +384,7 @@ F4SNavItem >> isVisible: aBoolean [
 
 { #category : #searching }
 F4SNavItem >> itemsForRow: aRow column: aColumn [
+	"For laying out menu items in top navigation"
 	| items |
 	items := OrderedCollection new.
 	(self row== aRow and: [ self column == aColumn ]) ifTrue: [ items add: self ]
@@ -473,6 +489,16 @@ F4SNavItem >> rows [
 		ifAbsentPut: [ self children
 				inject: self row
 				into: [ :maxRow :navItem | maxRow max: navItem rows ] ]
+]
+
+{ #category : #searching }
+F4SNavItem >> search: searchBlock in: aCollection [
+	aCollection
+		do: [ :navItem | 
+			(searchBlock value: navItem) ifTrue: [ ^ navItem ].
+			(self search: searchBlock in: navItem children)
+				ifNotNil: [ :foundNavItem | ^ foundNavItem ] ].
+	^ nil
 ]
 
 { #category : #properties }

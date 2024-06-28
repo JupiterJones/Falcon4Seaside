@@ -7,7 +7,7 @@ Class {
 	#category : #'Falcon4Seaside-Core'
 }
 
-{ #category : #updating }
+{ #category : #api }
 F4SNavigationComponent >> addNavItem: aNavItem [
 	navigation
 		add: (aNavItem
@@ -23,6 +23,17 @@ F4SNavigationComponent >> brandImageUrl [
 { #category : #accessing }
 F4SNavigationComponent >> brandLabel [
 	^ self root applicationName
+]
+
+{ #category : #'rendering-navigation' }
+F4SNavigationComponent >> homeComponent [
+]
+
+{ #category : #api }
+F4SNavigationComponent >> homeNavItem [
+	"Answer the first navItem found with #isHome set"
+
+	self navItemSearchBlock: [ :navItem | navItem isHome ] in: navigation
 ]
 
 { #category : #initialization }
@@ -66,6 +77,15 @@ F4SNavigationComponent >> isNavbarVibrant [
 	^ (self application preferenceAt: #navbarStyle) = 'vibrant'
 ]
 
+{ #category : #api }
+F4SNavigationComponent >> navItemWithKey: aKey in: navItem [
+	"Answer the first navItem found with aKey set"
+
+	self isHome ifTrue: [ ^ self ].
+	self hasChildren
+		and: [ (navItem navItemWithKey: aKey in: navItem children) ifNotNil: [ :ni | ^ ni ] ]
+]
+
 { #category : #initialization }
 F4SNavigationComponent >> navigation: navigationItems [ 
 	navigation := navigationItems
@@ -91,7 +111,7 @@ F4SNavigationComponent >> renderBrandInContent: inContent on: canvas [
 	canvas anchor
 		class: 'navbar-brand';
 		class: 'me-1 me-sm-3' if: inContent;
-		callback: [ self navigationItemSelected: self root initialComponent ];
+		callback: [ self navigationItemSelected: self homeComponent ];
 		with: [ canvas div
 				class: 'd-flex align-items-center';
 				class: 'py-3' if: inContent not;

@@ -460,7 +460,8 @@ F4SFalconDemoRoot >> topLevelNavigation [
 		addChild: (F4SNavItem new
 				title: 'Home' seasideTranslated;
 				icon: 'home';
-				component: F4SLandingComponent;
+				componentClass: F4SLandingComponent;
+				beHome;
 				yourself);
 		yourself
 ]
