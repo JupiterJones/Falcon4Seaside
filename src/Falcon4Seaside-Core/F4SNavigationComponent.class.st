@@ -29,7 +29,7 @@ F4SNavigationComponent >> brandLabel [
 F4SNavigationComponent >> homeNavItem [
 	"Answer the first navItem found with #isHome set"
 
-	self navItemSearchBlock: [ :navItem | navItem isHome ] in: navigation
+	^ self navItemSearchBlock: [ :navItem | navItem isHome ] in: navigation
 ]
 
 { #category : #initialization }
@@ -79,7 +79,7 @@ F4SNavigationComponent >> navItemSearchBlock: searchBlock in: navItems [
 
 	navItems
 		do: [ :navItem | 
-			navItem isHome ifTrue: [ ^ self ].
+			(searchBlock value: navItem) ifTrue: [ ^ navItem ].
 			navItem hasChildren
 				ifTrue: [ (self navItemSearchBlock: searchBlock in: navItem children)
 						ifNotNil: [ :nsvItem | ^ navItem ] ] ].
