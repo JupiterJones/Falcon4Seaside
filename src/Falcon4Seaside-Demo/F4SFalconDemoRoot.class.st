@@ -237,11 +237,6 @@ F4SFalconDemoRoot >> dashboardNavigation [
 		yourself
 ]
 
-{ #category : #accessing }
-F4SFalconDemoRoot >> initialComponent [
-	^ self landingComponent
-]
-
 { #category : #initalization }
 F4SFalconDemoRoot >> initializeNavigation [
 	super initializeNavigation.

@@ -1,9 +1,6 @@
 Class {
 	#name : #F4SRootComponent,
 	#superclass : #F4SCompositeComponent,
-	#instVars : [
-		'navigationItems'
-	],
 	#category : #'Falcon4Seaside-Core'
 }
 
@@ -157,15 +154,11 @@ F4SRootComponent >> fileLibraryClass [
 ]
 
 { #category : #initialization }
-F4SRootComponent >> initialComponent [
-	^ self subclassResponsibility
-]
-
-{ #category : #initialization }
 F4SRootComponent >> initialize [
 	super initialize.
 	self initializeNavigation.
-	announcer announce: (F4SComponentSelected component: self initialComponent).
+	self navigationComponent homeNavItem
+		ifNotNil: [ :navItem | self navigationComponent navigationItemSelected: navItem ]
 ]
 
 { #category : #initialization }
