@@ -82,7 +82,7 @@ F4SNavigationComponent >> navItemSearchBlock: searchBlock in: navItems [
 			(searchBlock value: navItem) ifTrue: [ ^ navItem ].
 			navItem hasChildren
 				ifTrue: [ (self navItemSearchBlock: searchBlock in: navItem children)
-						ifNotNil: [ :nsvItem | ^ navItem ] ] ].
+						ifNotNil: [ :foundItem | ^ foundItem ] ] ].
 	^ nil
 ]
 
