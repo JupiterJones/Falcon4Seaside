@@ -71,6 +71,21 @@ F4SRootComponent >> applicationName [
 	^ self class applicationName
 ]
 
+{ #category : #convig }
+F4SRootComponent >> configIsFluid [
+	^ (self application configuration at: #isFluid) asString
+]
+
+{ #category : #config }
+F4SRootComponent >> configIsNavbarVerticalCollapsed [
+	^ (self application configuration at: #isNavbarVerticalCollapsed) asString
+]
+
+{ #category : #config }
+F4SRootComponent >> configIsRTL [
+	^ (self application configuration at: #isRTL) asString
+]
+
 { #category : #scripts }
 F4SRootComponent >> configJs [
 	| stream |
@@ -85,27 +100,27 @@ var CONFIG = { '.
 
 	stream
 		nextPutAll: 'isNavbarVerticalCollapsed: ';
-		nextPutAll: (self application configuration at: #isNavbarVerticalCollapsed) asString;
+		nextPutAll: self configIsNavbarVerticalCollapsed;
 		nextPutAll: ', '.
 	stream
 		nextPutAll: 'theme: "';
-		nextPutAll: (self application configuration at: #theme);
+		nextPutAll: self configTheme;
 		nextPutAll: '", '.
 	stream
 		nextPutAll: 'isRTL: ';
-		nextPutAll: (self application configuration at: #isRTL) asString;
+		nextPutAll: self configIsRTL;
 		nextPutAll: ', '.
 	stream
 		nextPutAll: 'isFluid: ';
-		nextPutAll: (self application configuration at: #isFluid) asString;
+		nextPutAll: self configIsFluid;
 		nextPutAll: ', '.
 	stream
 		nextPutAll: 'navbarStyle: "';
-		nextPutAll: (self application configuration at: #navbarStyle);
+		nextPutAll: self configNavbarStyle;
 		nextPutAll: '", '.
 	stream
 		nextPutAll: 'navbarPosition: "';
-		nextPutAll: (self application configuration at: #navbarPosition);
+		nextPutAll: self configNavbarPosition;
 		nextPutAll: '"'.
 
 
@@ -124,7 +139,22 @@ if (localStorage.getItem("theme") === "dark") {
 } else if (localStorage.getItem("theme") === "auto") {
   document.documentElement.setAttribute("data-bs-theme", window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 }'.
-^ stream
+	^ stream
+]
+
+{ #category : #config }
+F4SRootComponent >> configNavbarPosition [
+	^ self application configuration at: #navbarPosition
+]
+
+{ #category : #config }
+F4SRootComponent >> configNavbarStyle [
+	^ self application configuration at: #navbarStyle
+]
+
+{ #category : #config }
+F4SRootComponent >> configTheme [
+	^ self application configuration at: #theme
 ]
 
 { #category : #access }
