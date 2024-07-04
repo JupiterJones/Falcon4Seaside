@@ -126,8 +126,9 @@ var CONFIG = { '.
 
 	stream
 		nextPutAll: '}; 
+let forceUpdate = true;
 Object.keys(CONFIG).forEach(function (key) {
-  if (localStorage.getItem(key) === null) {
+  if (forceUpdate || (localStorage.getItem(key) === null)) {
     localStorage.setItem(key, CONFIG[key]);
   }
 });
@@ -346,6 +347,7 @@ F4SRootComponent >> updateRootFavIcon: anHtmlRoot [
 { #category : #updating }
 F4SRootComponent >> updateRootScripts: anHtmlRoot [ 
 	"Add scripts that will be loaded on every page"
+	anHtmlRoot script with:  self configJs.
 	
 	"Adding external JavaScript file for SimpleBar"
     anHtmlRoot script
