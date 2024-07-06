@@ -96,6 +96,11 @@ F4SCompositeComponent >> isRootOfType [
 ]
 
 { #category : #accessing }
+F4SCompositeComponent >> parent [
+	^ parent 
+]
+
+{ #category : #accessing }
 F4SCompositeComponent >> parent: aParentComponent [
 	parent := aParentComponent
 ]

@@ -583,11 +583,13 @@ F4SNavigationComponent >> renderNavigationVerticalItem: navItem on: canvas [
 							navItem children notEmpty
 								ifTrue: [ canvas unorderedList
 										class: 'nav collapse';
+										class: 'show' if: navItem isInPathOfActiveNavItem;
 										id: dropdownId;
 										with: [ self renderNavigationVerticalItems: navItem children on: canvas ] ] ] ]
 				ifFalse: [ navItem isVisible
 						ifTrue: [ canvas anchor
 								class: 'nav-link';
+								class: 'active' if: navItem isActive;
 								callback: [ self navigationItemSelected: navItem ];
 								with: [ canvas div
 										class: 'd-flex align-items-center';

@@ -90,6 +90,16 @@ F4SNavItem class >> defaultTitleColor [
 	^ nil
 ]
 
+{ #category : #testing }
+F4SNavItem >> activeChild [
+	"Answer nil or the child, or child of child that #isActive"
+
+	self isActive ifTrue: [ ^ self ].
+	children
+		do: [ :child | child activeChild ifNotNil: [ :activeChild | ^ activeChild ] ].
+	^ nil
+]
+
 { #category : #actions }
 F4SNavItem >> addChild: aNavItem [
 	children add: aNavItem.
@@ -346,6 +356,12 @@ F4SNavItem >> initialize [
 	properties := Dictionary new
 ]
 
+{ #category : #testing }
+F4SNavItem >> isActive [
+	"I don't like this method because parentCompoent parent doesn't feel like a solid connection or understanding. This kind of smell probably means the navigation should be refactored"
+	^ component == self parentComponent parent selectedComponent
+]
+
 { #category : #properties }
 F4SNavItem >> isGroup [
 	^ properties at: #isGroup ifAbsentPut: [ self defaultIsGroup ]
@@ -364,6 +380,11 @@ F4SNavItem >> isHome [
 { #category : #properties }
 F4SNavItem >> isHome: aBoolean [
 	properties at: #isHome put: aBoolean
+]
+
+{ #category : #testing }
+F4SNavItem >> isInPathOfActiveNavItem [
+	^ self activeChild notNil
 ]
 
 { #category : #testing }
