@@ -459,7 +459,6 @@ F4SNavigationComponent >> renderNavigationTopItem: navItem on: canvas [
 				attributeAt: 'aria-haspopup' put: 'true';
 				attributeAt: 'aria-expanded' put: 'false';
 				id: (dropdownId := canvas nextId);
-				callback: [ self navigationItemSelected: navItem  ];
 				with: [ canvas text: navItem title ].
 			canvas div
 				class: 'dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0';
@@ -526,6 +525,7 @@ F4SNavigationComponent >> renderNavigationTopLayoutLinks: navItems on: canvas [
 							self renderNavigationTopLayoutLinks: navItem children on: canvas ]
 						ifFalse: [ canvas anchor
 								class: 'nav-link py-1 link-600 fw-medium';
+								class: 'active' if: navItem isActive;
 								callback: [ self navigationItemSelected: navItem ];
 								with: [ canvas text: navItem title.
 									navItem badgeValue
@@ -561,8 +561,11 @@ F4SNavigationComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 				do: [ :item | 
 					canvas anchor
 						class: 'dropdown-item link-600 fw-medium';
+						class: 'active' if: item isActive;
+						callback: [ self navigationItemSelected: item ];
 						with: [ canvas text: item title.
-							item badgeValue ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ]
+							item badgeValue
+								ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
