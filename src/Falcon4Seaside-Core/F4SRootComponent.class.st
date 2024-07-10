@@ -125,7 +125,8 @@ var CONFIG = { '.
 
 
 	stream
-		nextPutAll: '}; 
+		nextPutAll: '};
+// For now, force the update from the server until a pattern emerges where this script makes sense
 let forceUpdate = true;
 Object.keys(CONFIG).forEach(function (key) {
   if (forceUpdate || (localStorage.getItem(key) === null)) {
