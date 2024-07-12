@@ -358,7 +358,7 @@ F4SNavItem >> initialize [
 
 { #category : #testing }
 F4SNavItem >> isActive [
-	"I don't like this method because parentCompoent parent doesn't feel like a solid connection or understanding. It assumes kinowledge that the parentCompoent parent is where this navigation stores it's selected component. It probably shouldn't, it should look after it's own selected component. This kind of smell probably means the navigation should be refactored"
+	"I don't like this method because parentCompoent parent doesn't feel like a solid connection or understanding. It assumes knowledge that the parentCompoent parent is where this navigation stores it's selected component. It probably shouldn't, it should look after it's own selected component. This kind of smell probably means the navigation should be refactored"
 	^ component == self parentComponent parent selectedComponent
 ]
 
