@@ -28,5 +28,6 @@ BaselineOfFalcon4Seaside >> baseline: spec [
 				package: 'Falcon4Seaside-FileLibrary';
 				package: 'Falcon4Seaside-Core';
 				package: 'Falcon4Seaside-Localisation';
+				package: 'Falcon4Seaside-Widgets';
 				package: 'Falcon4Seaside-Demo' ]
 ]
