@@ -1,11 +1,11 @@
 Class {
-	#name : #F4SPricingAlternate,
+	#name : #F4SPricingAlternateWidget,
 	#superclass : #F4SPriceComparison,
 	#category : #'Falcon4Seaside-Widgets'
 }
 
 { #category : #accessing }
-F4SPricingAlternate >> renderContentOn: canvas [
+F4SPricingAlternateWidget >> originalOn: canvas [
     canvas div class: 'card mb-3'; with: [
         canvas div class: 'card-body'; with: [
             canvas div class: 'row justify-content-center'; with: [
@@ -143,4 +143,18 @@ F4SPricingAlternate >> renderContentOn: canvas [
             ]
         ]
     ].
+]
+
+{ #category : #accessing }
+F4SPricingAlternateWidget >> renderCardBodyOn: canvas [
+	canvas div
+		class: 'row justify-content-center';
+		with: [  ]
+]
+
+{ #category : #accessing }
+F4SPricingAlternateWidget >> renderContentOn: canvas [
+    canvas div class: 'card mb-3'; with: [
+        canvas div class: 'card-body'; with: [ self renderCardBodyOn: canvas]
+    ]
 ]
