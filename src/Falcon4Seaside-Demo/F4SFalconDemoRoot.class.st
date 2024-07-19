@@ -382,9 +382,11 @@ F4SFalconDemoRoot >> pagesNavigation [
 				row: 2 column: 2;
 				addChild: (F4SNavItem new
 						title: 'Pricing Default' seasideTranslated;
+						componentClass: F4SFalconPricingDefault;
 						yourself);
 				addChild: (F4SNavItem new
 						title: 'Pricing Alternate' seasideTranslated;
+						componentClass: F4SFalconPricingAlt;
 						yourself);
 				yourself);
 		addChild: (F4SNavItem new
