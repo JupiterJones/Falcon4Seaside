@@ -25,7 +25,7 @@ F4SPricingDefaultWidget >> renderContentOn: canvas [
                         canvas div class: 'col-sm-auto d-flex justify-content-center mt-1 mt-sm-0'; with: [
                             canvas label class: 'form-check-label me-2'; for: 'customSwitch1'; with: 'Monthly'.
                             canvas div class: 'form-check form-switch mb-0'; with: [
-                                canvas input class: 'form-check-input falcon-dual-switch'; id: 'customSwitch1'; type: 'checkbox'; attributeAt: 'checked' put: 'checked'.
+                                canvas checkbox class: 'form-check-input falcon-dual-switch'; id: 'customSwitch1'; type: 'checkbox'; attributeAt: 'checked' put: 'checked'.
                                 canvas label class: 'form-check-label align-top'; for: 'customSwitch1'; with: 'Yearly'
                             ]
                         ]
@@ -156,7 +156,7 @@ F4SPricingDefaultWidget >> renderContentOn: canvas [
                     canvas heading level: 5; class: 'mt-5'; with: 'Looking for personal or small team task management?'.
                     canvas paragraph class: 'fs-8'; with: [
                         canvas text: 'Try the '.
-                        canvas anchor; url: '#'; with: 'basic version'.
+                        canvas anchor url: '#'; with: 'basic version'.
                         canvas text: ' of Falcon'
                     ]
                 ]
