@@ -106,15 +106,6 @@ F4SCompositeComponent >> parent: aParentComponent [
 ]
 
 { #category : #accessing }
-F4SCompositeComponent >> pathToRoot [
-	^ self isRoot
-		ifTrue: [ ^ #(self) ]
-		ifFalse: [ parent pathToRoot
-				add: self;
-				yourself ]
-]
-
-{ #category : #accessing }
 F4SCompositeComponent >> pathToRootOfType [
 	^ self isRootOfType
 		ifTrue: [ ^ #(self) ]
@@ -136,4 +127,13 @@ F4SCompositeComponent >> rootAnnouncer [
 { #category : #accessing }
 F4SCompositeComponent >> selectedComponent [
 	^ selectedComponent
+]
+
+{ #category : #accessing }
+F4SCompositeComponent >> tagPathToRoot [
+	^ self isRoot
+		ifTrue: [ ^ #(self) ]
+		ifFalse: [ parent tagPathToRoot
+				add: self;
+				yourself ]
 ]
