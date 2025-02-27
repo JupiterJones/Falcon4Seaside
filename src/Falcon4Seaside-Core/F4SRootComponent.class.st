@@ -239,7 +239,9 @@ F4SRootComponent >> renderContentOn: canvas [
 					self
 						renderNavigationOn: canvas;
 						renderBodyContentOn: canvas ] ].
-	self renderEndOfBodyScriptsOn: canvas
+	self renderEndOfBodyScriptsOn: canvas.
+	canvas
+		paragraph: 'SSL Session ID: ' , self requestContext request sslSessionId asString
 ]
 
 { #category : #rendering }
@@ -287,7 +289,7 @@ F4SRootComponent >> updateRoot: anHtmlRoot [
 	self updateRootFavIcon: anHtmlRoot.
 	self updateRootTheme: anHtmlRoot.
 	self updateRootScripts: anHtmlRoot.
-	self updateRootStyles: anHtmlRoot
+	self updateRootStyles: anHtmlRoot.
 ]
 
 { #category : #updating }
