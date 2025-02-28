@@ -344,14 +344,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-26T18:18:06.788727+11:00"
+						"dateAndTimeString" : "2025-02-27T19:19:19.923253+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "oM1kG2jrDQCDeaPoA7Aaeg=="
 				},
-				"code" : "'fred' capitalized"
+				"code" : "'Categories' asUppercase"
 			}
 		]
 	},

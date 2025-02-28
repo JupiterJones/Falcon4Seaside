@@ -563,11 +563,14 @@ F4SNavigationComponent >> renderNavigationTopSimpleItem: navItem on: canvas [
 						class: 'dropdown-item link-600 fw-medium';
 						class: 'active' if: item isActive;
 						callback: [ self navigationItemSelected: item ];
-						with: [ self renderIcon: item icon on: canvas.
-							canvas space.
-							canvas text: item title.
-							item badgeValue
-								ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ]
+						with: [ canvas span
+								class: 'nav-link-icon pe-2';
+								with: [ self renderIcon: item icon on: canvas ].
+							canvas span
+								class: 'nav-link-text';
+								with: [ canvas text: item title.
+									item badgeValue
+										ifNotNil: [ self renderBadge: item badgeValue on: canvas ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
