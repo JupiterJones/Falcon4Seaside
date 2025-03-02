@@ -236,9 +236,12 @@ F4SRootComponent >> renderContentOn: canvas [
             container.classList.add("container-fluid");
           }'.
 
-					self
-						renderNavigationOn: canvas;
-						renderBodyContentOn: canvas ] ].
+					"Don't like this much - think of something cleaner"
+					self session isLocked
+						ifTrue: [  "Render Lock Screen" ]
+						ifFalse: [ self
+								renderNavigationOn: canvas;
+								renderBodyContentOn: canvas ] ] ].
 	self renderEndOfBodyScriptsOn: canvas.
 	canvas
 		paragraph: 'SSL Session ID: ' , self requestContext request sslSessionId asString

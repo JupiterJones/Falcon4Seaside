@@ -18,6 +18,11 @@ F4SSession >> initializeFilters [
 ]
 
 { #category : #testing }
+F4SSession >> isLocked [
+	^ lockUser notNil
+]
+
+{ #category : #testing }
 F4SSession >> isLoggedIn [
 	^ user notNil
 ]

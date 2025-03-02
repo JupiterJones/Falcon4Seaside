@@ -344,14 +344,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-27T19:18:55.609966+11:00"
+						"dateAndTimeString" : "2025-02-28T11:06:07.718079+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "oM1kG2jrDQCDeaPoA7Aaeg=="
 				},
-				"code" : "'Categories'  capitalized"
+				"code" : "Metacello new\r\tbaseline: 'BpmFlow';\r\trepository: 'gitlocal:///opt/git/JupiterSmalltalk/BpmFlow/repository';\r\tget"
 			}
 		]
 	},
