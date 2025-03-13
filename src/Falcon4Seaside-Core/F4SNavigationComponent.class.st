@@ -142,6 +142,7 @@ F4SNavigationComponent >> renderIcon: iconKey on: canvas [
 
 { #category : #'rendering-navigation' }
 F4SNavigationComponent >> renderNavigationActionApplicationsMenuOn: canvas [
+	"Render navItem with the title #applicationsMenu"
 	| id |
 	canvas listItem
 		class: 'nav-item dropdown';
@@ -203,6 +204,98 @@ F4SNavigationComponent >> renderNavigationActionApplicationsMenuOn: canvas [
 																	canvas paragraph
 																		class: 'mb-0 fw-medium text-800 text-truncate fs-11 pt-1';
 																		with: [ canvas text: 'BI' ] ] ] ] ] ] ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SNavigationComponent >> renderNavigationActionNotificationsMenuOn: canvas [
+	canvas listItem
+		class: 'nav-item dropdown';
+		with: [ canvas anchor
+				class: 'nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait';
+				id: 'navbarDropdownNotification';
+				attributeAt: 'role' put: 'button';
+				attributeAt: 'data-bs-toggle' put: 'dropdown';
+				attributeAt: 'aria-haspopup' put: 'true';
+				attributeAt: 'aria-expanded' put: 'false';
+				attributeAt: 'data-hide-on-body-scroll' put: 'data-hide-on-body-scroll';
+				with: [ canvas span
+						class: 'fas fa-bell';
+						attributeAt: 'data-fa-transform' put: 'shrink-6';
+						style: 'font-size: 33px;' ].
+
+			canvas div
+				class: 'dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg';
+				attributeAt: 'aria-labelledby' put: 'navbarDropdownNotification';
+				with: [ canvas div
+						class: 'card card-notification shadow-none';
+						with: [ canvas div
+								class: 'card-header';
+								with: [ canvas div
+										class: 'row justify-content-between align-items-center';
+										with: [ canvas div
+												class: 'col-auto';
+												with: [ canvas heading
+														level: 6;
+														class: 'card-header-title mb-0';
+														with: [ canvas text: 'Notifications' ] ].
+											canvas div
+												class: 'col-auto ps-0 ps-sm-3';
+												with: [ canvas anchor
+														class: 'card-link fw-normal';
+														url: '#';
+														with: [ canvas text: 'Mark all as read' ] ] ] ].
+							canvas div
+								class: 'scrollbar-overlay';
+								style: 'max-height:19rem';
+								with: [ canvas div
+										class: 'list-group list-group-flush fw-normal fs-10';
+										with: [ canvas div
+												class: 'list-group-title border-bottom';
+												with: [ canvas text: 'NEW' ].
+											self
+												renderNotificationItemOn: canvas
+												avatar: F4SFalconDemoFileLibrary / #team1ThumbPng
+												name: 'Emma Watson'
+												message: 'replied to your comment : "Hello world 😍"'
+												time: 'Just now'
+												emoji: '💬'.
+											self
+												renderNotificationItemOn: canvas
+												avatar: nil
+												name: 'Albert Brooks'
+												message: 'reacted to Mia Khalifas status'
+												time: '9hr'
+												emoji: '❤️'.
+											canvas div
+												class: 'list-group-title border-bottom';
+												with: [ canvas text: 'EARLIER' ].
+											self
+												renderNotificationItemOn: canvas
+												avatar: F4SFalconDemoFileLibrary / #weatherSmJpg
+												name: ''
+												message: 'The forecast today shows a low of 20°C in California. See todays weather.'
+												time: '1d'
+												emoji: '🌤️'.
+											self
+												renderNotificationItemOn: canvas
+												avatar: F4SFalconDemoFileLibrary / #oxfordPng
+												name: 'University of Oxford'
+												message: 'created an event : "Causal Inference Hilary 2019"'
+												time: '1w'
+												emoji: '✌️'.
+											self
+												renderNotificationItemOn: canvas
+												avatar: F4SFalconDemoFileLibrary / #team10Jpg
+												name: 'James Cameron'
+												message: 'invited to join the group: United Nations International Childrens Fund'
+												time: '2d'
+												emoji: '🙋‍' ] ].
+							canvas div
+								class: 'card-footer text-center border-top';
+								with: [ canvas anchor
+										class: 'card-link d-block';
+										url: 'app/social/notifications.html';
+										with: [ canvas text: 'View all' ] ] ] ] ]
 ]
 
 { #category : #'rendering-navigation' }
@@ -288,6 +381,8 @@ F4SNavigationComponent >> renderNavigationActionThemeSelectorOn: canvas [
 
 { #category : #'rendering-navigation' }
 F4SNavigationComponent >> renderNavigationActionUserMenuOn: canvas [
+	"Render navItem with the title #userMenu"
+
 	canvas listItem
 		class: 'nav-item dropdown';
 		with: [ canvas anchor
@@ -348,6 +443,7 @@ F4SNavigationComponent >> renderNavigationActionsOn: canvas [
 		class: 'navbar-nav navbar-nav-icons ms-auto flex-row align-items-center';
 		with: [ self
 				renderNavigationActionThemeSelectorOn: canvas;
+				renderNavigationActionNotificationsMenuOn: canvas;
 				renderNavigationActionApplicationsMenuOn: canvas;
 				renderNavigationActionUserMenuOn: canvas ]
 ]
@@ -682,6 +778,41 @@ F4SNavigationComponent >> renderNavigationVerticalOn: canvas [
 								class: 'navbar-nav flex-column mb-3';
 								id: 'navbarVerticalNav';
 								with: [ self renderNavigationVerticalItems: navigation on: canvas ] ] ] ]
+]
+
+{ #category : #'rendering-navigation' }
+F4SNavigationComponent >> renderNotificationItemOn: canvas avatar: avatar name: name message: message time: time emoji: emoji [
+	canvas div
+		class: 'list-group-item';
+		with: [ canvas anchor
+				class: 'notification notification-flush';
+				url: '#!';
+				with: [ canvas div
+						class: 'notification-avatar';
+						with: [ canvas div
+								class: 'avatar avatar-2xl me-3';
+								with: [ avatar
+										ifNotNil: [ canvas image
+												class: 'rounded-circle';
+												url: avatar ]
+										ifNil: [ canvas div
+												class: 'avatar-name rounded-circle';
+												with: [ canvas text: 'AB' ] ] ] ].
+					canvas div
+						class: 'notification-body';
+						with: [ canvas paragraph
+								class: 'mb-1';
+								with: [ canvas strong: name.
+									canvas text: ' '.
+									canvas text: message ].
+							canvas span
+								class: 'notification-time';
+								with: [ canvas span
+										class: 'me-2';
+										attributeAt: 'role' put: 'img';
+										attributeAt: 'aria-label' put: 'Emoji';
+										with: [ canvas text: emoji ].
+									canvas text: time ] ] ] ]
 ]
 
 { #category : #'rendering-search' }

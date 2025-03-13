@@ -234,11 +234,10 @@ F4SRootComponent >> renderContentOn: canvas [
             var container = document.querySelector("[data-layout]");
             container.classList.remove("container");
             container.classList.add("container-fluid");
-          }'.
-
-					"Don't like this much - think of something cleaner"
+          }'.	"Don't like this much - think of something cleaner"
 					self session isLocked
-						ifTrue: [  "Render Lock Screen" ]
+						ifTrue: [  "Render Session Lock"
+							self renderSessionLockOn: canvas ]
 						ifFalse: [ self
 								renderNavigationOn: canvas;
 								renderBodyContentOn: canvas ] ] ].
@@ -271,6 +270,25 @@ F4SRootComponent >> renderNavigationBodyContentOn: canvas [
 { #category : #rendering }
 F4SRootComponent >> renderNavigationOn: canvas [
 	canvas render: self navigationComponent
+]
+
+{ #category : #rendering }
+F4SRootComponent >> renderSessionLockOn: canvas [ 
+	canvas render: self sessionLockComponent
+]
+
+{ #category : #accessing }
+F4SRootComponent >> sessionLockClass [
+	^ F4SSessionLockComponent
+]
+
+{ #category : #accessing }
+F4SRootComponent >> sessionLockComponent [
+	^ self
+		componentAt: #sessionLock
+		ifAbsentPut: [ self sessionLockClass new
+				lockUser: self session lockUser;
+				yourself ]
 ]
 
 { #category : #updating }
