@@ -1,5 +1,5 @@
 Class {
-	#name : #F4SUnlockSession,
+	#name : #F4SLock,
 	#superclass : #F4SSessionStateChanged,
 	#category : #'Falcon4Seaside-Core'
 }
